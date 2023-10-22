@@ -7,6 +7,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { TooltipPosition, MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -22,6 +26,11 @@ import { UserComponent } from './user/user.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    MatTooltipModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
