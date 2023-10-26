@@ -11,14 +11,19 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TooltipPosition, MatTooltipModule } from '@angular/material/tooltip';
-
-
+import { DialogComponent } from './dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     UserComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,12 @@ import { TooltipPosition, MatTooltipModule } from '@angular/material/tooltip';
     MatDividerModule,
     MatIconModule,
     MatTooltipModule,
-    
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
