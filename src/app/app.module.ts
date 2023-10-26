@@ -18,6 +18,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { Firestore } from 'firebase/firestore';
+import { DocumentData, collection, collectionData } from "@angular/fire/firestore";
+
 
 
 @NgModule({
@@ -42,7 +45,7 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
 
   ],
   providers: [],
