@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { User } from '../models/user.class';
 
 @Component({
   selector: 'app-user',
@@ -8,6 +9,8 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
+  user = new User()
+
   constructor(public dialog: MatDialog) {
 
   }
