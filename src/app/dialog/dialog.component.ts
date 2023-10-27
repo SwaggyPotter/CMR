@@ -6,6 +6,7 @@ import { doc, setDoc } from '@firebase/firestore';
 import { addDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class DialogComponent {
   db: any
   loading: boolean = false;
 
-  constructor() {
+  constructor(public dialogRef: MatDialogRef<DialogComponent>) {
 
 
     const aCollection = collection(this.firestore, 'users')
@@ -49,12 +50,12 @@ export class DialogComponent {
     const itemCollection = collection(this.firestore, 'users');
     await setDoc(doc(itemCollection), { userAsString });
     this.loading = false;
+    this.dialogRef.close();
   }
 
   saveUser() {
     this.user.birthDate = this.birthdate.getTime()
     console.log('Current user is:', this.user)
-
     this.addUser()
   }
 }
