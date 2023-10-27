@@ -1,6 +1,6 @@
 export class User {
     firstName: string = ''
-    lastName: string = ''
+    lastName: string 
     birthDate: number;
     street: string = ''
     zipCode: string = ''
