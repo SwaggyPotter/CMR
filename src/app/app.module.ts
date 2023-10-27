@@ -25,8 +25,6 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
