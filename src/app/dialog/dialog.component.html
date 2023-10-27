@@ -1,22 +1,23 @@
 <div>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
     <h1>Add user</h1>
     <div>
         <mat-form-field appearance="fill">
             <mat-label>Firstname</mat-label>
-            <input [(ngModel)]="user.firstName" matInput placeholder="Firstname">
+            <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="Firstname">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Lastname</mat-label>
-            <input [(ngModel)]="user.lastName" matInput placeholder="Lastname">
+            <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Lastname">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field class="example-full-width">
             <mat-label>Choose ur birthday</mat-label>
-            <input [(ngModel)]="birthdate" matInput [matDatepicker]="picker">
+            <input [disabled]="loading" [(ngModel)]="birthdate" matInput [matDatepicker]="picker">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker">
                 <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -28,25 +29,25 @@
     <div>
         <mat-form-field appearance="fill">
             <mat-label>Address + Housenumber</mat-label>
-            <input [(ngModel)]="user.street" matInput placeholder="street name + number">
+            <input [disabled]="loading" [(ngModel)]="user.street" matInput placeholder="street name + number">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Zip code</mat-label>
-            <input [(ngModel)]="user.zipCode" matInput placeholder="Zip code">
+            <input [disabled]="loading" [(ngModel)]="user.zipCode" matInput placeholder="Zip code">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field appearance="fill">
             <mat-label>City</mat-label>
-            <input [(ngModel)]="user.city" matInput placeholder="City Name">
+            <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="City Name">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
     </div>
     <div>
-        <button>Cancel</button>
-        <button (click)="saveUser()">Add</button>
+        <button [disabled]="loading">Cancel</button>
+        <button [disabled]="loading" (click)="saveUser()">Add</button>
     </div>
 
 </div>

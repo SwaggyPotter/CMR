@@ -21,9 +21,11 @@ export class DialogComponent {
   firestore: Firestore = inject(Firestore)
   users: Observable<any[]>;
   db: any
-
+  loading: boolean = false;
 
   constructor() {
+
+
     const aCollection = collection(this.firestore, 'users')
     this.users = collectionData(aCollection);
 
@@ -42,12 +44,11 @@ export class DialogComponent {
   }
 
   async addUser() {
+    this.loading = true;
     let userAsString = JSON.stringify(this.user)
-    console.log(userAsString)
-
     const itemCollection = collection(this.firestore, 'users');
     await setDoc(doc(itemCollection), { userAsString });
-
+    this.loading = false;
   }
 
   saveUser() {
