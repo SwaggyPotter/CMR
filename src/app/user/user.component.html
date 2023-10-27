@@ -1,3 +1,19 @@
-<button (click)="openDialog()"  mat-fab color="primary" class="add-icon-btn" matTooltip="Add User">
+<mat-card>
+    <table class="userTable">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>City</th>
+        </tr>
+        <tr>
+            <td>Micha</td>
+            <td>Michamail.com</td>
+            <td>Berlin</td>
+        </tr>
+    </table>
+</mat-card>
+
+
+<button (click)="openDialog()" mat-fab color="primary" class="add-icon-btn" matTooltip="Add User">
     <mat-icon>add</mat-icon>
 </button>

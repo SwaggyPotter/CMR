@@ -1,12 +1,12 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <div>
-            Logo
+            <img class="logo" src="/assets/img/logo.png" alt="">
         </div>
 
         <div>
-            <p [routerLink]="['/dashboard']" routerLinkActive="router-link-active" >Dashboard</p>
-            <p [routerLink]="['/user']" routerLinkActive="router-link-active" >User</p>
+            <p [routerLink]="['/dashboard']" routerLinkActive="router-link-active">Dashboard</p>
+            <p [routerLink]="['/user']" routerLinkActive="router-link-active">User</p>
         </div>
     </mat-drawer>
 
@@ -23,4 +23,3 @@
         <router-outlet></router-outlet>
     </div>
 </mat-drawer-container>
-
