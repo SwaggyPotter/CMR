@@ -20,15 +20,14 @@ export class DialogComponent {
   birthdate: any;
   title = 'CMR';
   firestore: Firestore = inject(Firestore)
-  users: Observable<any[]>;
+
   db: any
   loading: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>) {
 
 
-    const aCollection = collection(this.firestore, 'users')
-    this.users = collectionData(aCollection);
+
 
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
@@ -42,20 +41,19 @@ export class DialogComponent {
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    console.log(collection(this.firestore, 'users'))
   }
 
   async addUser() {
     this.loading = true;
-    let userAsString = JSON.stringify(this.user)
-    const itemCollection = collection(this.firestore, 'users');
-    await setDoc(doc(itemCollection), { userAsString });
+    let userAsJson = this.user.toJSON()
+    await addDoc(collection(this.firestore, 'users'), { userAsJson });
     this.loading = false;
     this.dialogRef.close();
   }
 
   saveUser() {
     this.user.birthDate = this.birthdate.getTime()
-    console.log('Current user is:', this.user)
     this.addUser()
   }
 }

@@ -1,12 +1,12 @@
 <mat-card>
-    <table class="userTable">
+    <table id="listOfUser" class="userTable">
         <tr>
             <th>Name</th>
             <th>Email</th>
             <th>City</th>
         </tr>
-        <tr>
-            <td>Micha</td>
+        <tr *ngFor="let user of allUsers; index as i">
+            <td>{{allUsers[i]['userAsJson']['firstName']}}</td>
             <td>Michamail.com</td>
             <td>Berlin</td>
         </tr>
