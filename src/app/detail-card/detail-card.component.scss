@@ -1,23 +1,21 @@
 .detailCard-container {
     padding-left: 50px;
     padding-right: 50px;
+
+    .mt-32 {
+        margin-top: 32px;
+    }
 }
 
 .detailCard-header {
     height: 250px;
-    margin-left: 50px;
-    margin-right: 50px;
-    position: relative;
     display: flex;
     flex-direction: column-reverse;
 
     .card-infos {
         display: flex;
-        .user-info{
-            
-        }
     }
-
+    
     img {
         width: 100px;
     }
