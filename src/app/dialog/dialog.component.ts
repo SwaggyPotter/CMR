@@ -20,9 +20,9 @@ export class DialogComponent {
   birthdate: any;
   title = 'CMR';
   firestore: Firestore = inject(Firestore)
-
   db: any
   loading: boolean = false;
+  id = null;
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>) {
 
@@ -46,11 +46,21 @@ export class DialogComponent {
 
   async addUser() {
     this.loading = true;
+    this.user.id = this.getRandomId().toString()
     let userAsJson = this.user.toJSON()
-    await addDoc(collection(this.firestore, 'users'), { userAsJson });
+    //await addDoc(collection(this.firestore, 'users'), { userAsJson });
+    await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
     this.loading = false;
     this.dialogRef.close();
   }
+
+
+
+  getRandomId() {
+    return Math.floor((Math.random() * 1254216205) + 2456457);
+  }
+
+
 
   saveUser() {
     this.user.birthDate = this.birthdate.getTime()

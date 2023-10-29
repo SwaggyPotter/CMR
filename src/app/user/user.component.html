@@ -5,8 +5,8 @@
             <th>Email</th>
             <th>City</th>
         </tr>
-        <tr *ngFor="let user of allUsers; index as i">
-            <td>{{allUsers[i]['userAsJson']['firstName']}}</td>
+        <tr *ngFor="let user of allUsers; index as i" [routerLink]="['/user/', allUsers[i]['id']]">
+            <td>{{allUsers[i]['firstName']}}</td>
             <td>Michamail.com</td>
             <td>Berlin</td>
         </tr>
