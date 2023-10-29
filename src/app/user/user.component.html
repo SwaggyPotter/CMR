@@ -2,21 +2,13 @@
     <table id="listOfUser" class="userTable">
         <tr>
             <th>Name</th>
-            <th>Last Name</th>
-            <th>Birthdate</th>
-            <th>Streetname + Number</th>
-            <th>City</th>
             <th>Email</th>
-            
-            <th></th>
+            <th>City</th>
         </tr>
         <tr *ngFor="let user of allUsers; index as i">
             <td>{{allUsers[i]['userAsJson']['firstName']}}</td>
-            <td>{{allUsers[i]['userAsJson']['lastName']}}</td>
-            <td>{{allUsers[i]['userAsJson']['birthDate']}}</td>
-            <td>{{allUsers[i]['userAsJson']['street']}}</td>
-            <td>{{allUsers[i]['userAsJson']['city']}}</td>
-            <td>{{allUsers[i]['userAsJson']['email']}}</td>
+            <td>Michamail.com</td>
+            <td>Berlin</td>
         </tr>
     </table>
 </mat-card>

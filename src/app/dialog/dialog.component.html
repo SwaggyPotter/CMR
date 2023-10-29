@@ -46,13 +46,6 @@
         </mat-form-field>
     </div>
     <div>
-        <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="Email">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        </mat-form-field>
-    </div>
-    <div>
         <button [disabled]="loading">Cancel</button>
         <button [disabled]="loading" (click)="saveUser()">Add</button>
     </div>
