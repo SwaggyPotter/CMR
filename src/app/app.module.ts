@@ -25,6 +25,7 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
+import { DetailCardComponent } from './detail-card/detail-card.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatCardModule } from '@angular/material/card';
     DashboardComponent,
     UserComponent,
     DialogComponent,
+    DetailCardComponent,
   ],
   imports: [
     BrowserModule,
