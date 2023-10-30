@@ -27,6 +27,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { DetailCardComponent } from './detail-card/detail-card.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { UserDetailEditDialogComponent } from './user-detail-edit-dialog/user-detail-edit-dialog.component';
+import { EditUserAdressDialogComponent } from './edit-user-adress-dialog/edit-user-adress-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import {MatMenuModule} from '@angular/material/menu';
     UserComponent,
     DialogComponent,
     DetailCardComponent,
+    UserDetailEditDialogComponent,
+    EditUserAdressDialogComponent,
   ],
   imports: [
     BrowserModule,
