@@ -63,6 +63,7 @@ export class DetailCardComponent {
   }
 
   openDialogUserEdit() {
-    this.dialog.open(UserDetailEditDialogComponent)
+    let dialog = this.dialog.open(UserDetailEditDialogComponent)
+    dialog.componentInstance.user = this.user;
   }
 }

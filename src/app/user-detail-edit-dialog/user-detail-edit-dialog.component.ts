@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../models/user.class';
 
 @Component({
   selector: 'app-user-detail-edit-dialog',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-detail-edit-dialog.component.scss']
 })
 export class UserDetailEditDialogComponent {
+  user: any = User;
+  loading : boolean = false;
 
+  constructor(){
+
+  }
+
+  saveUser(){
+    
+  }
 }

@@ -1,1 +1,23 @@
-<p>user-detail-edit-dialog works!</p>
+<div>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <h1>Add user</h1>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Firstname</mat-label>
+            <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="Firstname">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Lastname</mat-label>
+            <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Lastname">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+    </div>
+    
+    <div>
+        <button [disabled]="loading">Cancel</button>
+        <button [disabled]="loading" (click)="saveUser()">Add</button>
+    </div>
+
+</div>
