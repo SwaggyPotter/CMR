@@ -57,10 +57,12 @@ export class DetailCardComponent {
     }
   }
 
-  openDialogAddress(){
-    this.dialog.open(UserDetailEditDialogComponent)  }
+  openDialogAddress() {
+    let dialog = this.dialog.open(EditUserAdressDialogComponent)
+    dialog.componentInstance.user = this.user;
+  }
 
-  openDialogUserEdit(){
-    this.dialog.open(EditUserAdressDialogComponent)
+  openDialogUserEdit() {
+    this.dialog.open(UserDetailEditDialogComponent)
   }
 }
