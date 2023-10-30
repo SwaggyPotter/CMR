@@ -46,6 +46,8 @@ export class DetailCardComponent {
 
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
+      this.user = docSnap.data()
+      console.log(this.user)
     } else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");

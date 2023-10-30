@@ -3,16 +3,15 @@
         <mat-card-content class="card-infos">
             <img src="/assets/img/user-profile-pic.png" alt="user profile pic">
             <div class="user-info">
-                <p>Name</p>
-                <p>Email</p>
-                <p>street</p>
+                <p>Name: {{this.user.firstName}}, {{this.user.lastName}}</p>
+                <p>Email: {{this.user.email}}</p>
             </div>
         </mat-card-content>
     </mat-card>
     <mat-card class="mt-32">
         <h1>Address</h1>
-        <p>Streetname</p>
-        <p>Zip Code</p>
-        <p>City</p>
+        <p>Street: {{this.user.street}}</p>
+        <p>Zip Code: {{this.user.zipCode}}</p>
+        <p>City: {{this.user.city}}</p>
     </mat-card>
 </div>
