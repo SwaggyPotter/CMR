@@ -42,10 +42,6 @@ export class UserComponent {
     this.users.subscribe((newusers: any) => {
       console.log('Recived changes from database', newusers)
       this.allUsers = newusers;
-      this.allUsers.forEach(element => {
-        this.puffer = element['userAsJson']
-        console.log(this.puffer)
-      });
     })
   }
 
