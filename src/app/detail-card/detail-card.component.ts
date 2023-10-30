@@ -1,9 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { initializeApp } from '@firebase/app';
 import { getAdditionalUserInfo } from 'firebase/auth';
 import { collection, doc, getDoc, getDocFromCache, getFirestore } from 'firebase/firestore';
+import { UserDetailEditDialogComponent } from '../user-detail-edit-dialog/user-detail-edit-dialog.component';
+import { EditUserAdressDialogComponent } from '../edit-user-adress-dialog/edit-user-adress-dialog.component';
 
 @Component({
   selector: 'app-detail-card',
@@ -16,7 +19,7 @@ export class DetailCardComponent {
   user: any = {}
   db: any
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, public dialog: MatDialog) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
       authDomain: "simple-crm-system-9f5e8.firebaseapp.com",
@@ -52,5 +55,12 @@ export class DetailCardComponent {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
     }
+  }
+
+  openDialogAddress(){
+    this.dialog.open(UserDetailEditDialogComponent)  }
+
+  openDialogUserEdit(){
+    this.dialog.open(EditUserAdressDialogComponent)
   }
 }
