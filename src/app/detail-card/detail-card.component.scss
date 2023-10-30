@@ -6,10 +6,10 @@
         margin-top: 32px;
     }
 
-    .adress-container{
+    .adress-container {
         position: relative;
 
-        .menu-btn{
+        .menu-btn {
             position: absolute;
             right: 15px;
             top: 15px;
@@ -21,11 +21,18 @@
     height: 250px;
     display: flex;
     flex-direction: column-reverse;
+    position: relative;
+
+    .menu-btn {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+    }
 
     .card-infos {
         display: flex;
     }
-    
+
     img {
         width: 100px;
     }

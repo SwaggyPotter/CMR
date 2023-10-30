@@ -1,7 +1,15 @@
 <div class="detailCard-container">
-    
 
     <mat-card class="detailCard-header">
+
+        <button [matMenuTriggerFor]="menuContact" class="menu-btn" mat-icon-button
+            aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>more_vert</mat-icon>
+            <mat-menu #menuContact="matMenu">
+                <button mat-menu-item>Edit Contact</button>
+            </mat-menu>
+        </button>
+
         <mat-card-content class="card-infos">
             <img src="/assets/img/user-profile-pic.png" alt="user profile pic">
             <div class="user-info">
@@ -10,10 +18,17 @@
             </div>
         </mat-card-content>
     </mat-card>
+
     <mat-card class="mt-32 adress-container">
-        <button class="menu-btn" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+
+        <button [matMenuTriggerFor]="menu" class="menu-btn" mat-icon-button
+            aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>more_vert</mat-icon>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Edit Address</button>
+            </mat-menu>
         </button>
+
         <h1>Address</h1>
         <p>Street: {{this.user.street}}</p>
         <p>Zip Code: {{this.user.zipCode}}</p>
