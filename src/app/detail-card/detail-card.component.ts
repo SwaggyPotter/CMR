@@ -7,6 +7,7 @@ import { getAdditionalUserInfo } from 'firebase/auth';
 import { collection, doc, getDoc, getDocFromCache, getFirestore } from 'firebase/firestore';
 import { UserDetailEditDialogComponent } from '../user-detail-edit-dialog/user-detail-edit-dialog.component';
 import { EditUserAdressDialogComponent } from '../edit-user-adress-dialog/edit-user-adress-dialog.component';
+import { User } from '../models/user.class';
 
 @Component({
   selector: 'app-detail-card',
@@ -57,13 +58,14 @@ export class DetailCardComponent {
     }
   }
 
-  openDialogAddress() {
-    let dialog = this.dialog.open(EditUserAdressDialogComponent)
-    dialog.componentInstance.user = this.user;
-  }
 
   openDialogUserEdit() {
     let dialog = this.dialog.open(UserDetailEditDialogComponent)
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user);
+  }
+
+  openDialogAddress() {
+    let dialog = this.dialog.open(EditUserAdressDialogComponent)
+    dialog.componentInstance.user = new User(this.user);
   }
 }
