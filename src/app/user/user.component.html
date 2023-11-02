@@ -3,12 +3,16 @@
         <tr>
             <th>Name</th>
             <th>Email</th>
+            <th>Street</th>
             <th>City</th>
+            <th>Zip Code</th>
         </tr>
-        <tr *ngFor="let user of allUsers; index as i" [routerLink]="['/user/', allUsers[i]['id']]">
-            <td>{{allUsers[i]['firstName']}}</td>
-            <td>Michamail.com</td>
-            <td>Berlin</td>
+        <tr class="userList" *ngFor="let user of allUsers; index as i" [routerLink]="['/user/', allUsers[i]['id']]">
+            <td>{{allUsers[i]['firstName']}}, {{allUsers[i]['lastName']}}</td>
+            <td>{{allUsers[i]['email']}}</td>
+            <td>{{allUsers[i]['street']}}</td>
+            <td>{{allUsers[i]['city']}}</td>
+            <td>{{allUsers[i]['zipCode']}}</td>
         </tr>
     </table>
 </mat-card>
