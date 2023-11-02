@@ -8,6 +8,23 @@
 }
 .example-sidenav{
     width: 300px;
+
+    .clickable{
+        cursor: pointer;
+    }
+
+    .side-nav-box{
+        border-bottom: solid #ccbbbb 1px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        margin: 0;
+
+        &:hover{
+            background-color: #565656;
+        }
+    }
 }
 
 .menu-button{
