@@ -44,6 +44,14 @@
             <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="City Name">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="City Name">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+    </div>
+    <div>
+        
     </div>
     <div>
         <button [disabled]="loading">Cancel</button>
