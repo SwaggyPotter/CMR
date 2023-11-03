@@ -66,4 +66,8 @@ export class DialogComponent {
     this.user.birthDate = this.birthdate.getTime()
     this.addUser()
   }
+
+  closeDialog() {
+    this.dialogRef.close()
+  }
 }

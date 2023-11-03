@@ -1,17 +1,15 @@
-<div>
+<div class="dialog-container">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
     <h1>Add user</h1>
     <div>
-        <mat-form-field appearance="fill">
+        <mat-form-field class="mrr-10" appearance="fill">
             <mat-label>Firstname</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="Firstname">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Lastname</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Lastname">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
     </div>
     <div>
@@ -27,35 +25,31 @@
     </div>
 
     <div>
-        <mat-form-field appearance="fill">
+        <mat-form-field class="mrr-10" appearance="fill">
             <mat-label>Address + Housenumber</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.street" matInput placeholder="street name + number">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Zip code</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.zipCode" matInput placeholder="Zip code">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
     </div>
     <div>
-        <mat-form-field appearance="fill">
+        <mat-form-field class="mrr-10" appearance="fill">
             <mat-label>City</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="City Name">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.email" matInput placeholder="City Name">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
     </div>
     <div>
-        
+
     </div>
     <div>
-        <button [disabled]="loading">Cancel</button>
-        <button [disabled]="loading" (click)="saveUser()">Add</button>
+        <button class="mrr-10" mat-raised-button color="accent" [disabled]="loading" (click)="saveUser()">Add</button>
+        <button mat-raised-button color="warn" [disabled]="loading" (click)="closeDialog()">Cancel</button>
     </div>
 
 </div>
