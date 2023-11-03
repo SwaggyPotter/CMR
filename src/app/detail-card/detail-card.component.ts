@@ -9,11 +9,14 @@ import { UserDetailEditDialogComponent } from '../user-detail-edit-dialog/user-d
 import { EditUserAdressDialogComponent } from '../edit-user-adress-dialog/edit-user-adress-dialog.component';
 import { User } from '../models/user.class';
 
+
 @Component({
   selector: 'app-detail-card',
   templateUrl: './detail-card.component.html',
   styleUrls: ['./detail-card.component.scss']
 })
+
+
 export class DetailCardComponent {
   userId: any
   firestore: Firestore = inject(Firestore)
@@ -21,6 +24,7 @@ export class DetailCardComponent {
   db: any
   users: any
   allUsers: any
+
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog) {
     const firebaseConfig = {
@@ -32,19 +36,15 @@ export class DetailCardComponent {
       appId: "1:988410038077:web:ae12fc4879f67f2ceba754",
       measurementId: "G-J861YGKZ2C"
     };
-
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-
     this.userId = this.route.snapshot.paramMap.get('id')
-
     this.getUser()
   }
 
 
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
-      console.log("Current data: ", doc.data());
       this.user = doc.data()
     });
   }
@@ -54,6 +54,7 @@ export class DetailCardComponent {
     let dialog = this.dialog.open(UserDetailEditDialogComponent)
     dialog.componentInstance.user = new User(this.user);
   }
+
 
   openDialogAddress() {
     let dialog = this.dialog.open(EditUserAdressDialogComponent)

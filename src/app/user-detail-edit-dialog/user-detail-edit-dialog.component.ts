@@ -14,8 +14,9 @@ import { addDoc } from "firebase/firestore";
   selector: 'app-user-detail-edit-dialog',
   templateUrl: './user-detail-edit-dialog.component.html',
   styleUrls: ['./user-detail-edit-dialog.component.scss'],
-  
 })
+
+
 export class UserDetailEditDialogComponent {
   user: any = new User();
   loading: boolean = false;
@@ -23,6 +24,7 @@ export class UserDetailEditDialogComponent {
   firestore: Firestore = inject(Firestore)
   users: any
   allUsers: any
+
 
   constructor(public dialogRef: MatDialogRef<UserDetailEditDialogComponent>) {
     const firebaseConfig = {
@@ -34,8 +36,6 @@ export class UserDetailEditDialogComponent {
       appId: "1:988410038077:web:ae12fc4879f67f2ceba754",
       measurementId: "G-J861YGKZ2C"
     };
-
-    console.log(collection(this.firestore, 'users'))
   }
 
 
