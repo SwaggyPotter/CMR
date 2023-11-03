@@ -1,18 +1,18 @@
 <mat-card>
     <table id="listOfUser" class="userTable">
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Street</th>
-            <th>City</th>
-            <th>Zip Code</th>
+            <th class="border-right">Name</th>
+            <th class="border-right">Email</th>
+            <th class="border-right">Street</th>
+            <th class="border-right">City</th>
+            <th class="border-left">Zip Code</th>
         </tr>
         <tr class="userList" *ngFor="let user of allUsers; index as i" [routerLink]="['/user/', allUsers[i]['id']]">
-            <td>{{allUsers[i]['firstName']}}, {{allUsers[i]['lastName']}}</td>
-            <td>{{allUsers[i]['email']}}</td>
-            <td>{{allUsers[i]['street']}}</td>
-            <td>{{allUsers[i]['city']}}</td>
-            <td>{{allUsers[i]['zipCode']}}</td>
+            <td class="border-right">{{allUsers[i]['firstName']}}, {{allUsers[i]['lastName']}}</td>
+            <td class="border-right">{{allUsers[i]['email']}}</td>
+            <td class="border-right">{{allUsers[i]['street']}}</td>
+            <td class="border-right">{{allUsers[i]['city']}}</td>
+            <td class="border-left">{{allUsers[i]['zipCode']}}</td>
         </tr>
     </table>
 </mat-card>
