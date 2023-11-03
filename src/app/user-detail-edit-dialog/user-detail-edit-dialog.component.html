@@ -1,25 +1,23 @@
-<div>
+<div class="edit-user-details-container">
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
     <h1>Edit user</h1>
     <div>
-
-        <mat-form-field appearance="fill">
+        <mat-form-field class="mrr-10" appearance="fill">
             <mat-label>Firstname</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.firstName" matInput placeholder="Firstname">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Lastname</mat-label>
             <input [disabled]="loading" [(ngModel)]="user.lastName" matInput placeholder="Lastname">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
 
     </div>
 
     <div>
-        <button [disabled]="loading">Cancel</button>
-        <button [disabled]="loading" (click)="updateUser()">Save</button>
+        <button class="mrr-10" mat-raised-button color="accent" [disabled]="loading"
+            (click)="updateUser()">Save</button>
+        <button mat-raised-button color="warn" [disabled]="loading" (click)="closeDialog()">Cancel</button>
     </div>
 
 </div>

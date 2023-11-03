@@ -5,7 +5,7 @@ import { doc, getFirestore, setDoc } from 'firebase/firestore';
 import { User } from '../models/user.class';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Firestore } from '@angular/fire/firestore';
-import {  collection, collectionData } from '@angular/fire/firestore';
+import { collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { addDoc } from "firebase/firestore";
 
@@ -21,7 +21,7 @@ export class UserDetailEditDialogComponent {
   db: any
   firestore: Firestore = inject(Firestore)
 
-  constructor() {
+  constructor(public dialogRef: MatDialogRef<UserDetailEditDialogComponent>) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
       authDomain: "simple-crm-system-9f5e8.firebaseapp.com",
@@ -41,8 +41,12 @@ export class UserDetailEditDialogComponent {
     const db = getDatabase();
     this.loading = true;
     let userAsJson = this.user.toJSON()
-    //await addDoc(collection(this.firestore, 'users'), { userAsJson });
     await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
     this.loading = false;
+    this.closeDialog();
+  }
+
+  closeDialog() {
+    this.dialogRef.close()
   }
 }

@@ -25,10 +25,6 @@ export class DialogComponent {
   id = null;
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>) {
-
-
-
-
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
       authDomain: "simple-crm-system-9f5e8.firebaseapp.com",
@@ -55,19 +51,18 @@ export class DialogComponent {
   }
 
 
-
   getRandomId() {
     return Math.floor((Math.random() * 1254216205) + 2456457);
   }
 
 
-
   saveUser() {
-    this.user.birthDate = this.birthdate.getTime()
-    this.addUser()
+    this.user.birthDate = this.birthdate.getTime();
+    this.addUser();
   }
 
+
   closeDialog() {
-    this.dialogRef.close()
+    this.dialogRef.close();
   }
 }
