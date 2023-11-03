@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
+import { collectionData, Firestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { initializeApp } from '@firebase/app';
 import { getAdditionalUserInfo } from 'firebase/auth';
-import { collection, doc, getDoc, getDocFromCache, getFirestore } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocFromCache, getFirestore, onSnapshot } from 'firebase/firestore';
 import { UserDetailEditDialogComponent } from '../user-detail-edit-dialog/user-detail-edit-dialog.component';
 import { EditUserAdressDialogComponent } from '../edit-user-adress-dialog/edit-user-adress-dialog.component';
 import { User } from '../models/user.class';
@@ -19,6 +19,8 @@ export class DetailCardComponent {
   firestore: Firestore = inject(Firestore)
   user: any = {}
   db: any
+  users: any
+  allUsers: any
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog) {
     const firebaseConfig = {
@@ -33,29 +35,18 @@ export class DetailCardComponent {
 
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-  }
 
-  ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id')
-    console.log('the id is: ', this.userId)
-    this.getUser()
 
-    const docRef = doc(this.firestore, "users", this.userId);
-    console.log(getDoc(doc(this.firestore, 'users', this.userId)))
+    this.getUser()
   }
+
 
   async getUser() {
-    const docRef = doc(this.db, "users", this.userId);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-      this.user = docSnap.data()
-      console.log(this.user)
-    } else {
-      // docSnap.data() will be undefined in this case
-      console.log("No such document!");
-    }
+    const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
+      console.log("Current data: ", doc.data());
+      this.user = doc.data()
+    });
   }
 
 

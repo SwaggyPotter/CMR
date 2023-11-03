@@ -42,13 +42,10 @@ export class UserComponent {
     this.users.subscribe((newusers: any) => {
       console.log('Recived changes from database', newusers)
       this.allUsers = newusers;
-      console.log(this.allUsers[0]['zipCode'])
     })
   }
 
   openDialog() {
     this.dialog.open(DialogComponent)
   }
-
-  
 }

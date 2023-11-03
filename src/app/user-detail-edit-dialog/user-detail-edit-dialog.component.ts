@@ -13,13 +13,16 @@ import { addDoc } from "firebase/firestore";
 @Component({
   selector: 'app-user-detail-edit-dialog',
   templateUrl: './user-detail-edit-dialog.component.html',
-  styleUrls: ['./user-detail-edit-dialog.component.scss']
+  styleUrls: ['./user-detail-edit-dialog.component.scss'],
+  
 })
 export class UserDetailEditDialogComponent {
   user: any = new User();
   loading: boolean = false;
   db: any
   firestore: Firestore = inject(Firestore)
+  users: any
+  allUsers: any
 
   constructor(public dialogRef: MatDialogRef<UserDetailEditDialogComponent>) {
     const firebaseConfig = {
@@ -32,10 +35,9 @@ export class UserDetailEditDialogComponent {
       measurementId: "G-J861YGKZ2C"
     };
 
-    const app = initializeApp(firebaseConfig);
-    this.db = getFirestore(app);
-
+    console.log(collection(this.firestore, 'users'))
   }
+
 
   async updateUser() {
     const db = getDatabase();
@@ -45,6 +47,7 @@ export class UserDetailEditDialogComponent {
     this.loading = false;
     this.closeDialog();
   }
+
 
   closeDialog() {
     this.dialogRef.close()
