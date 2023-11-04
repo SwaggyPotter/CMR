@@ -29,6 +29,8 @@ import { DetailCardComponent } from './detail-card/detail-card.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { UserDetailEditDialogComponent } from './user-detail-edit-dialog/user-detail-edit-dialog.component';
 import { EditUserAdressDialogComponent } from './edit-user-adress-dialog/edit-user-adress-dialog.component';
+import { NoteComponentComponent } from './note-component/note-component.component';
+import { AddNoteDialogComponent } from './add-note-dialog/add-note-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { EditUserAdressDialogComponent } from './edit-user-adress-dialog/edit-us
     DetailCardComponent,
     UserDetailEditDialogComponent,
     EditUserAdressDialogComponent,
+    NoteComponentComponent,
+    AddNoteDialogComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { collection, doc, getDoc, getDocFromCache, getFirestore, onSnapshot } fr
 import { UserDetailEditDialogComponent } from '../user-detail-edit-dialog/user-detail-edit-dialog.component';
 import { EditUserAdressDialogComponent } from '../edit-user-adress-dialog/edit-user-adress-dialog.component';
 import { User } from '../models/user.class';
+import { AddNoteDialogComponent } from '../add-note-dialog/add-note-dialog.component';
 
 
 @Component({
@@ -59,5 +60,13 @@ export class DetailCardComponent {
   openDialogAddress() {
     let dialog = this.dialog.open(EditUserAdressDialogComponent)
     dialog.componentInstance.user = new User(this.user);
+  }
+
+  openNote() {
+    let dialog = this.dialog.open(AddNoteDialogComponent)
+  }
+
+  addNote() {
+    let dialog = this.dialog.open(AddNoteDialogComponent)
   }
 }

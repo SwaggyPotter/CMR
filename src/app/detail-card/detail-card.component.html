@@ -34,4 +34,16 @@
         <p>Zip Code: {{this.user.zipCode}}</p>
         <p>City: {{this.user.city}}</p>
     </mat-card>
+
+    <mat-card class="mt-32 note-Container">
+        <h1>Notes</h1>
+        <ul *ngFor="let item of user">
+            <li>
+                <p (click)="openNote()"></p>
+            </li>
+        </ul>
+        <button (click)="addNote()" class="add-note-btn" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+            <mat-icon>add_notes</mat-icon>
+        </button>
+    </mat-card>
 </div>
