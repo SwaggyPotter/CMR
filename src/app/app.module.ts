@@ -31,6 +31,7 @@ import { UserDetailEditDialogComponent } from './user-detail-edit-dialog/user-de
 import { EditUserAdressDialogComponent } from './edit-user-adress-dialog/edit-user-adress-dialog.component';
 import { NoteComponentComponent } from './note-component/note-component.component';
 import { AddNoteDialogComponent } from './add-note-dialog/add-note-dialog.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { AddNoteDialogComponent } from './add-note-dialog/add-note-dialog.compon
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule,
+    MatProgressSpinnerModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),

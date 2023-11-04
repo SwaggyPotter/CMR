@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-note-dialog.component.scss']
 })
 export class AddNoteDialogComponent {
+  saveNote() {
 
+  }
+  constructor() {
+
+  }
 }

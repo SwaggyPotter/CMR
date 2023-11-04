@@ -1,1 +1,15 @@
-<p>add-note-dialog works!</p>
+<form class="add-note-input">
+    <mat-form-field class="Title Input">
+        <input matInput placeholder="" value="Title">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Note</mat-label>
+        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+    </mat-form-field>
+
+    <button (click)="saveNote()" class="add-note-btn" mat-fab color="primary"
+        aria-label="Example icon button with a delete icon">
+        <mat-icon>save</mat-icon>
+    </button>
+</form>
