@@ -38,8 +38,8 @@
     <mat-card class="mt-32 note-Container">
         <h1>Notes</h1>
         <ul>
-            <li *ngFor="let item of this.user['userNotes']; index as i">
-                <p (click)="openNote()">{{this.user['userNotes'][i]}}</p>
+            <li *ngFor="let item of this.user['title']; index as i">
+                <p (click)="openNote(i)">{{this.user['title'][i]}}</p>
             </li>
         </ul>
         <button (click)="addNote()" class="add-note-btn" mat-fab color="primary"

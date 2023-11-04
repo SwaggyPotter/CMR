@@ -63,8 +63,8 @@ export class DetailCardComponent {
     dialog.componentInstance.user = new User(this.user);
   }
 
-  openNote() {
-    
+  openNote(i: number) {
+    console.log(i)
   }
 
   addNote() {

@@ -62,9 +62,7 @@
     ul {
         padding-left: 16px;
         
-        &:hover {
-            background-color: rgba(252, 252, 252, 0.055);
-        }
+        
 
         li {
             padding-bottom: 5px;
@@ -72,6 +70,9 @@
             cursor: pointer;
             p{
                 margin: 0;
+            }
+            &:hover {
+                background-color: rgba(252, 252, 252, 0.055);
             }
         }
     }
