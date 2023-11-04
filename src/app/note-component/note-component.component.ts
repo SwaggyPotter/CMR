@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DetailCardComponent } from '../detail-card/detail-card.component';
+import { noteData } from '../models/note.class';
 
 @Component({
   selector: 'app-note-component',
@@ -6,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./note-component.component.scss']
 })
 export class NoteComponentComponent {
-
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DetailCardComponent){}
 }

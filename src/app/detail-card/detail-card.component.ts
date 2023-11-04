@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { initializeApp } from '@firebase/app';
 import { getAdditionalUserInfo } from 'firebase/auth';
@@ -9,6 +9,7 @@ import { UserDetailEditDialogComponent } from '../user-detail-edit-dialog/user-d
 import { EditUserAdressDialogComponent } from '../edit-user-adress-dialog/edit-user-adress-dialog.component';
 import { User } from '../models/user.class';
 import { AddNoteDialogComponent } from '../add-note-dialog/add-note-dialog.component';
+import { NoteComponentComponent } from '../note-component/note-component.component';
 
 
 @Component({
@@ -19,15 +20,16 @@ import { AddNoteDialogComponent } from '../add-note-dialog/add-note-dialog.compo
 
 
 export class DetailCardComponent {
-  userId: any
-  firestore: Firestore = inject(Firestore)
-  user: any = {}
-  db: any
-  users: any
-  allUsers: any
+  userId: any;
+  firestore: Firestore = inject(Firestore);
+  user: any = {};
+  db: any;
+  users: any;
+  allUsers: any;
+  title: string = '';
+  note: string = '';
 
-
-  constructor(private route: ActivatedRoute, public dialog: MatDialog) {
+  constructor(private route: ActivatedRoute, public dialog: MatDialog,) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
       authDomain: "simple-crm-system-9f5e8.firebaseapp.com",
@@ -63,8 +65,15 @@ export class DetailCardComponent {
     dialog.componentInstance.user = new User(this.user);
   }
 
-  openNote(i: number) {
-    console.log(i)
+  openNote(i: number): void {
+    this.title = this.user['title'][i]
+    this.note = this.user['notes'][i]
+    this.dialog.open(NoteComponentComponent, {
+      data: {
+        title: this.title,
+        note: this.note,
+      }
+    })
   }
 
   addNote() {
