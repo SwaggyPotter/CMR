@@ -9,5 +9,6 @@ import { noteData } from '../models/note.class';
   styleUrls: ['./note-component.component.scss']
 })
 export class NoteComponentComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DetailCardComponent){}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DetailCardComponent){
+  }
 }

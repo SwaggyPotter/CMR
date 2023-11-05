@@ -76,7 +76,13 @@ export class DetailCardComponent {
     })
   }
 
-  addNote() {
-    let dialog = this.dialog.open(AddNoteDialogComponent)
+  addNote(): void {
+    console.log(this.userId)
+    let dialog = this.dialog.open(AddNoteDialogComponent, {
+      data: {
+        userId: this.userId,
+
+      }
+    })
   }
 }

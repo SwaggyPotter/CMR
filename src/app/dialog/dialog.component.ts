@@ -44,7 +44,6 @@ export class DialogComponent {
     this.loading = true;
     this.user.id = this.getRandomId().toString()
     let userAsJson = this.user.toJSON()
-    //await addDoc(collection(this.firestore, 'users'), { userAsJson });
     await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
     this.loading = false;
     this.dialogRef.close();

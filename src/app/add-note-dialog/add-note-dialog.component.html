@@ -1,15 +1,15 @@
 <form class="add-note-input">
     <mat-form-field class="Title Input">
-        <input matInput placeholder="" value="Title">
+        <mat-label>Title</mat-label>
+        <input #titleInput matInput>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Note</mat-label>
-        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+        <textarea #noteInput matInput></textarea>
     </mat-form-field>
 
-    <button (click)="saveNote()" class="add-note-btn" mat-fab color="primary"
-        aria-label="Example icon button with a delete icon">
+    <button (click)="saveNote(titleInput.value,noteInput.value)" class="add-note-btn" mat-fab color="primary">
         <mat-icon>save</mat-icon>
     </button>
 </form>
