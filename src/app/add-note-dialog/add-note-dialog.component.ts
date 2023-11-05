@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
-import { doc, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
+import { collection, doc, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
 import { Inject, } from '@angular/core';
 import { collectionData, } from '@angular/fire/firestore';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -13,6 +13,7 @@ import { User } from '../models/user.class';
 
 import { NoteComponentComponent } from '../note-component/note-component.component';
 import { DetailCardComponent } from '../detail-card/detail-card.component';
+import { getDatabase } from 'firebase/database';
 
 @Component({
   selector: 'app-add-note-dialog',
@@ -22,12 +23,13 @@ import { DetailCardComponent } from '../detail-card/detail-card.component';
 export class AddNoteDialogComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);
-  user: any = {};
+  user: any = User;
   db: any;
   users: any;
   allUsers: any;
   title: string = '';
   note: string = '';
+  loading: boolean = false;
   constructor(private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public data: DetailCardComponent) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
@@ -45,12 +47,13 @@ export class AddNoteDialogComponent {
   }
 
   async saveNote(title: string, note: string) {
-    console.log(title, note)
-    const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
-      this.user = doc.data()
-
-    });
-
+    this.loading = true;
+    const db = getDatabase();
+    this.user.title.push(title);
+    this.user.notes.push(note);
+    let userAsJson = this.user;
+    await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
+    this.loading = false;
   }
 
   async getUser() {
