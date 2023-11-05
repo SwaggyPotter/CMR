@@ -28,6 +28,7 @@ export class DetailCardComponent {
   allUsers: any;
   title: string = '';
   note: string = '';
+  numberOf: number = 0;
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog,) {
     const firebaseConfig = {
@@ -68,10 +69,14 @@ export class DetailCardComponent {
   openNote(i: number): void {
     this.title = this.user['title'][i]
     this.note = this.user['notes'][i]
+    this.numberOf = i;
+    console.log(this.numberOf)
     this.dialog.open(NoteComponentComponent, {
       data: {
         title: this.title,
         note: this.note,
+        userId: this.userId,
+        numberOf: this.numberOf
       }
     })
   }
@@ -81,7 +86,6 @@ export class DetailCardComponent {
     let dialog = this.dialog.open(AddNoteDialogComponent, {
       data: {
         userId: this.userId,
-
       }
     })
   }

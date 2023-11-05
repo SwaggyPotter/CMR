@@ -46,6 +46,7 @@ export class AddNoteDialogComponent {
     this.getUser()
   }
 
+  
   async saveNote(title: string, note: string) {
     this.loading = true;
     const db = getDatabase();
@@ -55,6 +56,7 @@ export class AddNoteDialogComponent {
     await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
     this.loading = false;
   }
+
 
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
