@@ -59,8 +59,6 @@ export class AddNoteDialogComponent {
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
       this.user = doc.data()
-      console.log(this.user.title)
-      console.log(this.user.notes)
     });
   }
 }
