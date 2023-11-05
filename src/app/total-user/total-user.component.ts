@@ -20,6 +20,8 @@ export class TotalUserComponent {
   note: string = '';
   itemNumber: number = 0;
   loading: boolean = false;
+  userAmount: number = 0;
+  userArray: any = [];
 
   constructor() {
     const firebaseConfig = {
@@ -41,8 +43,10 @@ export class TotalUserComponent {
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
+      this.userArray.push(doc.id)
     });
+    this.userAmount = this.userArray.length
+    console.log(this.userAmount)
   }
-
 }
 
