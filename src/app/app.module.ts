@@ -32,6 +32,7 @@ import { EditUserAdressDialogComponent } from './edit-user-adress-dialog/edit-us
 import { NoteComponentComponent } from './note-component/note-component.component';
 import { AddNoteDialogComponent } from './add-note-dialog/add-note-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { TotalUserComponent } from './total-user/total-user.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     EditUserAdressDialogComponent,
     NoteComponentComponent,
     AddNoteDialogComponent,
+    TotalUserComponent,
   ],
   imports: [
     BrowserModule,
