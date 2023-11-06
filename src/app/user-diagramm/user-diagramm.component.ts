@@ -8,45 +8,16 @@ import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
 
 @Component({
   selector: 'app-user-diagramm',
-  templateUrl: './user-diagramm.component.html',
-  styleUrls: ['./user-diagramm.component.scss']
+  styleUrls: ['./user-diagramm.component.scss'],
+  template: '<plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>',
 })
 export class UserDiagrammComponent {
-  // Each Column Definition results in one Column.
-  public columnDefs: ColDef[] = [
-    { field: 'make'},
-    { field: 'model'},
-    { field: 'price' }
-  ];
-
-  // DefaultColDef sets props common to all Columns
-  public defaultColDef: ColDef = {
-    sortable: true,
-    filter: true,
+  public graph = {
+    data: [
+      { x: [1, 2, 3], y: [2, 6, 3], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
+     
+    ],
+    layout: { width: window.innerWidth, height: 240, title: 'A Fancy Plot' }
   };
-  
-  // Data that gets displayed in the grid
-  public rowData$!: Observable<any[]>;
-
-  // For accessing the Grid's API
-  @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
-
-  constructor(private http: HttpClient) {}
-
-  // Example load data from server
-  onGridReady(params: GridReadyEvent) {
-    this.rowData$ = this.http
-      .get<any[]>('https://www.ag-grid.com/example-assets/row-data.json');
-  }
-
-  // Example of consuming Grid Event
-  onCellClicked( e: CellClickedEvent): void {
-    console.log('cellClicked', e);
-  }
-
-  // Example using Grid's API
-  clearSelection(): void {
-    this.agGrid.api.deselectAll();
-  }
 }
 

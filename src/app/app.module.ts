@@ -37,9 +37,12 @@ import { UserDiagrammComponent } from './user-diagramm/user-diagramm.component';
 import { HttpClientModule } from '@angular/common/http'
 import { AgGridModule } from 'ag-grid-angular';
 
+import { CommonModule } from '@angular/common';
+import * as PlotlyJS from 'plotly.js-dist-min';
+import { PlotlyModule } from 'angular-plotly.js';
 
 
-
+PlotlyModule.plotlyjs = PlotlyJS;
 
 @NgModule({
   declarations: [
@@ -56,6 +59,8 @@ import { AgGridModule } from 'ag-grid-angular';
     UserDiagrammComponent,
   ],
   imports: [
+    PlotlyModule,
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
