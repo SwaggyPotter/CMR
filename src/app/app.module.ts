@@ -33,6 +33,13 @@ import { NoteComponentComponent } from './note-component/note-component.componen
 import { AddNoteDialogComponent } from './add-note-dialog/add-note-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { TotalUserComponent } from './total-user/total-user.component';
+import { UserDiagrammComponent } from './user-diagramm/user-diagramm.component';
+import { HttpClientModule } from '@angular/common/http'
+import { AgGridModule } from 'ag-grid-angular';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -46,6 +53,7 @@ import { TotalUserComponent } from './total-user/total-user.component';
     NoteComponentComponent,
     AddNoteDialogComponent,
     TotalUserComponent,
+    UserDiagrammComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,12 +75,15 @@ import { TotalUserComponent } from './total-user/total-user.component';
     MatCardModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    BrowserModule,
+    HttpClientModule,
+    AgGridModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore())
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, UserDiagrammComponent]
 })
 export class AppModule { }
