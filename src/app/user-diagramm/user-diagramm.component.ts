@@ -10,8 +10,8 @@ import { initializeApp } from '@angular/fire/app';
 
 @Component({
   selector: 'app-user-diagramm',
-  styleUrls: ['./user-diagramm.component.scss'],
   templateUrl: './user-diagramm.component.html',
+  styleUrls: ['./user-diagramm.component.scss'],
 })
 
 export class UserDiagrammComponent {
@@ -54,14 +54,14 @@ export class UserDiagrammComponent {
       this.userArray.push(doc.id)
     });
     this.userAmount = this.userArray.length
+    this.graph.data[0]['y'][2] = this.userAmount;
     this.isDataReady = true;
   }
 
+
   public graph = {
-
     data: [
-      { x: [0, 5, 10, 15, 20], y: [0, this.userAmount, 15, 20, 65], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
-
+      { x: [0, 5, 10, 15, 20], y: [0, 10, 15, 20, 65], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
     ],
     layout: { width: 250, height: 240, title: 'Total user over time' }
   };
