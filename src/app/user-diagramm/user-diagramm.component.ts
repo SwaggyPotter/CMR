@@ -11,8 +11,9 @@ import { initializeApp } from '@angular/fire/app';
 @Component({
   selector: 'app-user-diagramm',
   styleUrls: ['./user-diagramm.component.scss'],
-  template: '<plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>',
+  templateUrl: './user-diagramm.component.html',
 })
+
 export class UserDiagrammComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);
@@ -26,6 +27,7 @@ export class UserDiagrammComponent {
   loading: boolean = false;
   userAmount: number = 0;
   userArray: any = [];
+  isDataReady: boolean = false;
 
   constructor() {
     const firebaseConfig = {
@@ -52,16 +54,16 @@ export class UserDiagrammComponent {
       this.userArray.push(doc.id)
     });
     this.userAmount = this.userArray.length
-    this.graph.data[0]['y'].splice(1,2)
+    this.isDataReady = true;
   }
+
   public graph = {
+
     data: [
-      { x: [0, 5, 10, 15, 20], y: [0, this.userAmount, 15, 20, 56], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
+      { x: [0, 5, 10, 15, 20], y: [0, this.userAmount, 15, 20, this.userAmount], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
 
     ],
     layout: { width: window.innerWidth, height: 240, title: 'A Fancy Plot' }
   };
-
-
 }
 
