@@ -22,6 +22,8 @@ export class IncomeDiagrammComponent {
   userAmount: number = 0;
   userArray: any = [];
   isDataReady: boolean = false;
+  incomeArray: any = [];
+  openDocDataIncome: any;
 
   constructor() {
     const firebaseConfig = {
@@ -42,20 +44,24 @@ export class IncomeDiagrammComponent {
 
 
   async getUser() {
+    let i = 0;
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
       this.userArray.push(doc.id)
+      this.incomeArray.push(doc.data()['income'])
     });
-    this.userAmount = this.userArray.length
+    let data = this.graph.data[0]['y']
+    this.incomeArray.forEach(function (value:any) {
+      data = value
+      console.log('Income', i )
+    });
     this.isDataReady = true;
   }
 
   public graph = {
 
     data: [
-      { x: [0,1,2,3,4,5,6,7,8], y: [20000, 40000, 60000, 43590, 62736,49203,65374,52635], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
+      { x: [0, 1, 2, 3, 4, 5, 6, 7, 8], y: [], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
 
     ],
     layout: { width: 250, height: 240, title: 'User income' }

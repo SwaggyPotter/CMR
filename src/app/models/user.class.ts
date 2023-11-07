@@ -9,6 +9,7 @@ export class User {
     email: string = '';
     notes: any = [];
     title: any = [];
+    income: number = 0;
 
     constructor(obj?: any) {
         this.firstName = obj ? obj.firstName : '';
@@ -21,6 +22,7 @@ export class User {
         this.email = obj ? obj.email : '';
         this.notes = [];
         this.title = [];
+        this.income = 0;
     }
 
     public toJSON() {
@@ -34,7 +36,8 @@ export class User {
             id: this.id,
             email: this.email,
             notes: this.notes,
-            title : this.title
+            title : this.title,
+            income: this.income,
         }
     }
 }
