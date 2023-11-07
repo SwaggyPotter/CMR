@@ -55,8 +55,14 @@ export class UserDiagrammComponent {
     });
     this.userAmount = this.userArray.length
     this.graph.data[0]['y'][2] = this.userAmount;
+    this.graph.data[0]['y'].forEach(function (value) {
+      console.log(value);
+    });
     this.isDataReady = true;
   }
+
+
+
 
 
   public graph = {
