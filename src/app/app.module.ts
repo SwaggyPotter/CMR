@@ -40,6 +40,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { CommonModule } from '@angular/common';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
+import { IncomeDiagrammComponent } from './income-diagramm/income-diagramm.component';
 
 
 PlotlyModule.plotlyjs = PlotlyJS;
@@ -57,6 +58,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     AddNoteDialogComponent,
     TotalUserComponent,
     UserDiagrammComponent,
+    IncomeDiagrammComponent,
   ],
   imports: [
     PlotlyModule,

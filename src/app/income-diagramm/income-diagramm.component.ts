@@ -1,20 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { ViewChild } from '@angular/core';
-import { AgGridAngular } from 'ag-grid-angular';
-import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
-import { getDocs, getFirestore } from 'firebase/firestore';
 import { initializeApp } from '@angular/fire/app';
+import { Firestore } from '@angular/fire/firestore';
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
 @Component({
-  selector: 'app-user-diagramm',
-  styleUrls: ['./user-diagramm.component.scss'],
-  templateUrl: './user-diagramm.component.html',
+  selector: 'app-income-diagramm',
+  templateUrl: './income-diagramm.component.html',
+  styleUrls: ['./income-diagramm.component.scss']
 })
-
-export class UserDiagrammComponent {
+export class IncomeDiagrammComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);
   user: any = {};
@@ -46,6 +40,7 @@ export class UserDiagrammComponent {
 
   }
 
+
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
@@ -60,10 +55,9 @@ export class UserDiagrammComponent {
   public graph = {
 
     data: [
-      { x: [0, 5, 10, 15, 20], y: [0, this.userAmount, 15, 20, 65], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
+      { x: [0,1,2,3,4,5,6,7,8], y: [20000, 40000, 60000, 43590, 62736,49203,65374,52635], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
 
     ],
-    layout: { width: 250, height: 240, title: 'Total user over time' }
+    layout: { width: 250, height: 240, title: 'User income' }
   };
 }
-
