@@ -49,7 +49,6 @@ export class UserDiagrammComponent {
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
       this.userArray.push(doc.id)
     });
@@ -67,9 +66,12 @@ export class UserDiagrammComponent {
 
   public graph = {
     data: [
-      { x: [0, 5, 10, 15, 20], y: [0, 10, 15, 20, 65], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
+    /*x=month*/{
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],/*y=user*/ y: [0, 10, 15, 20, 65, 50, 40, 26, 17, 10, 37, 18],
+        type: 'scatter', mode: 'lines+points', marker: { color: 'red' }
+      },
     ],
-    layout: { width: 250, height: 240, title: 'Total user over time' }
+    layout: { width: 550, height: 240, title: 'Total user over 12 month' }
   };
 }
 

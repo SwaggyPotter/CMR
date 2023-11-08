@@ -44,26 +44,30 @@ export class IncomeDiagrammComponent {
 
 
   async getUser() {
-    let i = 0;
+    let i: number = 0;
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
       this.userArray.push(doc.id)
       this.incomeArray.push(doc.data()['income'])
     });
-    let data = this.graph.data[0]['y']
-    this.incomeArray.forEach(function (value:any) {
-      data = value
-      console.log('Income', i )
+    let data: any = [];
+    let counterArr: any = [];
+    this.incomeArray.forEach(function (value: any) {
+      i++
+      counterArr.push(i)
+      data.push(value)
     });
+    this.graph.data[0]['x'] = counterArr
+    this.graph.data[0]['y'] = data;
     this.isDataReady = true;
   }
 
   public graph = {
 
     data: [
-      { x: [0, 1, 2, 3, 4, 5, 6, 7, 8], y: [], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
+      { x: [1, 2], y: [], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
 
     ],
-    layout: { width: 250, height: 240, title: 'User income' }
+    layout: { width: 550, height: 240, title: 'User income' }
   };
 }
