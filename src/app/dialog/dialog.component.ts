@@ -37,7 +37,6 @@ export class DialogComponent {
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    console.log(collection(this.firestore, 'users'))
   }
 
   async addUser() {
@@ -49,6 +48,13 @@ export class DialogComponent {
     this.dialogRef.close();
   }
 
+  getJoinMonth() {
+    let month = new Date().getMonth()
+    month++
+    return {
+      month
+    }
+  }
 
   getRandomId() {
     return Math.floor((Math.random() * 1254216205) + 2456457);

@@ -1,3 +1,8 @@
+/**Info
+   * add user join month in form of 1 - 12
+   * for the total user list for every month
+   */
+
 import { Component, inject } from '@angular/core';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -45,6 +50,8 @@ export class UserDiagrammComponent {
 
 
   }
+
+  
 
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
