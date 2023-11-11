@@ -40,7 +40,6 @@ export class UserComponent {
     this.users = collectionData(aCollection);
 
     this.users.subscribe((newusers: any) => {
-      console.log('Recived changes from database', newusers)
       this.allUsers = newusers;
     })
   }

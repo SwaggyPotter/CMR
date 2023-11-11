@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
-import { getDocs, getFirestore } from 'firebase/firestore';
+import { doc, getDocs, getFirestore, onSnapshot } from 'firebase/firestore';
 import { initializeApp } from '@angular/fire/app';
 
 @Component({
@@ -33,6 +33,8 @@ export class UserDiagrammComponent {
   userAmount: number = 0;
   userArray: any = [];
   isDataReady: boolean = false;
+  userJoinData: any;
+  userLeaveData: any;
 
   constructor() {
     const firebaseConfig = {
@@ -47,11 +49,11 @@ export class UserDiagrammComponent {
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
     this.getUser()
-
-
+    this.userJoinedList()
+    this.userLeavedList()
   }
 
-  
+
 
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
@@ -59,12 +61,26 @@ export class UserDiagrammComponent {
       this.userArray.push(doc.id)
     });
     this.graph.data[0]['y'].forEach(function (value) {
-      
+
     });
     this.isDataReady = true;
   }
 
+  async userJoinedList() {
+    const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userJoined"), (doc) => {
+      console.log("Current data: ", doc.data());
+      this.userJoinData = doc.data()
+      console.log(this.userJoinData[2023])
+    });
+  }
 
+  async userLeavedList() {
+    const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userLeaved"), (doc) => {
+      console.log("Current data: ", doc.data());
+      this.userLeaveData = doc.data()
+      console.log(this.userLeaveData[2023])
+    });
+  }
 
 
 
@@ -72,8 +88,9 @@ export class UserDiagrammComponent {
     data: [
     /*x=month*/{
         x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],/*y=user*/ y: [0, 10, 15, 20, 65, 50, 40, 26, 17, 10, 37, 18],
-        type: 'scatter', mode: 'lines+points', marker: { color: 'red' }
+        type: 'bar', mode: 'lines+points', marker: { color: 'red' },// layout: { autosize: true }
       },
+      { x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], y: [0, -10, -15, 20, -65, -50, -40, -26, -17, -10, -37, -18], type: 'bar' },
     ],
     layout: { width: 550, height: 240, title: 'Total user over 12 month' }
   };

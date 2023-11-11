@@ -67,7 +67,7 @@ export class IncomeDiagrammComponent {
   public graph = {
 
     data: [
-      { x: [], y: [], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } },
+      { x: [], y: [], type: 'bar', mode: 'lines+points', marker: { color: 'blue' } },
 
     ],
     layout: { width: 550, height: 240, title: 'User income' }

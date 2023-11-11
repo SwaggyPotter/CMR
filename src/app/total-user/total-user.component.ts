@@ -41,12 +41,9 @@ export class TotalUserComponent {
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
       this.userArray.push(doc.id)
     });
     this.userAmount = this.userArray.length
-    console.log(this.userAmount)
   }
 }
 
