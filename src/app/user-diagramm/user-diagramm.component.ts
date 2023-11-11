@@ -71,14 +71,26 @@ export class UserDiagrammComponent {
       console.log("Current data: ", doc.data());
       this.userJoinData = doc.data()
       console.log(this.userJoinData[2023])
+      let pufferArray = []
+      for (let i = 1; i < 13; i++) {
+        pufferArray.push(this.userJoinData[2023][i])
+      }
+      this.graph.data[0]['y'] = pufferArray
     });
+
+
+
   }
 
   async userLeavedList() {
     const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userLeaved"), (doc) => {
       console.log("Current data: ", doc.data());
       this.userLeaveData = doc.data()
-      console.log(this.userLeaveData[2023])
+      let pufferArray = []
+      for (let i = 1; i < 13; i++) {
+        pufferArray.push(this.userLeaveData[2023][i] - (this.userLeaveData[2023][i] * 2))
+      }
+      this.graph.data[1]['y'] = pufferArray
     });
   }
 
@@ -87,7 +99,7 @@ export class UserDiagrammComponent {
   public graph = {
     data: [
     /*x=month*/{
-        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],/*y=user*/ y: [0, 10, 15, 20, 65, 50, 40, 26, 17, 10, 37, 18],
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],/*y=user*/ y: [],
         type: 'bar', mode: 'lines+points', marker: { color: 'red' },// layout: { autosize: true }
       },
       { x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], y: [0, -10, -15, 20, -65, -50, -40, -26, -17, -10, -37, -18], type: 'bar' },
