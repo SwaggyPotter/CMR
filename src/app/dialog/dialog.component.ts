@@ -15,6 +15,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./dialog.component.scss']
 })
 
+
 export class DialogComponent {
   user = new User()
   birthdate: any;
@@ -23,6 +24,7 @@ export class DialogComponent {
   db: any
   loading: boolean = false;
   id = null;
+
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>) {
     const firebaseConfig = {
@@ -34,19 +36,20 @@ export class DialogComponent {
       appId: "1:988410038077:web:ae12fc4879f67f2ceba754",
       measurementId: "G-J861YGKZ2C"
     };
-
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
   }
 
+
   async addUser() {
     this.loading = true;
-    this.user.id = this.getRandomId().toString()
-    let userAsJson = this.user.toJSON()
+    this.user.id = this.getRandomId().toString();
+    let userAsJson = this.user.toJSON();
     await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
     this.loading = false;
     this.dialogRef.close();
   }
+
 
   getJoinMonth() {
     let month = new Date().getMonth()
@@ -55,6 +58,7 @@ export class DialogComponent {
       month
     }
   }
+
 
   getRandomId() {
     return Math.floor((Math.random() * 1254216205) + 2456457);
