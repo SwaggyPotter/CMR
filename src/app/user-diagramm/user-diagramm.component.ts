@@ -56,13 +56,10 @@ export class UserDiagrammComponent {
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
       this.userArray.push(doc.id)
     });
-    this.userAmount = this.userArray.length
-    this.graph.data[0]['y'][2] = this.userAmount;
     this.graph.data[0]['y'].forEach(function (value) {
-      console.log(value);
+      
     });
     this.isDataReady = true;
   }

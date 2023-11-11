@@ -10,7 +10,8 @@ export class User {
     notes: any = [];
     title: any = [];
     income: number = 0;
-    joinMonth:number;
+    joinMonth: number;
+    joinYear: number;
 
     constructor(obj?: any) {
         this.firstName = obj ? obj.firstName : '';
@@ -25,6 +26,7 @@ export class User {
         this.title = [];
         this.income = 0;
         this.joinMonth = 0;
+        this.joinYear = 0;
     }
 
     public toJSON() {
@@ -38,9 +40,10 @@ export class User {
             id: this.id,
             email: this.email,
             notes: this.notes,
-            title : this.title,
+            title: this.title,
             income: this.income,
-            joinMonth : this.joinMonth,
+            joinMonth: this.joinMonth,
+            joinYear: this.joinYear, 
         }
     }
 }

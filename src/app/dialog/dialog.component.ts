@@ -36,6 +36,9 @@ export class DialogComponent {
       appId: "1:988410038077:web:ae12fc4879f67f2ceba754",
       measurementId: "G-J861YGKZ2C"
     };
+
+    console.log(this.getYear())
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
   }
@@ -43,8 +46,9 @@ export class DialogComponent {
 
   async addUser() {
     this.loading = true;
-    this.user.id = this.getRandomId().toString();
-    let userAsJson = this.user.toJSON();
+    this.user.id = this.getRandomId().toString()
+    this.user.joinMonth = this.getJoinMonth()['month']
+    let userAsJson = this.user.toJSON()
     await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
     this.loading = false;
     this.dialogRef.close();
@@ -52,10 +56,17 @@ export class DialogComponent {
 
 
   getJoinMonth() {
-    let month = new Date().getMonth()
+    let month: number = new Date().getMonth()
     month++
     return {
       month
+    }
+  }
+
+  getYear() {
+    let year = new Date().getFullYear()
+    return{
+      year
     }
   }
 
