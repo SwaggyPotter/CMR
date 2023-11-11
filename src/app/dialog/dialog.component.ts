@@ -41,9 +41,6 @@ export class DialogComponent {
 
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-    setTimeout(()=>{
-      console.log(this.freshData)
-    },2000)
     this.getRoute()
   }
 
