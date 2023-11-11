@@ -48,6 +48,7 @@ export class DialogComponent {
     this.loading = true;
     this.user.id = this.getRandomId().toString()
     this.user.joinMonth = this.getJoinMonth()['month']
+    this.user.joinYear = this.getYear()['year']
     let userAsJson = this.user.toJSON()
     await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
     this.loading = false;
@@ -62,6 +63,7 @@ export class DialogComponent {
       month
     }
   }
+
 
   getYear() {
     let year = new Date().getFullYear()

@@ -24,7 +24,7 @@ export class User {
         this.email = obj ? obj.email : '';
         this.notes = [];
         this.title = [];
-        this.income = 0;
+        this.income = obj ? obj.income : '';
         this.joinMonth = 0;
         this.joinYear = 0;
     }

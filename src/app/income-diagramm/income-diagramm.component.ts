@@ -53,9 +53,11 @@ export class IncomeDiagrammComponent {
     let data: any = [];
     let counterArr: any = [];
     this.incomeArray.forEach(function (value: any) {
-      i++
-      counterArr.push(i)
-      data.push(value)
+      if(value != 0){
+        i++
+        counterArr.push(i)
+        data.push(value)
+      }
     });
     this.graph.data[0]['x'] = counterArr
     this.graph.data[0]['y'] = data;

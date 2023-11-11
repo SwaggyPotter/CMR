@@ -15,6 +15,13 @@
     </div>
 
     <div>
+        <mat-form-field class="mrr-10" appearance="fill">
+            <mat-label>Income</mat-label>
+            <input [disabled]="loading" [(ngModel)]="user.income" matInput placeholder="Income">
+        </mat-form-field>
+    </div>
+
+    <div>
         <button class="mrr-10" mat-raised-button color="accent" [disabled]="loading"
             (click)="updateUser()">Save</button>
         <button mat-raised-button color="warn" [disabled]="loading" (click)="closeDialog()">Cancel</button>
