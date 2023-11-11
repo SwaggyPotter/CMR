@@ -2,11 +2,13 @@ import { Component, inject } from '@angular/core';
 import { User } from '../models/user.class';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { doc, setDoc } from '@firebase/firestore';
+import { doc, getDoc, getDocs, onSnapshot, setDoc } from '@firebase/firestore';
 import { addDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { MatDialogRef } from '@angular/material/dialog';
+import { getDatabase } from 'firebase/database';
+import { query } from '@angular/animations';
 
 
 @Component({
@@ -24,7 +26,7 @@ export class DialogComponent {
   db: any
   loading: boolean = false;
   id = null;
-
+  freshData: any
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>) {
     const firebaseConfig = {
@@ -37,12 +39,24 @@ export class DialogComponent {
       measurementId: "G-J861YGKZ2C"
     };
 
-    console.log(this.getYear())
-
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    this.db = getFirestore(app);
+    setTimeout(()=>{
+      console.log(this.freshData)
+    },2000)
+    this.getRoute()
   }
 
+  async getRoute() {
+    const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userJoined"), (doc) => {
+      let data: any = doc.data();
+      let year = this.getYear()['year'];
+      let month = this.getJoinMonth()['month'];
+      data[year][month]++;
+      console.log(data)
+      this.freshData = data
+    });
+  }
 
   async addUser() {
     this.loading = true;
@@ -51,6 +65,7 @@ export class DialogComponent {
     this.user.joinYear = this.getYear()['year']
     let userAsJson = this.user.toJSON()
     await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
+    await setDoc(doc(this.firestore, "userJoinedLeaved", 'userJoined'), this.freshData)
     this.loading = false;
     this.dialogRef.close();
   }
@@ -67,7 +82,7 @@ export class DialogComponent {
 
   getYear() {
     let year = new Date().getFullYear()
-    return{
+    return {
       year
     }
   }

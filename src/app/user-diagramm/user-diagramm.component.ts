@@ -54,17 +54,14 @@ export class UserDiagrammComponent {
   }
 
 
-
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
       this.userArray.push(doc.id)
     });
-    this.graph.data[0]['y'].forEach(function (value) {
-
-    });
     this.isDataReady = true;
   }
+
 
   async userJoinedList() {
     const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userJoined"), (doc) => {
@@ -77,10 +74,8 @@ export class UserDiagrammComponent {
       }
       this.graph.data[0]['y'] = pufferArray
     });
-
-
-
   }
+
 
   async userLeavedList() {
     const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userLeaved"), (doc) => {
@@ -93,7 +88,6 @@ export class UserDiagrammComponent {
       this.graph.data[1]['y'] = pufferArray
     });
   }
-
 
 
   public graph = {
