@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'CMR';
+  title = 'CRM';
   firestore: Firestore = inject(Firestore)
   items$: Observable<any[]>;
 

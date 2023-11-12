@@ -53,7 +53,7 @@ export class IncomeDiagrammComponent {
     let data: any = [];
     let counterArr: any = [];
     this.incomeArray.forEach(function (value: any) {
-      if(value != 0){
+      if (value != 0) {
         i++
         counterArr.push(i)
         data.push(value)
@@ -70,6 +70,13 @@ export class IncomeDiagrammComponent {
       { x: [], y: [], type: 'bar', mode: 'lines+points', marker: { color: 'blue' } },
 
     ],
-    layout: { width: 550, height: 240, title: 'User income' }
+    layout: {
+      height: 250, title: 'User income', paper_bgcolor: '#303030', plot_bgcolor: '#303030',
+      font: {
+        size: 12,
+        color: 'white'       // Schriftfarbe
+      },
+    },
+    config: { responsive: true }
   };
 }
