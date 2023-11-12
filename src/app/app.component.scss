@@ -1,9 +1,17 @@
+.contentAbsolut{
+    position: absolute;
+}
+
 .toolbar-container {
     display: flex;
 }
 
 .example-container{
     height: 100vh;
+}
+
+.example-sidenav-content{
+    overflow: hidden;
 }
 
 .example-sidenav{
