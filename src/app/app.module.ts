@@ -41,6 +41,7 @@ import { CommonModule } from '@angular/common';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 import { IncomeDiagrammComponent } from './income-diagramm/income-diagramm.component';
+import { UserLocationDiagrammComponent } from './user-location-diagramm/user-location-diagramm.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -60,6 +61,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     TotalUserComponent,
     UserDiagrammComponent,
     IncomeDiagrammComponent,
+    UserLocationDiagrammComponent,
   ],
   imports: [
     PlotlyModule,

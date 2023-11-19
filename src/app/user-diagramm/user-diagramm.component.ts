@@ -69,9 +69,7 @@ export class UserDiagrammComponent {
 
   async userJoinedList() {
     const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userJoined"), (doc) => {
-      console.log("Current data: ", doc.data());
       this.userJoinData = doc.data()
-      console.log(this.userJoinData[2023])
       let pufferArray = []
       for (let i = 1; i < 13; i++) {
         pufferArray.push(this.userJoinData[2023][i])
@@ -83,7 +81,6 @@ export class UserDiagrammComponent {
 
   async userLeavedList() {
     const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userLeaved"), (doc) => {
-      console.log("Current data: ", doc.data());
       this.userLeaveData = doc.data()
       let pufferArray = []
       for (let i = 1; i < 13; i++) {
