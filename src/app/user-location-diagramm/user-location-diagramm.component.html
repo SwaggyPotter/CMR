@@ -1,1 +1,4 @@
 <plotly-plot class="resizable" *ngIf="this.isDataReady" [layout]="graph.layout"  [data]="graph.data" [config]="graph.config"></plotly-plot>
+<mat-card>
+    <mat-card-content *ngIf="this.isDataReady">The most choosed city is: </mat-card-content>
+</mat-card>
