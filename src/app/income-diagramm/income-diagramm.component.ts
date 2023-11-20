@@ -24,6 +24,7 @@ export class IncomeDiagrammComponent {
   isDataReady: boolean = false;
   incomeArray: any = [];
   openDocDataIncome: any;
+  sumTotal: number = 0;
 
   constructor() {
     const firebaseConfig = {
@@ -61,7 +62,18 @@ export class IncomeDiagrammComponent {
     });
     this.graph.data[0]['x'] = counterArr
     this.graph.data[0]['y'] = data;
+    this.calcMeridian(data)
     this.isDataReady = true;
+
+  }
+
+  calcMeridian(sumArr: any) {
+    this.sumTotal = 0;
+    for (let i = 0; i < sumArr.length; i++) {
+      let element = sumArr[i];
+      this.sumTotal += parseInt(element)
+    }
+    this.sumTotal = (this.sumTotal / sumArr.length)
   }
 
   public graph = {

@@ -1,1 +1,4 @@
 <plotly-plot *ngIf="this.isDataReady"  [data]="graph.data" [layout]="graph.layout" [config]="graph.config"></plotly-plot>
+<mat-card>
+    <mat-card-content *ngIf="this.isDataReady">The Meridian Income is: {{this.sumTotal}}</mat-card-content>
+</mat-card>

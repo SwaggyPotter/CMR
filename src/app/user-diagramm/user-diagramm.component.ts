@@ -100,7 +100,7 @@ export class UserDiagrammComponent {
         type: 'bar', mode: 'lines+points', marker: { color: 'green' }, name: 'user joined'
       },
       {
-        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], y: [0, -10, -15, 20, -65, -50, -40, -26, -17, -10, -37, -18], type: 'bar', marker: { color: 'red' }
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], y: [0], type: 'bar', marker: { color: 'red' }
         , name: 'user leaved'
       },
     ],
@@ -108,7 +108,7 @@ export class UserDiagrammComponent {
       title: 'Total user over 12 month', height: 250, paper_bgcolor: '#303030', plot_bgcolor: '#303030',
       font: {
         size: 12,
-        color: 'white'       // Schriftfarbe
+        color: 'white'
       },
     },
     config: { responsive: true },
