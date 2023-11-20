@@ -39,8 +39,6 @@ export class IncomeDiagrammComponent {
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
     this.getUser()
-
-
   }
 
 
@@ -64,8 +62,8 @@ export class IncomeDiagrammComponent {
     this.graph.data[0]['y'] = data;
     this.calcMeridian(data)
     this.isDataReady = true;
-
   }
+
 
   calcMeridian(sumArr: any) {
     this.sumTotal = 0;
@@ -76,6 +74,7 @@ export class IncomeDiagrammComponent {
     this.sumTotal = (this.sumTotal / sumArr.length)
   }
 
+  
   public graph = {
 
     data: [
