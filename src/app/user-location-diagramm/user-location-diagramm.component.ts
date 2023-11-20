@@ -29,7 +29,7 @@ export class UserLocationDiagrammComponent {
   graphArrayX: any = []
   graphArrayY: any = []
   i: any
-
+  topCity: string = '';
 
   constructor() {
     const firebaseConfig = {
@@ -79,7 +79,7 @@ export class UserLocationDiagrammComponent {
         that.cityCount = 1;
       }
     });
-    console.log(this.indexOfMax(that.graphArrayY))
+    this.topCity = this.graphArrayX[this.indexOfMax(that.graphArrayY)]
   }
 
   indexOfMax(arr: any) {
