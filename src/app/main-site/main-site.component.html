@@ -1,0 +1,26 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <div>
+            <img class="logo" src="/assets/img/logo.png" alt="">
+        </div>
+        <div>
+            <p class="clickable side-nav-box" [routerLink]="['/dashboard']" routerLinkActive="router-link-active">Dashboard</p>
+            <p class="clickable side-nav-box" [routerLink]="['/user']" routerLinkActive="router-link-active">User</p>
+        </div>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <mat-toolbar>
+            <span (click)="drawer.toggle()" class="material-icons menu-button">
+                menu
+            </span>
+
+            <span>
+                Simple CRM
+            </span>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>
+
+

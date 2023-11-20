@@ -42,6 +42,8 @@ import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 import { IncomeDiagrammComponent } from './income-diagramm/income-diagramm.component';
 import { UserLocationDiagrammComponent } from './user-location-diagramm/user-location-diagramm.component';
+import { LoginWindowComponent } from './login-window/login-window.component';
+import { MainSiteComponent } from './main-site/main-site.component';
 
 
 
@@ -64,6 +66,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     UserDiagrammComponent,
     IncomeDiagrammComponent,
     UserLocationDiagrammComponent,
+    LoginWindowComponent,
+    MainSiteComponent,
   ],
   imports: [
     PlotlyModule,

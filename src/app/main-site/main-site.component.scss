@@ -1,0 +1,45 @@
+.contentAbsolut{
+    position: absolute;
+}
+
+.toolbar-container {
+    display: flex;
+}
+
+.example-container{
+    height: 100vh;
+}
+
+.example-sidenav-content{
+    overflow: hidden;
+}
+
+.example-sidenav{
+    width: 300px;
+
+    .clickable{
+        cursor: pointer;
+    }
+
+    .side-nav-box{
+        border-bottom: solid #ccbbbb 1px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        margin: 0;
+
+        &:hover{
+            background-color: #565656;
+        }
+    }
+}
+
+.menu-button{
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.logo{
+    width: 100%;
+}
