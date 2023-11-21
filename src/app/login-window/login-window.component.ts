@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { initializeApp } from '@angular/fire/app';
+import { Firestore } from '@angular/fire/firestore';
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
 @Component({
   selector: 'app-login-window',
@@ -7,6 +10,23 @@ import { Component } from '@angular/core';
 })
 
 export class LoginWindowComponent {
+  userId: any;
+  firestore: Firestore = inject(Firestore);
+  user: any = {};
+  db: any;
+  users: any;
+  allUsers: any;
+  title: string = '';
+  note: string = '';
+  itemNumber: number = 0;
+  loading: boolean = false;
+  userAmount: number = 0;
+  userArray: any = [];
+  isDataReady: boolean = false;
+  incomeArray: any = [];
+  openDocDataIncome: any;
+  sumTotal: number = 0;
+
   constructor() {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
@@ -19,7 +39,27 @@ export class LoginWindowComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-    this.getUser()
+    //this.getUser()
+  }
+
+
+  async getUser() {
+    let i: number = 0;
+    const querySnapshot = await getDocs(collection(this.db, "users"));
+    querySnapshot.forEach((doc) => {
+      this.userArray.push(doc.id)
+      this.incomeArray.push(doc.data()['income'])
+    });
+    let data: any = [];
+    let counterArr: any = [];
+    this.incomeArray.forEach(function (value: any) {
+      if (value != 0) {
+        i++
+        counterArr.push(i)
+        data.push(value)
+      }
+    });
+    this.isDataReady = true;
   }
 
 }
