@@ -44,6 +44,8 @@ import { IncomeDiagrammComponent } from './income-diagramm/income-diagramm.compo
 import { UserLocationDiagrammComponent } from './user-location-diagramm/user-location-diagramm.component';
 import { LoginWindowComponent } from './login-window/login-window.component';
 import { MainSiteComponent } from './main-site/main-site.component';
+import { SingInComponent } from './sing-in/sing-in.component';
+import { SingUpComponent } from './sing-up/sing-up.component';
 
 
 
@@ -68,6 +70,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     UserLocationDiagrammComponent,
     LoginWindowComponent,
     MainSiteComponent,
+    SingInComponent,
+    SingUpComponent,
   ],
   imports: [
     PlotlyModule,
