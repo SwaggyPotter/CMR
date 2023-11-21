@@ -10,14 +10,19 @@ import { ForgottPasswordComponent } from './forgott-password/forgott-password.co
 import { MainSiteComponent } from './main-site/main-site.component';
 
 const routes: Routes = [
-  { path: '', component: LoginWindowComponent },
-  { path: 'main-site', component: MainSiteComponent },
+  { path: '', component: LoginWindowComponent},
+  {
+    path: 'main-site', component: MainSiteComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent},
+      { path: 'user', component: UserComponent },
+      { path: 'user/:id', component: DetailCardComponent }
+    ]
+  },
   { path: 'forgott-password', component: ForgottPasswordComponent },
-  { path: 'sing-up', component: SingUpComponent  },
+  { path: 'sing-up', component: SingUpComponent },
   { path: 'sing-in', component: SingInComponent },
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'user', component: UserComponent },
-  { path: 'user/:id', component: DetailCardComponent }
+  
 
 ];
 

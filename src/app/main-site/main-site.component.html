@@ -4,8 +4,9 @@
             <img class="logo" src="/assets/img/logo.png" alt="">
         </div>
         <div>
-            <p class="clickable side-nav-box" [routerLink]="['/dashboard']" routerLinkActive="router-link-active">Dashboard</p>
-            <p class="clickable side-nav-box" [routerLink]="['/user']" routerLinkActive="router-link-active">User</p>
+            <p class="clickable side-nav-box" [routerLink]="['/main-site/dashboard']" routerLinkActive="router-link-active">
+                Dashboard</p>
+            <p class="clickable side-nav-box" [routerLink]="['/main-site/user']" routerLinkActive="router-link-active">User</p>
         </div>
     </mat-drawer>
 
@@ -19,6 +20,6 @@
                 Simple CRM
             </span>
         </mat-toolbar>
-        <router-outlet name="outlet2"></router-outlet>
+        <router-outlet></router-outlet>
     </div>
 </mat-drawer-container>
