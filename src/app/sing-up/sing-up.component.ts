@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./sing-up.component.scss']
 })
 export class SingUpComponent {
+  hide: boolean = true;
 
+  myFunction() {
+    this.hide = !this.hide;
+  }
 }

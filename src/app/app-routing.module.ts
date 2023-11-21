@@ -6,12 +6,16 @@ import { DetailCardComponent } from './detail-card/detail-card.component';
 import { LoginWindowComponent } from './login-window/login-window.component';
 import { SingInComponent } from './sing-in/sing-in.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
+import { ForgottPasswordComponent } from './forgott-password/forgott-password.component';
+import { MainSiteComponent } from './main-site/main-site.component';
 
 const routes: Routes = [
   { path: '', component: LoginWindowComponent },
-  { path: 'sing-up', component: SingUpComponent },
+  { path: 'main-site', component: MainSiteComponent },
+  { path: 'forgott-password', component: ForgottPasswordComponent },
+  { path: 'sing-up', component: SingUpComponent  },
   { path: 'sing-in', component: SingInComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent},
   { path: 'user', component: UserComponent },
   { path: 'user/:id', component: DetailCardComponent }
 

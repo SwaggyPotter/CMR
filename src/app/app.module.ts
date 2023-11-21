@@ -16,7 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule} from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
@@ -46,6 +46,7 @@ import { LoginWindowComponent } from './login-window/login-window.component';
 import { MainSiteComponent } from './main-site/main-site.component';
 import { SingInComponent } from './sing-in/sing-in.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
+import { ForgottPasswordComponent } from './forgott-password/forgott-password.component';
 
 
 
@@ -72,6 +73,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     MainSiteComponent,
     SingInComponent,
     SingUpComponent,
+    ForgottPasswordComponent,
   ],
   imports: [
     PlotlyModule,

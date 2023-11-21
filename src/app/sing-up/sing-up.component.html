@@ -1,1 +1,21 @@
-<p>sing-up works!</p>
+<div id="login-field">
+    <form class="sing-In-Or-Up-Field">
+        <h1>Welcome to my simple CRM</h1>
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Email again</mat-label>
+            <input matInput placeholder="Email again">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Passwort</mat-label>
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+        </mat-form-field>
+
+        <button [routerLink]="['/sing-in']" routerLinkActive="router-link-active" mat-raised-button color="primary">I
+            already have an account</button>
+        
+    </form>
+</div>
