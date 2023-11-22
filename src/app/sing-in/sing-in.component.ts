@@ -3,7 +3,9 @@ import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { EmailAuthCredential } from 'firebase/auth';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sing-in',
@@ -30,8 +32,8 @@ export class SingInComponent {
   incomeArray: any = [];
   openDocDataIncome: any;
   sumTotal: number = 0;
-
-
+  email: string = ''
+  password: string = ''
 
   hide: boolean = true;
 
@@ -39,7 +41,7 @@ export class SingInComponent {
     this.hide = !this.hide;
   }
 
-  constructor() {
+  constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
       authDomain: "simple-crm-system-9f5e8.firebaseapp.com",
@@ -51,26 +53,51 @@ export class SingInComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
+
   }
+
   singInData = {
-    email: '',
+    Email: '',
     password: ''
   }
 
-  
+
   getInput() {
+    this.singInData.Email = this.email
+    this.singInData.password = this.password
     console.log(this.singInData)
+    this.loadLoginData()
   }
 
-  
+  pufferArray = [];
 
   async loadLoginData() {
     const querySnapshot = await getDocs(collection(this.db, "logins"));
     querySnapshot.forEach((doc) => {
-      if (/*Condition for login*/ null) {
+      //console.log(JSON.parse(doc.data()['emailsAndPasswords']))
 
-      }
-      console.log(JSON.parse(doc.data()['emailsAndPasswords'][0]))
+      this.pufferArray = doc.data()['emailsAndPasswords'];
     });
+    this.login()
   }
+
+  login() {
+    for (let i = 0; i < this.pufferArray.length; i++) {
+      const element = this.pufferArray[i];
+      let data = JSON.parse(this.pufferArray[i])
+      const value = Object.keys(data).map(key => data[key]);
+      if (value[0] == this.singInData.Email && value[1] == this.singInData.password) {
+        console.log('Login success')
+        this._router.navigateByUrl('/main-site/dashboard')
+      }
+
+    }
+
+
+  }
+
+
+
+
+
 }
