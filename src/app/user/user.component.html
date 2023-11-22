@@ -7,7 +7,7 @@
             <th class="border-right">City</th>
             <th class="border-left">Zip Code</th>
         </tr>
-        <tr class="userList" *ngFor="let user of allUsers; index as i" [routerLink]="['/user/', allUsers[i]['id']]">
+        <tr class="userList" *ngFor="let user of allUsers; index as i" [routerLink]="['/main-site/user/', allUsers[i]['id']]">
             <td class="border-right">{{allUsers[i]['firstName']}}, {{allUsers[i]['lastName']}}</td>
             <td class="border-right">{{allUsers[i]['email']}}</td>
             <td class="border-right">{{allUsers[i]['street']}}</td>

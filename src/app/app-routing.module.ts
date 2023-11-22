@@ -14,6 +14,7 @@ const routes: Routes = [
   {
     path: 'main-site', component: MainSiteComponent,
     children: [
+      { path: '', component: DashboardComponent},
       { path: 'dashboard', component: DashboardComponent},
       { path: 'user', component: UserComponent },
       { path: 'user/:id', component: DetailCardComponent }
