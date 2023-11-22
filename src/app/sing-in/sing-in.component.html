@@ -1,31 +1,30 @@
 <div id="login-field">
-    <form class="sing-In-Or-Up-Field">
+    <form (submit)="getInput()" class="sing-In-Or-Up-Field">
         <h1>Welcome to my simple CRM</h1>
         <mat-form-field class="example-full-width">
             <mat-label>Email again</mat-label>
-            <input matInput placeholder="Email again">
+            <input [(ngModel)]="singInData.email" matInput placeholder="Email again">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>Passwort</mat-label>
-            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+            <input [(ngModel)]="singInData.password" matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
         </mat-form-field>
 
         <div>
-            <button [routerLink]="" routerLinkActive="router-link-active" mat-raised-button
+            <button routerLinkActive="router-link-active" mat-raised-button
                 color="accent">Login</button>
+        </div>
+    </form>
+
+    <div class="buttonContainer">
+        <button [routerLink]="['/sing-up']" routerLinkActive="router-link-active" mat-raised-button
+            color="accent">Create new account</button>
+
+        <button [routerLink]="['/forgott-password']" routerLinkActive="router-link-active" mat-raised-button
+            color="primary">I
+            forgot my password</button>
+
             <button [routerLink]="['/main-site']"routerLinkActive="router-link-active" mat-raised-button
                 color="accent">Guest Login</button>
-        </div>
-
-
-        <div class="buttonContainer">
-            <button [routerLink]="['/sing-up']" routerLinkActive="router-link-active" mat-raised-button
-                color="accent">Create new account</button>
-
-            <button [routerLink]="['/forgott-password']" routerLinkActive="router-link-active" mat-raised-button
-                color="primary">I
-                forgot my password</button>
-        </div>
-
-    </form>
+    </div>
 </div>

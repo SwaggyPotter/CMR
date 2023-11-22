@@ -51,13 +51,26 @@ export class SingInComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-    this.loadLoginnData()
+  }
+  singInData = {
+    email: '',
+    password: ''
   }
 
-  async loadLoginnData() {
+  
+  getInput() {
+    console.log(this.singInData)
+  }
+
+  
+
+  async loadLoginData() {
     const querySnapshot = await getDocs(collection(this.db, "logins"));
     querySnapshot.forEach((doc) => {
-      console.log(JSON.parse(doc.data()['emailsAndPasswords'][0]) )
+      if (/*Condition for login*/ null) {
+
+      }
+      console.log(JSON.parse(doc.data()['emailsAndPasswords'][0]))
     });
   }
 }
