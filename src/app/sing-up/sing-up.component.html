@@ -1,9 +1,13 @@
 <div id="login-field">
-    <form class="sing-In-Or-Up-Field">
+    <div class="sing-In-Or-Up-Field">
         <h1>Welcome to my simple CRM</h1>
         <mat-form-field class="example-full-width">
+            <mat-label>Your Name</mat-label>
+            <input [(ngModel)]="name" matInput placeholder="type in your name">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email">
+            <input [(ngModel)]="email" matInput placeholder="Email">
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>Email again</mat-label>
@@ -11,11 +15,17 @@
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>Passwort</mat-label>
-            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+            <input [(ngModel)]="password" matInput placeholder="Enter your password"
+                [type]="hide ? 'password' : 'text'">
         </mat-form-field>
+
+
+        <button (click)="createAccount()" mat-raised-button color="primary">
+            Create new account</button>
+
 
         <button [routerLink]="['/sing-in']" routerLinkActive="router-link-active" mat-raised-button color="primary">I
             already have an account</button>
-        
-    </form>
+
+    </div>
 </div>

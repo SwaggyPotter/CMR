@@ -74,8 +74,6 @@ export class SingInComponent {
   async loadLoginData() {
     const querySnapshot = await getDocs(collection(this.db, "logins"));
     querySnapshot.forEach((doc) => {
-      //console.log(JSON.parse(doc.data()['emailsAndPasswords']))
-
       this.pufferArray = doc.data()['emailsAndPasswords'];
     });
     this.login()
@@ -90,10 +88,7 @@ export class SingInComponent {
         console.log('Login success')
         this._router.navigateByUrl('/main-site/dashboard')
       }
-
     }
-
-
   }
 
 
