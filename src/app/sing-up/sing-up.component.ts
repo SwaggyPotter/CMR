@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { collection, doc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -78,7 +78,8 @@ export class SingUpComponent {
       const value = Object.keys(data).map(key => data[key]);
       if (value[0] != this.singInData.Email) {
         if (i == this.pufferArray.length - 1) {
-          console.log('Account createt')
+          this.sendToBackend();
+          console.log('Account createt');
         }
       }
       else {
@@ -88,11 +89,12 @@ export class SingUpComponent {
   }
 
 
-  myFunction() {
-    this.hide = !this.hide;
+  async sendToBackend(){
+    await setDoc(doc(this.firestore, "logins", "emailsAndPassword"), this.singInData);
   }
 
 
-
-
+  myFunction() {
+    this.hide = !this.hide;
+  }
 }

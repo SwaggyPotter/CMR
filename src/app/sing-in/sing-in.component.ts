@@ -14,7 +14,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 
-
 export class SingInComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);
@@ -41,6 +40,7 @@ export class SingInComponent {
     this.hide = !this.hide;
   }
 
+
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
@@ -53,8 +53,8 @@ export class SingInComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-
   }
+
 
   singInData = {
     Email: '',
@@ -69,6 +69,7 @@ export class SingInComponent {
     this.loadLoginData()
   }
 
+
   pufferArray = [];
 
   async loadLoginData() {
@@ -78,6 +79,7 @@ export class SingInComponent {
     });
     this.login()
   }
+
 
   login() {
     for (let i = 0; i < this.pufferArray.length; i++) {
@@ -90,9 +92,6 @@ export class SingInComponent {
       }
     }
   }
-
-
-
 
 
 }
