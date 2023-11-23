@@ -52,9 +52,9 @@ export class SingUpComponent {
   pufferArray = [];
 
   singInData = {
+    name: '',
     Email: '',
     password: '',
-    name: ''
   }
 
 
@@ -88,9 +88,20 @@ export class SingUpComponent {
     }
   }
 
+  emailsAndPasswords: any = {"emailsAndPasswords": ""}
+  emailPassWArray: any = []
 
-  async sendToBackend(){
-    await setDoc(doc(this.firestore, "logins", "emailsAndPassword"), this.singInData);
+  async sendToBackend() {
+    const querySnapshot = await getDocs(collection(this.db, "logins"));
+    querySnapshot.forEach((doc) => {
+      this.emailPassWArray = doc.data()['emailsAndPasswords'];
+      console.log(doc.data())
+    });
+    this.emailPassWArray.push(JSON.stringify(this.singInData))
+    this.emailsAndPasswords.emailsAndPasswords = this.emailPassWArray
+    //console.log(JSON.stringify(this.singInData))
+    //console.log(this.emailsAndPasswords)
+    await setDoc(doc(this.db, "logins", "emailsAndPassword"), this.emailsAndPasswords);
   }
 
 

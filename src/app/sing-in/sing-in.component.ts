@@ -85,8 +85,10 @@ export class SingInComponent {
     for (let i = 0; i < this.pufferArray.length; i++) {
       const element = this.pufferArray[i];
       let data = JSON.parse(this.pufferArray[i])
+      console.log(data)
       const value = Object.keys(data).map(key => data[key]);
-      if (value[0] == this.singInData.Email && value[1] == this.singInData.password) {
+      console.log(value)
+      if (value[1] == this.singInData.Email && value[2] == this.singInData.password) {
         console.log('Login success')
         this._router.navigateByUrl('/main-site/dashboard')
       }
