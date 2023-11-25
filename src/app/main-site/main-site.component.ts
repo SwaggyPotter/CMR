@@ -5,6 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './main-site.component.html',
   styleUrls: ['./main-site.component.scss']
 })
-export class MainSiteComponent {
 
+export class MainSiteComponent {
+  constructor() {
+
+  }
+
+  closeSideTap(){
+    
+  }
 }

@@ -4,9 +4,9 @@
             <img class="logo" src="/assets/img/logo.png" alt="">
         </div>
         <div>
-            <p class="clickable side-nav-box" [routerLink]="['/main-site/dashboard']" routerLinkActive="router-link-active">
+            <p (click)="drawer.toggle()" class="clickable side-nav-box" [routerLink]="['/main-site/dashboard']" routerLinkActive="router-link-active">
                 Dashboard</p>
-            <p class="clickable side-nav-box" [routerLink]="['/main-site/user']" routerLinkActive="router-link-active">User</p>
+            <p (click)="drawer.toggle()"  class="clickable side-nav-box" [routerLink]="['/main-site/user']" routerLinkActive="router-link-active">User</p>
         </div>
     </mat-drawer>
 
