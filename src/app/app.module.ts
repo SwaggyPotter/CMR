@@ -47,6 +47,7 @@ import { MainSiteComponent } from './main-site/main-site.component';
 import { SingInComponent } from './sing-in/sing-in.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
 import { ForgottPasswordComponent } from './forgott-password/forgott-password.component';
+import { WrongPasswordOrEmailComponent } from './wrong-password-or-email/wrong-password-or-email.component';
 
 
 
@@ -74,6 +75,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     SingInComponent,
     SingUpComponent,
     ForgottPasswordComponent,
+    WrongPasswordOrEmailComponent,
   ],
   imports: [
     PlotlyModule,

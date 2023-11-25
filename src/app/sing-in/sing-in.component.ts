@@ -33,8 +33,9 @@ export class SingInComponent {
   sumTotal: number = 0;
   email: string = ''
   password: string = ''
-
   hide: boolean = true;
+  passwordEmailWrong: boolean = false;
+  disapear: boolean = true;
 
   myFunction() {
     this.hide = !this.hide;
@@ -91,6 +92,12 @@ export class SingInComponent {
       if (value[1] == this.singInData.Email && value[2] == this.singInData.password) {
         console.log('Login success')
         this._router.navigateByUrl('/main-site/dashboard')
+      }
+      else {
+        this.passwordEmailWrong = true;
+        setTimeout(() => {
+          this.passwordEmailWrong = false;
+        }, 5000)
       }
     }
   }
