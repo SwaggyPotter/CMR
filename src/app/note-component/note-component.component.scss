@@ -1,4 +1,18 @@
-.info-Container{
+.info-Container {
     padding: 10px;
     color: white;
+    min-width: 300px;
+    max-width: 500px;
+
+    .btnContainer {
+        position: relative;
+        width: 100%;
+        height: 50px;
+
+        button {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+    }
 }
