@@ -6,7 +6,7 @@
     display: flex;
 }
 
-.mrTop{
+.mrTop {
     margin-top: 50px;
 }
 
@@ -14,21 +14,30 @@
     height: 100vh;
 }
 
-mat-toolbar{
+mat-toolbar {
     position: fixed;
     z-index: 2;
 }
 
 .example-sidenav-content {
     overflow: hidden;
+
+    .relativContainer{
+        position: relative;
+    }
+
+    .logoutBtn{
+        position: absolute;
+        right: 50px;
+    }
+}
+
+.clickable {
+    cursor: pointer;
 }
 
 .example-sidenav {
     width: 300px;
-
-    .clickable {
-        cursor: pointer;
-    }
 
     .side-nav-box {
         border-bottom: solid #ccbbbb 1px;

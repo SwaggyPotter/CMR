@@ -1,17 +1,19 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-        <div>
-            <img class="logo" src="/assets/img/logo.png" alt="">
+        <div class="clickable">
+            <img [routerLink]="['/main-site/dashboard']" class="logo" src="/assets/img/logo.png" alt="">
         </div>
         <div>
-            <p (click)="drawer.toggle()" class="clickable side-nav-box" [routerLink]="['/main-site/dashboard']" routerLinkActive="router-link-active">
+            <p (click)="drawer.toggle()" class="clickable side-nav-box" [routerLink]="['/main-site/dashboard']"
+                routerLinkActive="router-link-active">
                 Dashboard</p>
-            <p (click)="drawer.toggle()"  class="clickable side-nav-box" [routerLink]="['/main-site/user']" routerLinkActive="router-link-active">User</p>
+            <p (click)="drawer.toggle()" class="clickable side-nav-box" [routerLink]="['/main-site/user']"
+                routerLinkActive="router-link-active">User</p>
         </div>
     </mat-drawer>
 
     <div class="example-sidenav-content">
-        <mat-toolbar class="">
+        <mat-toolbar class="relativContainer">
             <span (click)="drawer.toggle()" class="material-icons menu-button">
                 menu
             </span>
@@ -19,6 +21,8 @@
             <span>
                 Simple CRM
             </span>
+
+            <span [routerLink]="['']" class="clickable logoutBtn">Logout</span>
         </mat-toolbar>
         <router-outlet></router-outlet>
     </div>
