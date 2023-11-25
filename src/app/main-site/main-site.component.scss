@@ -1,4 +1,4 @@
-.contentAbsolut{
+.contentAbsolut {
     position: absolute;
 }
 
@@ -6,22 +6,31 @@
     display: flex;
 }
 
-.example-container{
+.mrTop{
+    margin-top: 50px;
+}
+
+.example-container {
     height: 100vh;
 }
 
-.example-sidenav-content{
+mat-toolbar{
+    position: fixed;
+    z-index: 2;
+}
+
+.example-sidenav-content {
     overflow: hidden;
 }
 
-.example-sidenav{
+.example-sidenav {
     width: 300px;
 
-    .clickable{
+    .clickable {
         cursor: pointer;
     }
 
-    .side-nav-box{
+    .side-nav-box {
         border-bottom: solid #ccbbbb 1px;
         display: flex;
         justify-content: center;
@@ -29,17 +38,17 @@
         padding: 10px;
         margin: 0;
 
-        &:hover{
+        &:hover {
             background-color: #565656;
         }
     }
 }
 
-.menu-button{
+.menu-button {
     cursor: pointer;
     margin-right: 10px;
 }
 
-.logo{
+.logo {
     width: 100%;
 }
