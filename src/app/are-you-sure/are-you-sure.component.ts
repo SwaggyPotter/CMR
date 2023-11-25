@@ -10,17 +10,14 @@ import { EditUserAdressDialogComponent } from '../edit-user-adress-dialog/edit-u
 import { User } from '../models/user.class';
 import { AddNoteDialogComponent } from '../add-note-dialog/add-note-dialog.component';
 import { NoteComponentComponent } from '../note-component/note-component.component';
-import { AreYouSureComponent } from '../are-you-sure/are-you-sure.component';
-
+import { DetailCardComponent } from '../detail-card/detail-card.component';
 
 @Component({
-  selector: 'app-detail-card',
-  templateUrl: './detail-card.component.html',
-  styleUrls: ['./detail-card.component.scss']
+  selector: 'app-are-you-sure',
+  templateUrl: './are-you-sure.component.html',
+  styleUrls: ['./are-you-sure.component.scss']
 })
-
-
-export class DetailCardComponent {
+export class AreYouSureComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);
   user: any = {};
@@ -32,7 +29,8 @@ export class DetailCardComponent {
   numberOf: number = 0;
   freshData: any
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog, public router: Router) {
+
+  constructor(private route: ActivatedRoute,  public router: Router, @Inject(MAT_DIALOG_DATA) public data: DetailCardComponent) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
       authDomain: "simple-crm-system-9f5e8.firebaseapp.com",
@@ -44,11 +42,11 @@ export class DetailCardComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-    this.userId = this.route.snapshot.paramMap.get('id')
+    this.userId = data.userId
+    console.log(data.userId)
     this.getUser()
     this.getRoute()
   }
-
 
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
@@ -90,48 +88,5 @@ export class DetailCardComponent {
       console.log(data)
       this.freshData = data
     });
-  }
-
-
-  openDialogUserEdit() {
-    let dialog = this.dialog.open(UserDetailEditDialogComponent)
-    dialog.componentInstance.user = new User(this.user);
-  }
-
-
-  openDialogAddress() {
-    let dialog = this.dialog.open(EditUserAdressDialogComponent)
-    dialog.componentInstance.user = new User(this.user);
-  }
-
-  openDialogAreUSure(): void {
-    let dialog = this.dialog.open(AreYouSureComponent, {
-      data: {
-        userId: this.userId
-      }
-    })
-  }
-
-  openNote(i: number): void {
-    this.title = this.user['title'][i]
-    this.note = this.user['notes'][i]
-    this.numberOf = i;
-    this.dialog.open(NoteComponentComponent, {
-      data: {
-        title: this.title,
-        note: this.note,
-        userId: this.userId,
-        numberOf: this.numberOf
-      }
-    })
-  }
-
-  addNote(): void {
-    console.log(this.userId)
-    let dialog = this.dialog.open(AddNoteDialogComponent, {
-      data: {
-        userId: this.userId,
-      }
-    })
   }
 }

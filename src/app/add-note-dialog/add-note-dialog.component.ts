@@ -30,6 +30,7 @@ export class AddNoteDialogComponent {
   title: string = '';
   note: string = '';
   loading: boolean = false;
+  
   constructor(private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public data: DetailCardComponent) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",

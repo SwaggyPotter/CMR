@@ -1,6 +1,7 @@
 .detailCard-container {
     padding-left: 50px;
     padding-right: 50px;
+    margin-top: 70px;
 
     .mt-32 {
         margin-top: 32px;
@@ -61,16 +62,18 @@
 
     ul {
         padding-left: 16px;
-        
-        
+
+
 
         li {
             padding-bottom: 5px;
             padding-top: 5px;
             cursor: pointer;
-            p{
+
+            p {
                 margin: 0;
             }
+
             &:hover {
                 background-color: rgba(252, 252, 252, 0.055);
             }
@@ -83,3 +86,4 @@
         bottom: 16px;
     }
 }
+

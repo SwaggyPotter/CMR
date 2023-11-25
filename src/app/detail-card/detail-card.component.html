@@ -6,8 +6,8 @@
             aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>more_vert</mat-icon>
             <mat-menu #menuContact="matMenu">
-                <button (click)="openDialogUserEdit()" mat-menu-item>Edit Contact</button>
-                <button (click)="deleteContact()" mat-menu-item>Delete Contact</button>
+                <button mat-button (click)="openDialogUserEdit()">Edit Contact</button>
+                <button mat-button (click)="openDialogAreUSure()" color="warn">Delete Contact</button>
             </mat-menu>
         </button>
 
