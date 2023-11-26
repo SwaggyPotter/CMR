@@ -1,11 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
-import { FormControl, FormGroupDirective, NgForm, Validators, FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators, FormsModule, ReactiveFormsModule, FormGroup, } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { EmailAuthCredential } from 'firebase/auth';
 import { collection, doc, getDoc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+
+
+
 
 @Component({
   selector: 'app-forgott-password',
@@ -53,6 +57,7 @@ export class ForgottPasswordComponent {
     //this.getCodesAndEmail()
   }
 
+
   async getUser() {
     let i: number = 0;
     const querySnapshot = await getDocs(collection(this.db, "logins"));
@@ -71,6 +76,7 @@ export class ForgottPasswordComponent {
     Email: '',
   }
 
+
   pufferArray = [];
 
 
@@ -87,10 +93,11 @@ export class ForgottPasswordComponent {
   }
 
 
-
   async setCode(randomCode: any, email: string) {
     console.log(randomCode, email)
     await setDoc(doc(this.db, "passwordForget", email), { "code": randomCode });
+    this.form.message = ['Here is your reset code: ', randomCode]
+    this.sendEmail()
   }
 
 
@@ -103,5 +110,23 @@ export class ForgottPasswordComponent {
 
   getRandomId() {
     return Math.floor((Math.random() * 125205) + 24457);
+  }
+
+
+  form = ({
+    from_name: ['Password Bot'],
+    from_email: ['Password@reset-service.de'],
+    message: ['Here is your reset code: ']
+  });
+
+
+
+  async sendEmail() {
+    emailjs.init('HXRHgLXNMAqXvgQza');
+    let response = await emailjs.send('service_gjpw7iv', 'template_7extjmi', {
+      from_name: this.form.from_name,
+      from_email: this.form.from_email,
+      message: this.form.message
+    });
   }
 }
