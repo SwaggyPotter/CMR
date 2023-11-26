@@ -53,7 +53,6 @@ export class DetailCardComponent {
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
       this.user = doc.data()
-      console.log(this.user)
     });
   }
 
@@ -127,7 +126,6 @@ export class DetailCardComponent {
   }
 
   addNote(): void {
-    console.log(this.userId)
     let dialog = this.dialog.open(AddNoteDialogComponent, {
       data: {
         userId: this.userId,

@@ -1,6 +1,6 @@
 import { Component, Inject, inject } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { initializeApp } from '@firebase/app';
 import { getAdditionalUserInfo } from 'firebase/auth';
@@ -30,7 +30,7 @@ export class AreYouSureComponent {
   freshData: any
 
 
-  constructor(private route: ActivatedRoute,  public router: Router, @Inject(MAT_DIALOG_DATA) public data: DetailCardComponent) {
+  constructor(private route: ActivatedRoute, public router: Router, @Inject(MAT_DIALOG_DATA) public data: DetailCardComponent, private dialogRef: MatDialogRef<AreYouSureComponent>) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
       authDomain: "simple-crm-system-9f5e8.firebaseapp.com",
@@ -43,7 +43,6 @@ export class AreYouSureComponent {
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
     this.userId = data.userId
-    console.log(data.userId)
     this.getUser()
     this.getRoute()
   }
@@ -51,7 +50,6 @@ export class AreYouSureComponent {
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
       this.user = doc.data()
-      console.log(this.user)
     });
   }
 
@@ -60,6 +58,7 @@ export class AreYouSureComponent {
     await deleteDoc(doc(this.db, "users", this.userId));
     await setDoc(doc(this.firestore, "userJoinedLeaved", 'userLeaved'), this.freshData)
     this.router.navigate(['/main-site/user']);
+    this.dialogRef.close();
   }
 
   getJoinMonth() {
@@ -85,7 +84,6 @@ export class AreYouSureComponent {
       let year = this.getYear()['year'];
       let month = this.getJoinMonth()['month'];
       data[year][month]++;
-      console.log(data)
       this.freshData = data
     });
   }
