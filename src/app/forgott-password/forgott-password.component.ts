@@ -86,16 +86,20 @@ export class ForgottPasswordComponent {
     }
   }
 
+
+
   async setCode(randomCode: any, email: string) {
     console.log(randomCode, email)
-    await setDoc(doc(this.db, "passwordForget", email), randomCode);
+    await setDoc(doc(this.db, "passwordForget", email), { "code": randomCode });
   }
+
 
   getInput() {
     this.searchEmail.Email = this.email
     console.log(this.searchEmail)
     this.searchForEmail()
   }
+
 
   getRandomId() {
     return Math.floor((Math.random() * 125205) + 24457);
