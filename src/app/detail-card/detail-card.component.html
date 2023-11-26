@@ -1,7 +1,10 @@
 <div class="detailCard-container">
 
     <mat-card class="detailCard-header">
-
+        <button [routerLink]="['/main-site/user']" class="backBTN" mat-fab color="primary"
+            aria-label="Example icon button with a delete icon">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
         <button [matMenuTriggerFor]="menuContact" class="menu-btn" mat-icon-button
             aria-label="Example icon button with a vertical three dot icon">
             <mat-icon>more_vert</mat-icon>
@@ -12,6 +15,7 @@
         </button>
 
         <mat-card-content class="card-infos">
+
             <img src="/assets/img/user-profile-pic.png" alt="user profile pic">
             <div class="user-info">
                 <p>Telephone:
