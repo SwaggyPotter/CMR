@@ -12,6 +12,7 @@ export class User {
     income: number = 0;
     joinMonth: number;
     joinYear: number;
+    tel: number = 0;
 
     constructor(obj?: any) {
         this.firstName = obj ? obj.firstName : '';
@@ -22,6 +23,7 @@ export class User {
         this.city = obj ? obj.city : '';
         this.id = obj ? obj.id : ''
         this.email = obj ? obj.email : '';
+        this.tel = obj ? obj.tel : '';
         this.notes = [];
         this.title = [];
         this.income = obj ? obj.income : '';
@@ -43,7 +45,8 @@ export class User {
             title: this.title,
             income: this.income,
             joinMonth: this.joinMonth,
-            joinYear: this.joinYear, 
+            joinYear: this.joinYear,
+            tel: this.tel,
         }
     }
 }
