@@ -20,15 +20,21 @@ mat-toolbar {
 }
 
 .example-sidenav-content {
-    overflow: hidden;
+    overflow-x: hidden;
 
-    .relativContainer{
-        position: relative;
+    .relativContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .center {
+            display: flex;
+            align-items: center;
+        }
     }
 
-    .logoutBtn{
-        position: absolute;
-        right: 50px;
+    p {
+        margin: 0;
     }
 }
 

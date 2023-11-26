@@ -14,13 +14,19 @@
 
     <div class="example-sidenav-content">
         <mat-toolbar class="relativContainer">
-            <span (click)="drawer.toggle()" class="material-icons menu-button">
-                menu
-            </span>
+            <div class="center" >
+                <span (click)="drawer.toggle()" class="material-icons menu-button">
+                    menu
+                </span>
 
-            <span>
-                Simple CRM
-            </span>
+                <span>
+                    Simple CRM
+                </span>
+            </div>
+
+            <p>
+                Welcome {{this.currentUser}}
+            </p>
 
             <span [routerLink]="['']" class="clickable logoutBtn">Logout</span>
         </mat-toolbar>

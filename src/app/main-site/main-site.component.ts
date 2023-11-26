@@ -7,11 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class MainSiteComponent {
+  currentUser: any
   constructor() {
-
+    this.currentUser = localStorage.getItem('currentUser')
   }
 
-  closeSideTap(){
-    
-  }
+
 }

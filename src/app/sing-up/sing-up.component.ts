@@ -92,6 +92,7 @@ export class SingUpComponent {
   emailPassWArray: any = []
 
   async sendToBackend() {
+    this.isDataReady = true;
     const querySnapshot = await getDocs(collection(this.db, "logins"));
     querySnapshot.forEach((doc) => {
       this.emailPassWArray = doc.data()['emailsAndPasswords'];
@@ -99,9 +100,8 @@ export class SingUpComponent {
     });
     this.emailPassWArray.push(JSON.stringify(this.singInData))
     this.emailsAndPasswords.emailsAndPasswords = this.emailPassWArray
-    //console.log(JSON.stringify(this.singInData))
-    //console.log(this.emailsAndPasswords)
     await setDoc(doc(this.db, "logins", "emailsAndPassword"), this.emailsAndPasswords);
+    this.isDataReady = false;
   }
 
 

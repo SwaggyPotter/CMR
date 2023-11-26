@@ -1,18 +1,20 @@
 <div id="login-field">
     <div class="sing-In-Or-Up-Field">
+        
+        <mat-progress-bar *ngIf="isDataReady" mode="indeterminate"></mat-progress-bar>
+
         <h1>Welcome to my simple CRM</h1>
+
         <mat-form-field class="example-full-width">
             <mat-label>Your Name</mat-label>
             <input [(ngModel)]="name" matInput placeholder="type in your name">
         </mat-form-field>
+
         <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
             <input [(ngModel)]="email" matInput placeholder="Email">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <mat-label>Email again</mat-label>
-            <input matInput placeholder="Email again">
-        </mat-form-field>
+
         <mat-form-field class="example-full-width">
             <mat-label>Passwort</mat-label>
             <input [(ngModel)]="password" matInput placeholder="Enter your password"

@@ -54,6 +54,7 @@ export class SingInComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
+    this.getUser()
   }
 
 
@@ -82,15 +83,26 @@ export class SingInComponent {
   }
 
 
+  async getUser() {
+    let i: number = 0;
+    const querySnapshot = await getDocs(collection(this.db, "logins"));
+    querySnapshot.forEach((doc) => {});
+  }
+
+  nameToStorage() {
+    localStorage.setItem('currentUser', this.showName);
+  }
+
+  showName: string = ''
+
   login() {
     for (let i = 0; i < this.pufferArray.length; i++) {
       const element = this.pufferArray[i];
       let data = JSON.parse(this.pufferArray[i])
-      console.log(data)
       const value = Object.keys(data).map(key => data[key]);
-      console.log(value)
       if (value[1] == this.singInData.Email && value[2] == this.singInData.password) {
-        console.log('Login success')
+        this.showName = value[0]
+        this.nameToStorage()
         this._router.navigateByUrl('/main-site/dashboard')
       }
       else {

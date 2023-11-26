@@ -1,5 +1,6 @@
 <div id="login-field">
     <div class="sing-In-Or-Up-Field">
+        <mat-progress-bar *ngIf="isDataReady" mode="indeterminate"></mat-progress-bar>
         <h1>Welcome to my simple CRM</h1>
         <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
