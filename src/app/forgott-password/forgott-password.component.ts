@@ -4,7 +4,7 @@ import { Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { EmailAuthCredential } from 'firebase/auth';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -49,13 +49,55 @@ export class ForgottPasswordComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
+    this.getUser()
+    //this.getCodesAndEmail()
   }
 
+  async getUser() {
+    let i: number = 0;
+    const querySnapshot = await getDocs(collection(this.db, "logins"));
+    querySnapshot.forEach((doc) => {
+      this.pufferArray = doc.data()['emailsAndPasswords'];
+    });
+  }
+
+  async getCodesAndEmail(email: string) {
+    const docRef = doc(this.db, "passwordForget", email);
+    const docSnap = await getDoc(docRef);
+    console.log(docSnap.data())
+  }
+
+  searchEmail = {
+    Email: '',
+  }
+
+  pufferArray = [];
 
 
+  searchForEmail() {
+    for (let i = 0; i < this.pufferArray.length; i++) {
+      const element = this.pufferArray[i];
+      let data = JSON.parse(this.pufferArray[i])
+      const value = Object.keys(data).map(key => data[key]);
+      if (value[1] == this.searchEmail.Email) {
+        this.setCode(this.getRandomId(), this.searchEmail.Email)
+        console.log('Email gefunden')
+      }
+    }
+  }
 
+  async setCode(randomCode: any, email: string) {
+    console.log(randomCode, email)
+    await setDoc(doc(this.db, "passwordForget", email), randomCode);
+  }
 
+  getInput() {
+    this.searchEmail.Email = this.email
+    console.log(this.searchEmail)
+    this.searchForEmail()
+  }
 
-
-
+  getRandomId() {
+    return Math.floor((Math.random() * 125205) + 24457);
+  }
 }

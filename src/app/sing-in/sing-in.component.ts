@@ -79,7 +79,7 @@ export class SingInComponent {
     querySnapshot.forEach((doc) => {
       this.pufferArray = doc.data()['emailsAndPasswords'];
     });
-    this.login()
+    this.login();
   }
 
 
