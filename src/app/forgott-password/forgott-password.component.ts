@@ -40,7 +40,7 @@ export class ForgottPasswordComponent {
   emailEnter: boolean = true;
   codeEnter: boolean = false;
   enterNEwPw: boolean = false;
-  codeInput:any = 0;
+  codeInput: any = 0;
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
     const firebaseConfig = {
@@ -70,9 +70,9 @@ export class ForgottPasswordComponent {
 
   async getCodesAndEmail(email: string) {
     const docRef = doc(this.db, "passwordForget", email);
-    const docSnap = (await getDoc(docRef)).data();
-    console.log(docSnap, this.codeInput)
-    if(this.codeInput == docSnap){
+    const docSnap: any = (await getDoc(docRef)).data();
+    const value = Object.keys(docSnap).map(key => docSnap[key]);
+    if (this.codeInput == value[0]) {
       this.codeEnter = false;
       this.enterNEwPw = true;
     }
