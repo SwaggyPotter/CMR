@@ -41,6 +41,8 @@ export class ForgottPasswordComponent {
   codeEnter: boolean = false;
   enterNEwPw: boolean = false;
   codeInput: any = 0;
+  emailPassWArray: any
+
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
     const firebaseConfig = {
@@ -55,7 +57,7 @@ export class ForgottPasswordComponent {
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
     this.getUser()
-    this.getCodesAndEmail('tim.spiele1@freenet.de')
+    this.setNewPassword()
   }
 
 
@@ -78,8 +80,9 @@ export class ForgottPasswordComponent {
     }
   }
 
+
   searchEmail = {
-    Email: '',
+    Email: 'tim.spiele1@freenet.de',
   }
 
 
@@ -95,6 +98,30 @@ export class ForgottPasswordComponent {
         this.setCode(this.getRandomId(), this.searchEmail.Email)
         this.emailEnter = false;
         this.codeEnter = true;
+      }
+    }
+  }
+
+
+  newPassword: any
+  emailPasswords: any
+  emailAndPasswordPuffer: string[] = []
+  matchingItemNumber: number = 0;
+  async setNewPassword() {
+    const querySnapshot = await getDocs(collection(this.db, "logins"));
+    querySnapshot.forEach((doc) => {
+      this.emailPasswords = doc.data()['emailsAndPasswords']
+    });
+
+    for (let i = 0; i < this.emailPasswords.length; i++) {
+      const element = this.emailPasswords[i];
+      let data: any = JSON.parse(this.emailPasswords[i])
+      const value = Object.keys(data).map(key => data[key]);
+      console.log(data)
+      console.log(this.searchEmail.Email)
+      console.log(value[1])
+      if (value[1] == this.searchEmail.Email) {
+        console.log('Position: ', i, 'und item:', this.searchEmail.Email)
       }
     }
   }
@@ -134,4 +161,6 @@ export class ForgottPasswordComponent {
       message: this.form.message
     });
   }
+
+
 }
