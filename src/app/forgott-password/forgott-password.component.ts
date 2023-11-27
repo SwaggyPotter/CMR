@@ -81,7 +81,7 @@ export class ForgottPasswordComponent {
   }
 
 
-  searchEmail = {
+  searchEmail: any = {
     Email: 'tim.spiele1@freenet.de',
   }
 
@@ -102,7 +102,11 @@ export class ForgottPasswordComponent {
     }
   }
 
-
+  newUserPW: any = {
+    "Email": "",
+    "name": "",
+    "password": ""
+  }
   newPassword: any
   emailPasswords: any
   emailAndPasswordPuffer: string[] = []
@@ -117,11 +121,13 @@ export class ForgottPasswordComponent {
       const element = this.emailPasswords[i];
       let data: any = JSON.parse(this.emailPasswords[i])
       const value = Object.keys(data).map(key => data[key]);
-      console.log(data)
-      console.log(this.searchEmail.Email)
-      console.log(value[1])
       if (value[1] == this.searchEmail.Email) {
-        console.log('Position: ', i, 'und item:', this.searchEmail.Email)
+        console.log(JSON.parse(this.emailPasswords[i]))
+        this.newUserPW = JSON.parse(this.emailPasswords[i])
+        console.log(this.newUserPW.Email)
+        console.log(this.newUserPW.name)
+        console.log(this.newUserPW.password)
+        console.log(this.newUserPW)
       }
     }
   }
