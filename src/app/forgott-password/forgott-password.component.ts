@@ -40,6 +40,7 @@ export class ForgottPasswordComponent {
   emailEnter: boolean = true;
   codeEnter: boolean = false;
   enterNEwPw: boolean = false;
+  codeInput:any = 0;
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
     const firebaseConfig = {
@@ -54,7 +55,7 @@ export class ForgottPasswordComponent {
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
     this.getUser()
-    //this.getCodesAndEmail()
+    this.getCodesAndEmail('tim.spiele1@freenet.de')
   }
 
 
@@ -66,10 +67,15 @@ export class ForgottPasswordComponent {
     });
   }
 
+
   async getCodesAndEmail(email: string) {
     const docRef = doc(this.db, "passwordForget", email);
-    const docSnap = await getDoc(docRef);
-    console.log(docSnap.data())
+    const docSnap = (await getDoc(docRef)).data();
+    console.log(docSnap, this.codeInput)
+    if(this.codeInput == docSnap){
+      this.codeEnter = false;
+      this.enterNEwPw = true;
+    }
   }
 
   searchEmail = {
@@ -87,14 +93,14 @@ export class ForgottPasswordComponent {
       const value = Object.keys(data).map(key => data[key]);
       if (value[1] == this.searchEmail.Email) {
         this.setCode(this.getRandomId(), this.searchEmail.Email)
-        console.log('Email gefunden')
+        this.emailEnter = false;
+        this.codeEnter = true;
       }
     }
   }
 
 
   async setCode(randomCode: any, email: string) {
-    console.log(randomCode, email)
     await setDoc(doc(this.db, "passwordForget", email), { "code": randomCode });
     this.form.message = ['Here is your reset code: ', randomCode]
     this.sendEmail()
@@ -118,7 +124,6 @@ export class ForgottPasswordComponent {
     from_email: ['Password@reset-service.de'],
     message: ['Here is your reset code: ']
   });
-
 
 
   async sendEmail() {
