@@ -57,7 +57,7 @@ export class ForgottPasswordComponent {
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
     this.getUser()
-    this.setNewPassword()
+    //this.setNewPassword()
   }
 
 
@@ -82,7 +82,7 @@ export class ForgottPasswordComponent {
 
 
   searchEmail: any = {
-    Email: 'tim.spiele1@freenet.de',
+    Email: '',
   }
 
 
@@ -122,12 +122,11 @@ export class ForgottPasswordComponent {
       let data: any = JSON.parse(this.emailPasswords[i])
       const value = Object.keys(data).map(key => data[key]);
       if (value[1] == this.searchEmail.Email) {
-        console.log(JSON.parse(this.emailPasswords[i]))
         this.newUserPW = JSON.parse(this.emailPasswords[i])
-        console.log(this.newUserPW.Email)
-        console.log(this.newUserPW.name)
-        console.log(this.newUserPW.password)
-        console.log(this.newUserPW)
+        this.newUserPW.password = this.newPassword
+        this.emailPasswords[i] = JSON.stringify(this.newUserPW)
+        await setDoc(doc(this.db, "logins", "emailsAndPassword"), { "emailsAndPasswords": this.emailPasswords });
+        this._router.navigate(['/sing-in']);
       }
     }
   }
