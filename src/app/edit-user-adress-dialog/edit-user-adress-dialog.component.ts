@@ -34,10 +34,12 @@ export class EditUserAdressDialogComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-
   }
 
 
+  /**
+   * update the users adress
+   */
   async updateUser() {
     const db = getDatabase();
     this.loading = true;
@@ -48,6 +50,9 @@ export class EditUserAdressDialogComponent {
   }
 
   
+  /**
+   * close the dialog
+   */
   closeDialog() {
     this.dialogRef.close()
   }

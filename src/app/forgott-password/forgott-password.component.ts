@@ -1,14 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
-import { FormControl, FormGroupDirective, NgForm, Validators, FormsModule, ReactiveFormsModule, FormGroup, } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { EmailAuthCredential } from 'firebase/auth';
 import { collection, doc, getDoc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
-
-
 
 
 @Component({
@@ -56,8 +51,7 @@ export class ForgottPasswordComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-    this.getUser()
-    //this.setNewPassword()
+    this.getUser();
   }
 
 
