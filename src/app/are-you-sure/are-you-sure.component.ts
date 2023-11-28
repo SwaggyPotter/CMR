@@ -1,22 +1,19 @@
 import { Component, Inject, inject } from '@angular/core';
-import { collectionData, Firestore } from '@angular/fire/firestore';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Firestore } from '@angular/fire/firestore';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { initializeApp } from '@firebase/app';
-import { getAdditionalUserInfo } from 'firebase/auth';
-import { collection, deleteDoc, doc, getDoc, getDocFromCache, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
-import { UserDetailEditDialogComponent } from '../user-detail-edit-dialog/user-detail-edit-dialog.component';
-import { EditUserAdressDialogComponent } from '../edit-user-adress-dialog/edit-user-adress-dialog.component';
-import { User } from '../models/user.class';
-import { AddNoteDialogComponent } from '../add-note-dialog/add-note-dialog.component';
-import { NoteComponentComponent } from '../note-component/note-component.component';
+import { deleteDoc, doc, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
 import { DetailCardComponent } from '../detail-card/detail-card.component';
+
 
 @Component({
   selector: 'app-are-you-sure',
   templateUrl: './are-you-sure.component.html',
   styleUrls: ['./are-you-sure.component.scss']
 })
+
+
 export class AreYouSureComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);
@@ -47,6 +44,9 @@ export class AreYouSureComponent {
     this.getRoute()
   }
 
+/**
+ * get the user by the id
+ */
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
       this.user = doc.data()
@@ -54,6 +54,9 @@ export class AreYouSureComponent {
   }
 
 
+/**
+ * delete the by the id choosen contact and navigatte to the user list
+ */
   async deleteContact() {
     await deleteDoc(doc(this.db, "users", this.userId));
     await setDoc(doc(this.firestore, "userJoinedLeaved", 'userLeaved'), this.freshData)
@@ -61,6 +64,10 @@ export class AreYouSureComponent {
     this.dialogRef.close();
   }
 
+
+  /**
+   * @returns returns the month
+   */
   getJoinMonth() {
     let month: number = new Date().getMonth()
     month++
@@ -70,6 +77,9 @@ export class AreYouSureComponent {
   }
 
 
+  /**
+   * @returns returns the year
+   */
   getYear() {
     let year = new Date().getFullYear()
     return {
@@ -78,13 +88,16 @@ export class AreYouSureComponent {
   }
 
 
+  /**
+   * update the data for people who leaved
+   */
   async getRoute() {
     const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userLeaved"), (doc) => {
       let data: any = doc.data();
       let year = this.getYear()['year'];
       let month = this.getJoinMonth()['month'];
       data[year][month]++;
-      this.freshData = data
+      this.freshData = data;
     });
   }
 }

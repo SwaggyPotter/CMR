@@ -1,10 +1,9 @@
-import { Component, Inject, inject } from '@angular/core';
-import { collectionData, Firestore } from '@angular/fire/firestore';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import {  Firestore } from '@angular/fire/firestore';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { initializeApp } from '@firebase/app';
-import { getAdditionalUserInfo } from 'firebase/auth';
-import { collection, deleteDoc, doc, getDoc, getDocFromCache, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
+import {  deleteDoc, doc, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
 import { UserDetailEditDialogComponent } from '../user-detail-edit-dialog/user-detail-edit-dialog.component';
 import { EditUserAdressDialogComponent } from '../edit-user-adress-dialog/edit-user-adress-dialog.component';
 import { User } from '../models/user.class';
@@ -32,6 +31,7 @@ export class DetailCardComponent {
   numberOf: number = 0;
   freshData: any
 
+
   constructor(private route: ActivatedRoute, public dialog: MatDialog, public router: Router) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
@@ -50,6 +50,9 @@ export class DetailCardComponent {
   }
 
 
+/**
+ * Get all the current user by the id
+ */
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
       this.user = doc.data()
@@ -57,12 +60,20 @@ export class DetailCardComponent {
   }
 
 
+/**
+ * delete the contact in the backend and navigate to the user list
+ */
   async deleteContact() {
     await deleteDoc(doc(this.db, "users", this.userId));
     await setDoc(doc(this.firestore, "userJoinedLeaved", 'userLeaved'), this.freshData)
     this.router.navigate(['/main-site/user']);
   }
 
+
+/**
+ * 
+ * @returns returns the month
+ */
   getJoinMonth() {
     let month: number = new Date().getMonth()
     month++
@@ -72,6 +83,10 @@ export class DetailCardComponent {
   }
 
 
+/**
+ * 
+ * @returns returns the year
+ */
   getYear() {
     let year = new Date().getFullYear()
     return {
@@ -80,6 +95,9 @@ export class DetailCardComponent {
   }
 
 
+/**
+ * Update the data with people wo came
+ */
   async getRoute() {
     const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userLeaved"), (doc) => {
       let data: any = doc.data();
@@ -92,17 +110,27 @@ export class DetailCardComponent {
   }
 
 
+/**
+ * Open the edit card for users adress, emmail and phone number.
+ */
   openDialogUserEdit() {
     let dialog = this.dialog.open(UserDetailEditDialogComponent)
     dialog.componentInstance.user = new User(this.user);
   }
 
 
+/**
+ * open the edit card for editing the users adress
+ */
   openDialogAddress() {
     let dialog = this.dialog.open(EditUserAdressDialogComponent)
     dialog.componentInstance.user = new User(this.user);
   }
 
+
+/**
+ * open the dialog who ask: if u sure u want delete the contact?
+ */
   openDialogAreUSure(): void {
     let dialog = this.dialog.open(AreYouSureComponent, {
       data: {
@@ -111,6 +139,11 @@ export class DetailCardComponent {
     })
   }
 
+
+/**
+ * Open the note u choose
+ * @param i index number of the note you want to open
+ */
   openNote(i: number): void {
     this.title = this.user['title'][i]
     this.note = this.user['notes'][i]
@@ -125,6 +158,10 @@ export class DetailCardComponent {
     })
   }
 
+
+/**
+ * Open the dialog for adding a note
+ */
   addNote(): void {
     let dialog = this.dialog.open(AddNoteDialogComponent, {
       data: {

@@ -1,14 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { User } from '../models/user.class';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { doc, getDoc, getDocs, onSnapshot, setDoc } from '@firebase/firestore';
-import { addDoc } from "firebase/firestore";
+import { Firestore} from '@angular/fire/firestore';
+import { doc, onSnapshot, setDoc } from '@firebase/firestore';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { MatDialogRef } from '@angular/material/dialog';
-import { getDatabase } from 'firebase/database';
-import { query } from '@angular/animations';
 
 
 @Component({
@@ -38,23 +34,29 @@ export class DialogComponent {
       appId: "1:988410038077:web:ae12fc4879f67f2ceba754",
       measurementId: "G-J861YGKZ2C"
     };
-
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
     this.getRoute()
   }
 
+
+/**
+ * get the data of user who joined
+ */
   async getRoute() {
     const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userJoined"), (doc) => {
       let data: any = doc.data();
       let year = this.getYear()['year'];
       let month = this.getJoinMonth()['month'];
       data[year][month]++;
-      console.log(data)
       this.freshData = data
     });
   }
 
+
+/**
+ * add a new user to the backend
+ */
   async addUser() {
     this.loading = true;
     this.user.id = this.getRandomId().toString()
@@ -68,6 +70,10 @@ export class DialogComponent {
   }
 
 
+/**
+ * 
+ * @returns returns the month
+ */
   getJoinMonth() {
     let month: number = new Date().getMonth()
     month++
@@ -77,6 +83,10 @@ export class DialogComponent {
   }
 
 
+/**
+ * 
+ * @returns returns the year
+ */
   getYear() {
     let year = new Date().getFullYear()
     return {
@@ -85,17 +95,27 @@ export class DialogComponent {
   }
 
 
+/**
+ * 
+ * @returns returns a random generatet id
+ */
   getRandomId() {
     return Math.floor((Math.random() * 1254216205) + 2456457);
   }
 
 
+/**
+ * save the users birthdate as timestamp
+ */
   saveUser() {
     this.user.birthDate = this.birthdate.getTime();
     this.addUser();
   }
 
 
+/**
+ * close the dialog
+ */
   closeDialog() {
     this.dialogRef.close();
   }

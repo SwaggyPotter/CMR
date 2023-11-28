@@ -1,25 +1,22 @@
 import { Component, inject } from '@angular/core';
 import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, doc, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
+import { doc, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
 import { Inject, } from '@angular/core';
-import { collectionData, } from '@angular/fire/firestore';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {  MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { getAdditionalUserInfo } from 'firebase/auth';
-import { UserDetailEditDialogComponent } from '../user-detail-edit-dialog/user-detail-edit-dialog.component';
-import { EditUserAdressDialogComponent } from '../edit-user-adress-dialog/edit-user-adress-dialog.component';
 import { User } from '../models/user.class';
-
-import { NoteComponentComponent } from '../note-component/note-component.component';
 import { DetailCardComponent } from '../detail-card/detail-card.component';
 import { getDatabase } from 'firebase/database';
+
 
 @Component({
   selector: 'app-add-note-dialog',
   templateUrl: './add-note-dialog.component.html',
   styleUrls: ['./add-note-dialog.component.scss']
 })
+
+
 export class AddNoteDialogComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);
@@ -31,6 +28,7 @@ export class AddNoteDialogComponent {
   note: string = '';
   loading: boolean = false;
   
+
   constructor(private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public data: DetailCardComponent) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
@@ -43,11 +41,16 @@ export class AddNoteDialogComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-    this.userId = data.userId
-    this.getUser()
+    this.userId = data.userId;
+    this.getUser();
   }
 
   
+  /**
+   * 
+   * @param title The input from the title input of the html document
+   * @param note The note from the note input of the html document
+   */
   async saveNote(title: string, note: string) {
     this.loading = true;
     const db = getDatabase();
@@ -59,9 +62,12 @@ export class AddNoteDialogComponent {
   }
 
 
+  /**
+   * Get the user by the id
+   */
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
-      this.user = doc.data()
+      this.user = doc.data();
     });
   }
 }
