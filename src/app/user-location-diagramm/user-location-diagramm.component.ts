@@ -65,13 +65,14 @@ export class UserLocationDiagrammComponent {
     const that = this
     let arrayRounds: number = 0;
     this.userArray = this.userArray.sort()
+    console.log(this.userArray)
     this.userArray.forEach(function (city: any) {
       arrayRounds++
       console.log(arrayRounds);
       console.log(city);
-      if (that.userArray.length == arrayRounds) {
+      if (that.userArray.length === arrayRounds) {
         that.graphArrayX.push(city);
-        that.graphArrayY.push(that.cityCount += 1);
+        that.graphArrayY.push(that.cityCount);
         that.graph.data[0]['x'] = that.graphArrayX;
         that.graph.data[0]['y'] = that.graphArrayY;
       }
@@ -88,6 +89,9 @@ export class UserLocationDiagrammComponent {
     });
     this.topCity = this.graphArrayX[this.indexOfMax(that.graphArrayY)];
   }
+
+
+ 
 
 
   indexOfMax(arr: any) {
