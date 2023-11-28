@@ -37,6 +37,20 @@ export class ForgottPasswordComponent {
   enterNEwPw: boolean = false;
   codeInput: any = 0;
   emailPassWArray: any
+  newUserPW: any = {
+    "Email": "",
+    "name": "",
+    "password": ""
+  }
+  newPassword: any
+  emailPasswords: any
+  emailAndPasswordPuffer: string[] = []
+  matchingItemNumber: number = 0;
+  form = ({
+    from_name: ['Password Bot'],
+    from_email: ['Password@reset-service.de'],
+    message: ['Here is your reset code: ']
+  });
 
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
@@ -55,6 +69,9 @@ export class ForgottPasswordComponent {
   }
 
 
+  /**
+   * get the user logins
+   */
   async getUser() {
     let i: number = 0;
     const querySnapshot = await getDocs(collection(this.db, "logins"));
@@ -64,6 +81,10 @@ export class ForgottPasswordComponent {
   }
 
 
+  /**
+   * get the code from the backend to reset the password
+   * @param email 
+   */
   async getCodesAndEmail(email: string) {
     const docRef = doc(this.db, "passwordForget", email);
     const docSnap: any = (await getDoc(docRef)).data();
@@ -75,14 +96,23 @@ export class ForgottPasswordComponent {
   }
 
 
+  /**
+   * store the searched email
+   */
   searchEmail: any = {
     Email: '',
   }
 
 
+  /**
+   * array for any function to store the user etc.
+   */
   pufferArray = [];
 
 
+  /**
+   * searching for the email from the input
+   */
   searchForEmail() {
     for (let i = 0; i < this.pufferArray.length; i++) {
       const element = this.pufferArray[i];
@@ -96,21 +126,15 @@ export class ForgottPasswordComponent {
     }
   }
 
-  newUserPW: any = {
-    "Email": "",
-    "name": "",
-    "password": ""
-  }
-  newPassword: any
-  emailPasswords: any
-  emailAndPasswordPuffer: string[] = []
-  matchingItemNumber: number = 0;
+
+/**
+ * Update the user password and store it to the backend 
+ */
   async setNewPassword() {
     const querySnapshot = await getDocs(collection(this.db, "logins"));
     querySnapshot.forEach((doc) => {
       this.emailPasswords = doc.data()['emailsAndPasswords']
     });
-
     for (let i = 0; i < this.emailPasswords.length; i++) {
       const element = this.emailPasswords[i];
       let data: any = JSON.parse(this.emailPasswords[i])
@@ -126,6 +150,11 @@ export class ForgottPasswordComponent {
   }
 
 
+  /**
+   * Save the reset code to the backend
+   * @param randomCode random genaratet number
+   * @param email the email who chosed for reseting the password
+   */
   async setCode(randomCode: any, email: string) {
     await setDoc(doc(this.db, "passwordForget", email), { "code": randomCode });
     this.form.message = ['Here is your reset code: ', randomCode]
@@ -133,25 +162,27 @@ export class ForgottPasswordComponent {
   }
 
 
+  /**
+   * get the email from the email input
+   */
   getInput() {
     this.searchEmail.Email = this.email
-    console.log(this.searchEmail)
     this.searchForEmail()
   }
 
 
+  /**
+   * 
+   * @returns returns a random number
+   */
   getRandomId() {
     return Math.floor((Math.random() * 125205) + 24457);
   }
 
 
-  form = ({
-    from_name: ['Password Bot'],
-    from_email: ['Password@reset-service.de'],
-    message: ['Here is your reset code: ']
-  });
-
-
+  /**
+   * Send a email with the in the backend stored code
+   */
   async sendEmail() {
     emailjs.init('HXRHgLXNMAqXvgQza');
     let response = await emailjs.send('service_gjpw7iv', 'template_7extjmi', {
@@ -160,6 +191,4 @@ export class ForgottPasswordComponent {
       message: this.form.message
     });
   }
-
-
 }
