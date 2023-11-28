@@ -3,11 +3,14 @@ import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
+
 @Component({
   selector: 'app-user-location-diagramm',
   templateUrl: './user-location-diagramm.component.html',
   styleUrls: ['./user-location-diagramm.component.scss']
 })
+
+
 export class UserLocationDiagrammComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);
@@ -31,6 +34,7 @@ export class UserLocationDiagrammComponent {
   i: any
   topCity: string = '';
 
+
   constructor() {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
@@ -44,8 +48,8 @@ export class UserLocationDiagrammComponent {
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
     this.getUser();
-
   }
+
 
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
@@ -60,27 +64,31 @@ export class UserLocationDiagrammComponent {
   fillTheCords() {
     const that = this
     let arrayRounds: number = 0;
+    this.userArray = this.userArray.sort()
     this.userArray.forEach(function (city: any) {
       arrayRounds++
-      if (that.userArray.length === arrayRounds) {
-        that.graphArrayX.push(city)
-        that.graphArrayY.push(1)
-        that.graph.data[0]['x'] = that.graphArrayX
-        that.graph.data[0]['y'] = that.graphArrayY
+      console.log(arrayRounds);
+      console.log(city);
+      if (that.userArray.length == arrayRounds) {
+        that.graphArrayX.push(city);
+        that.graphArrayY.push(that.cityCount += 1);
+        that.graph.data[0]['x'] = that.graphArrayX;
+        that.graph.data[0]['y'] = that.graphArrayY;
       }
       if (that.lastCity == null || that.lastCity == city) {
-        that.cityCount++
+        that.cityCount++;
         that.lastCity = city;
       }
       else {
-        that.graphArrayX.push(that.lastCity)
-        that.graphArrayY.push(that.cityCount)
+        that.graphArrayX.push(that.lastCity);
+        that.graphArrayY.push(that.cityCount);
         that.lastCity = city;
         that.cityCount = 1;
       }
     });
-    this.topCity = this.graphArrayX[this.indexOfMax(that.graphArrayY)]
+    this.topCity = this.graphArrayX[this.indexOfMax(that.graphArrayY)];
   }
+
 
   indexOfMax(arr: any) {
     let maxIndex = 0;
@@ -91,6 +99,7 @@ export class UserLocationDiagrammComponent {
     }
     return maxIndex;
   }
+
 
   public graph = {
     data: [
