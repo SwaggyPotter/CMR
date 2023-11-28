@@ -25,10 +25,11 @@ export class AgeDiagrammComponent {
   userAmount: number = 0;
   userArray: any = [];
   isDataReady: boolean = false;
-  incomeArray: any = [];
-  openDocDataIncome: any;
   sumTotal: number = 0;
-
+  age: any = 0;
+  youngestAge: number = 0;
+  oldestAge: number = 10;
+  rounds: number = 0
 
   constructor() {
     const firebaseConfig = {
@@ -46,36 +47,58 @@ export class AgeDiagrammComponent {
   }
 
 
-
+  ageArray: any = []
   async getUser() {
-    let i: number = 0;
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
-      this.userArray.push(doc.id)
-      this.incomeArray.push(doc.data()['income'])
-    });
-    let data: any = [];
-    let counterArr: any = [];
-    this.incomeArray.forEach(function (value: any) {
-      if (value != 0) {
-        i++
-        counterArr.push(i)
-        data.push(value)
-      }
+      this.ageArray.push(doc.data()['birthDate'])
     });
     this.isDataReady = true;
+    this.fillTheGraphData()
   }
 
 
+  dataArray: number[] = [];
+  fillTheGraphData() {
+    let Counter = 0;
+    for (let i = 0; i < this.ageArray.length; i++) {
+      let element = this.ageArray[i];
+      element = new Date(element);
+      this.age = new Number((new Date().getTime() - element.getTime()) / 31536000000).toFixed(0);
+      if (this.age <= this.oldestAge && this.age >= this.youngestAge) {
+        Counter++
+      }
+    }
+    this.dataArray.push(Counter)
+    this.youngestAge += 10
+    this.oldestAge += 10
+    this.rounds++
+    if (this.rounds <= 9) {
+      this.fillTheGraphData()
+    }
+    else{
+      console.log('Endet at round', this.rounds)
+      console.log(this.dataArray)
+    }
+  }
 
   public graph = {
 
     data: [
-      { values: [2, 3, 4, 4], type: 'pie', mode: 'lines+points', marker: { color: 'blue' } },
+      {
+        values: this.dataArray,
+        labels: ["Age 0 - 10", "Age 10 - 20", "Age 20 - 30", "Age 30 - 40", "Age 40 - 50", "Age 50 - 60", "Age 60 - 70", "Age 70 - 80", "Age 80 - 90", "Age 90 - 100"],
+        type: 'pie',
+        textposition: "inside",
+        marker: { color: 'blue' },
+        insidetextorientation: "radial"
 
+      },
     ],
+
     layout: {
-      height: 250, title: 'User Age', paper_bgcolor: '#303030', plot_bgcolor: '#303030',
+      height: 400,
+      width: 400, title: 'User Age', paper_bgcolor: '#303030', plot_bgcolor: '#303030',
       font: {
         size: 12,
         color: 'white'       // Schriftfarbe
