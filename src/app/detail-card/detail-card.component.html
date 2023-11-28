@@ -21,6 +21,7 @@
                 <p>Telephone:
                     <a href="{{'tel:'+this.user.tel}}">{{this.user.tel}}</a>
                 </p>
+                <p>Birthday: {{this.user.birthDate | date:'dd/MM/yyyy'}}, (Age: {{this.age}})</p>
                 <p>Email: {{this.user.email}}</p>
                 <p>Name: {{this.user.firstName}} {{this.user.lastName}}</p>
             </div>

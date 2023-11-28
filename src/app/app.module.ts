@@ -50,6 +50,7 @@ import { ForgottPasswordComponent } from './forgott-password/forgott-password.co
 import { WrongPasswordOrEmailComponent } from './wrong-password-or-email/wrong-password-or-email.component';
 import { AreYouSureComponent } from './are-you-sure/are-you-sure.component';
 import { DayAndTimeComponent } from './day-and-time/day-and-time.component';
+import { AgeDiagrammComponent } from './age-diagramm/age-diagramm.component';
 
 
 
@@ -80,6 +81,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     WrongPasswordOrEmailComponent,
     AreYouSureComponent,
     DayAndTimeComponent,
+    AgeDiagrammComponent,
   ],
   imports: [
     PlotlyModule,
