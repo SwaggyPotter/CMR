@@ -53,6 +53,7 @@ import { DayAndTimeComponent } from './day-and-time/day-and-time.component';
 import { AgeDiagrammComponent } from './age-diagramm/age-diagramm.component';
 import { FooterComponent } from './footer/footer.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+import { ImprintComponent } from './imprint/imprint.component';
 
 
 
@@ -86,6 +87,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     AgeDiagrammComponent,
     FooterComponent,
     DisclaimerComponent,
+    ImprintComponent,
   ],
   imports: [
     PlotlyModule,

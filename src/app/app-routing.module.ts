@@ -8,14 +8,18 @@ import { SingInComponent } from './sing-in/sing-in.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
 import { ForgottPasswordComponent } from './forgott-password/forgott-password.component';
 import { MainSiteComponent } from './main-site/main-site.component';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+import { ImprintComponent } from './imprint/imprint.component';
 
 const routes: Routes = [
-  { path: '', component: LoginWindowComponent},
+  { path: '', component: LoginWindowComponent },
   {
     path: 'main-site', component: MainSiteComponent,
     children: [
-      { path: '', component: DashboardComponent},
-      { path: 'dashboard', component: DashboardComponent},
+      { path: '', component: DashboardComponent },
+      { path: 'disclaimer', component: DisclaimerComponent },
+      { path: 'imprint', component: ImprintComponent },
+      { path: 'dashboard', component: DashboardComponent },
       { path: 'user', component: UserComponent },
       { path: 'user/:id', component: DetailCardComponent }
     ]
@@ -23,7 +27,7 @@ const routes: Routes = [
   { path: 'forgott-password', component: ForgottPasswordComponent },
   { path: 'sing-up', component: SingUpComponent },
   { path: 'sing-in', component: SingInComponent },
-  
+
 
 ];
 

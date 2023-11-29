@@ -1,7 +1,7 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
         <div class="clickable">
-            <img [routerLink]="['/main-site/dashboard']" class="logo" src="/assets/img/logo.png" alt="">
+            <img [routerLink]="['C/dashboard']" class="logo" src="/assets/img/logo.png" alt="">
         </div>
         <div>
             <p (click)="drawer.toggle()" class="clickable side-nav-box" [routerLink]="['/main-site/dashboard']"
@@ -14,7 +14,7 @@
 
     <div class="example-sidenav-content">
         <mat-toolbar class="relativContainer">
-            <div class="center" >
+            <div class="center">
                 <span (click)="drawer.toggle()" class="material-icons menu-button">
                     menu
                 </span>
@@ -32,4 +32,5 @@
         </mat-toolbar>
         <router-outlet></router-outlet>
     </div>
+    <app-footer></app-footer>
 </mat-drawer-container>
