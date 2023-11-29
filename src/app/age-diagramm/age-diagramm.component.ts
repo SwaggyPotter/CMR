@@ -76,10 +76,6 @@ export class AgeDiagrammComponent {
     if (this.rounds <= 9) {
       this.fillTheGraphData()
     }
-    else{
-      console.log('Endet at round', this.rounds)
-      console.log(this.dataArray)
-    }
   }
 
   public graph = {

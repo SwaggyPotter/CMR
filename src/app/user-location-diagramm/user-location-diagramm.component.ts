@@ -51,6 +51,7 @@ export class UserLocationDiagrammComponent {
   }
 
 
+
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
@@ -61,14 +62,13 @@ export class UserLocationDiagrammComponent {
   }
 
 
+
   fillTheCords() {
     const that = this
     let arrayRounds: number = 0;
     this.userArray = this.userArray.sort()
     this.userArray.forEach(function (city: any) {
       arrayRounds++
-      console.log('Last city war', that.lastCity)
-      console.log(city)
       if (that.userArray.length === arrayRounds) {
         if (that.lastCity != city) {
           that.graphArrayX.push(that.lastCity);
@@ -88,7 +88,6 @@ export class UserLocationDiagrammComponent {
         }
       }
       else if (that.lastCity == null || that.lastCity == city) {
-        console.log('Neue City ', city)
         that.cityCount++;
         that.lastCity = city;
       }
@@ -104,8 +103,6 @@ export class UserLocationDiagrammComponent {
 
 
 
-
-
   indexOfMax(arr: any) {
     let maxIndex = 0;
     for (let i = 1; i < arr.length; i++) {
@@ -115,6 +112,7 @@ export class UserLocationDiagrammComponent {
     }
     return maxIndex;
   }
+
 
 
   public graph = {

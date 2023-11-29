@@ -51,6 +51,8 @@ import { WrongPasswordOrEmailComponent } from './wrong-password-or-email/wrong-p
 import { AreYouSureComponent } from './are-you-sure/are-you-sure.component';
 import { DayAndTimeComponent } from './day-and-time/day-and-time.component';
 import { AgeDiagrammComponent } from './age-diagramm/age-diagramm.component';
+import { FooterComponent } from './footer/footer.component';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 
 
 
@@ -82,6 +84,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     AreYouSureComponent,
     DayAndTimeComponent,
     AgeDiagrammComponent,
+    FooterComponent,
+    DisclaimerComponent,
   ],
   imports: [
     PlotlyModule,
