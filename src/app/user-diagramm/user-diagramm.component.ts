@@ -1,23 +1,16 @@
-/**Info
-   * add user join month in form of 1 - 12
-   * for the total user list for every month
-   */
 
 import { Component, inject } from '@angular/core';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { ViewChild } from '@angular/core';
-import { AgGridAngular } from 'ag-grid-angular';
-import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
 import { doc, getDocs, getFirestore, onSnapshot } from 'firebase/firestore';
 import { initializeApp } from '@angular/fire/app';
+
 
 @Component({
   selector: 'app-user-diagramm',
   templateUrl: './user-diagramm.component.html',
   styleUrls: ['./user-diagramm.component.scss'],
 })
+
 
 export class UserDiagrammComponent {
   userId: any;
@@ -35,9 +28,6 @@ export class UserDiagrammComponent {
   isDataReady: boolean = false;
   userJoinData: any;
   userLeaveData: any;
-
-
-
 
 
   constructor() {
@@ -58,6 +48,7 @@ export class UserDiagrammComponent {
   }
 
 
+  /*Get the user data*/
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
@@ -67,6 +58,9 @@ export class UserDiagrammComponent {
   }
 
 
+  /*
+  *Update the user joinded database
+  */
   async userJoinedList() {
     const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userJoined"), (doc) => {
       this.userJoinData = doc.data()
@@ -79,6 +73,7 @@ export class UserDiagrammComponent {
   }
 
 
+/*Update the user leaved list*/
   async userLeavedList() {
     const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userLeaved"), (doc) => {
       this.userLeaveData = doc.data()
@@ -91,8 +86,7 @@ export class UserDiagrammComponent {
   }
 
 
-
-
+/*The graph data for the user joinded laved diagram*/
   public graph = {
     data: [
     /*x=month*/{
@@ -112,7 +106,6 @@ export class UserDiagrammComponent {
       },
     },
     config: { responsive: true },
-
   };
 }
 

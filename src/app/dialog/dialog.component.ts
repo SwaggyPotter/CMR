@@ -96,7 +96,6 @@ export class DialogComponent {
 
 
 /**
- * 
  * @returns returns a random generatet id
  */
   getRandomId() {

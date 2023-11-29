@@ -11,6 +11,8 @@ import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
   templateUrl: './forgott-password.component.html',
   styleUrls: ['./forgott-password.component.scss']
 })
+
+
 export class ForgottPasswordComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);

@@ -1,11 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
-import { FormControl, FormGroupDirective, NgForm, Validators, FormsModule, ReactiveFormsModule, } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { EmailAuthCredential } from 'firebase/auth';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-sing-in',
@@ -36,9 +34,11 @@ export class SingInComponent {
   hide: boolean = true;
   passwordEmailWrong: boolean = false;
   disapear: boolean = true;
-
-  myFunction() {
-    this.hide = !this.hide;
+  pufferArray = [];
+  showName: string = ''
+  singInData = {
+    Email: '',
+    password: ''
   }
 
 
@@ -54,26 +54,28 @@ export class SingInComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-    this.getUser()
   }
 
 
-  singInData = {
-    Email: '',
-    password: ''
+
+  myFunction() {
+    this.hide = !this.hide;
   }
 
 
+/**
+ * Get the input from the email and password field
+ */
   getInput() {
     this.singInData.Email = this.email
     this.singInData.password = this.password
-    console.log(this.singInData)
     this.loadLoginData()
   }
 
 
-  pufferArray = [];
-
+ /**
+  * Load the login data of all user
+  */
   async loadLoginData() {
     const querySnapshot = await getDocs(collection(this.db, "logins"));
     querySnapshot.forEach((doc) => {
@@ -83,18 +85,17 @@ export class SingInComponent {
   }
 
 
-  async getUser() {
-    let i: number = 0;
-    const querySnapshot = await getDocs(collection(this.db, "logins"));
-    querySnapshot.forEach((doc) => {});
-  }
-
+  /**
+   * Push the user name into the local storage
+   */
   nameToStorage() {
     localStorage.setItem('currentUser', this.showName);
   }
 
-  showName: string = ''
-
+  
+/**
+ * Perform the login
+ */
   login() {
     for (let i = 0; i < this.pufferArray.length; i++) {
       const element = this.pufferArray[i];
@@ -113,6 +114,4 @@ export class SingInComponent {
       }
     }
   }
-
-
 }

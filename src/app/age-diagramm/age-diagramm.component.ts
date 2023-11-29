@@ -30,6 +30,8 @@ export class AgeDiagrammComponent {
   youngestAge: number = 0;
   oldestAge: number = 10;
   rounds: number = 0
+  dataArray: number[] = [];
+
 
   constructor() {
     const firebaseConfig = {
@@ -47,6 +49,9 @@ export class AgeDiagrammComponent {
   }
 
 
+  /**
+   * Get the user age data
+   */
   ageArray: any = []
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
@@ -58,7 +63,9 @@ export class AgeDiagrammComponent {
   }
 
 
-  dataArray: number[] = [];
+  /**
+   * Fill the array with the ages of the user and the amount 
+   */
   fillTheGraphData() {
     let Counter = 0;
     for (let i = 0; i < this.ageArray.length; i++) {
@@ -78,8 +85,11 @@ export class AgeDiagrammComponent {
     }
   }
 
-  public graph = {
 
+  /**
+   * The graph data and config
+   */
+  public graph = {
     data: [
       {
         values: this.dataArray,
@@ -91,7 +101,6 @@ export class AgeDiagrammComponent {
 
       },
     ],
-
     layout: {
       height: 400,
       width: 400, title: 'User Age', paper_bgcolor: '#303030', plot_bgcolor: '#303030',

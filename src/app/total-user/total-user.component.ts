@@ -4,11 +4,14 @@ import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, doc, getDocs, getFirestore, onSnapshot, where } from 'firebase/firestore';
 
+
 @Component({
   selector: 'app-total-user',
   templateUrl: './total-user.component.html',
   styleUrls: ['./total-user.component.scss']
 })
+
+
 export class TotalUserComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);
@@ -22,6 +25,7 @@ export class TotalUserComponent {
   loading: boolean = false;
   userAmount: number = 0;
   userArray: any = [];
+
 
   constructor() {
     const firebaseConfig = {
@@ -38,6 +42,10 @@ export class TotalUserComponent {
     this.getUser()
   }
 
+
+  /**
+   * Push to user data to a array for displaying the amount of user that exist.
+   */
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {

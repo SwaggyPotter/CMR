@@ -4,11 +4,14 @@ import { Firestore } from '@angular/fire/firestore';
 import { collection, doc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-sing-up',
   templateUrl: './sing-up.component.html',
   styleUrls: ['./sing-up.component.scss']
 })
+
+
 export class SingUpComponent {
   email: string = '';
   password: string = '';
@@ -29,9 +32,15 @@ export class SingUpComponent {
   incomeArray: any = [];
   openDocDataIncome: any;
   sumTotal: number = 0;
-
   hide: boolean = true;
-
+  pufferArray = [];
+  emailsAndPasswords: any = { "emailsAndPasswords": "" }
+  emailPassWArray: any = []
+  singInData = {
+    name: '',
+    Email: '',
+    password: '',
+  }
 
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
@@ -49,15 +58,10 @@ export class SingUpComponent {
   }
 
 
-  pufferArray = [];
-
-  singInData = {
-    name: '',
-    Email: '',
-    password: '',
-  }
-
-
+  /**
+   * Create an account with the inputs the user gave.
+   * 
+   */
   async createAccount() {
     const querySnapshot = await getDocs(collection(this.db, "logins"));
     querySnapshot.forEach((doc) => {
@@ -66,11 +70,13 @@ export class SingUpComponent {
     this.singInData.Email = this.email
     this.singInData.password = this.password
     this.singInData.name = this.name
-    console.log(this.singInData)
     this.checkAccountInformation();
   }
 
 
+  /**
+   * Check if the user data exist
+   */
   checkAccountInformation() {
     for (let i = 0; i < this.pufferArray.length; i++) {
       const element = this.pufferArray[i];
@@ -79,24 +85,20 @@ export class SingUpComponent {
       if (value[0] != this.singInData.Email) {
         if (i == this.pufferArray.length - 1) {
           this.sendToBackend();
-          console.log('Account createt');
         }
-      }
-      else {
-        console.log('Your account already exist')
       }
     }
   }
 
-  emailsAndPasswords: any = {"emailsAndPasswords": ""}
-  emailPassWArray: any = []
 
+  /**
+   * Send the account data to the backend
+   */
   async sendToBackend() {
     this.isDataReady = true;
     const querySnapshot = await getDocs(collection(this.db, "logins"));
     querySnapshot.forEach((doc) => {
       this.emailPassWArray = doc.data()['emailsAndPasswords'];
-      console.log(doc.data())
     });
     this.emailPassWArray.push(JSON.stringify(this.singInData))
     this.emailsAndPasswords.emailsAndPasswords = this.emailPassWArray

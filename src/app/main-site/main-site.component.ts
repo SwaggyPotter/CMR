@@ -11,6 +11,4 @@ export class MainSiteComponent {
   constructor() {
     this.currentUser = localStorage.getItem('currentUser')
   }
-
-
 }

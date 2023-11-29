@@ -13,6 +13,8 @@ import { DetailCardComponent } from '../detail-card/detail-card.component';
   templateUrl: './note-component.component.html',
   styleUrls: ['./note-component.component.scss']
 })
+
+
 export class NoteComponentComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);
@@ -24,6 +26,7 @@ export class NoteComponentComponent {
   note: string = '';
   itemNumber: number = 0;
   loading: boolean = false;
+
 
   constructor(private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public data: DetailCardComponent) {
     const firebaseConfig = {
@@ -42,6 +45,7 @@ export class NoteComponentComponent {
     this.getUser()
   }
 
+
   /**
    * Function to delete the title and note
    * @param index type:number, position of the item that get deletet
@@ -56,7 +60,9 @@ export class NoteComponentComponent {
     this.loading = false;
   }
 
-
+  /**
+   * Get the user based on the id
+   */
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
       this.user = doc.data()

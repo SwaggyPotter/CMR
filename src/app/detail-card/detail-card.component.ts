@@ -61,6 +61,10 @@ export class DetailCardComponent {
     });
   }
 
+
+  /**
+   * Give back the number of the age based on the timestamp.
+   */
   calcBirthday() {
     this.user.birthDate = new Date(this.user.birthDate);
     this.age = new Number((new Date().getTime() - this.user.birthDate.getTime()) / 31536000000).toFixed(0);

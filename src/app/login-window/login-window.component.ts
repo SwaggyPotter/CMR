@@ -4,11 +4,13 @@ import { Firestore } from '@angular/fire/firestore';
 import { FormControl, Validators } from '@angular/forms';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
+
 @Component({
   selector: 'app-login-window',
   templateUrl: './login-window.component.html',
   styleUrls: ['./login-window.component.scss'],
 })
+
 
 export class LoginWindowComponent {
   userId: any;
@@ -40,27 +42,5 @@ export class LoginWindowComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-    //this.getUser()
   }
-
-
-  async getUser() {
-    let i: number = 0;
-    const querySnapshot = await getDocs(collection(this.db, "users"));
-    querySnapshot.forEach((doc) => {
-      this.userArray.push(doc.id)
-      this.incomeArray.push(doc.data()['income'])
-    });
-    let data: any = [];
-    let counterArr: any = [];
-    this.incomeArray.forEach(function (value: any) {
-      if (value != 0) {
-        i++
-        counterArr.push(i)
-        data.push(value)
-      }
-    });
-    this.isDataReady = true;
-  }
-
 }

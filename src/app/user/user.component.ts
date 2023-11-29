@@ -2,15 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { User } from '../models/user.class';
-import { collection, getDocs } from "firebase/firestore";
+import { collection} from "firebase/firestore";
 import { Firestore, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { doc, documentId, setDoc } from '@firebase/firestore';
-import { addDoc } from "firebase/firestore";
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { MatDialogRef } from '@angular/material/dialog';
-
 
 
 @Component({
@@ -18,6 +11,8 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
+
+
 export class UserComponent {
   user = new User()
   firestore: Firestore = inject(Firestore)
@@ -25,6 +20,7 @@ export class UserComponent {
   db: any
   allUsers = [];
   puffer: any
+
 
   constructor(public dialog: MatDialog) {
     const firebaseConfig = {
@@ -38,12 +34,15 @@ export class UserComponent {
     };
     const aCollection = collection(this.firestore, 'users')
     this.users = collectionData(aCollection);
-
     this.users.subscribe((newusers: any) => {
       this.allUsers = newusers;
     })
   }
 
+
+  /**
+   * Open the dialog for adding a new user
+   */
   openDialog() {
     this.dialog.open(DialogComponent)
   }

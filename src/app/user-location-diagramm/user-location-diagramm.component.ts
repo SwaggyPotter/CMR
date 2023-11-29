@@ -51,7 +51,9 @@ export class UserLocationDiagrammComponent {
   }
 
 
-
+/**
+ * Get the user data
+ */
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
@@ -62,7 +64,9 @@ export class UserLocationDiagrammComponent {
   }
 
 
-
+/**
+ * Fill the diagramm cordinates with the amount and name of the user cities
+ */
   fillTheCords() {
     const that = this
     let arrayRounds: number = 0;
@@ -102,7 +106,11 @@ export class UserLocationDiagrammComponent {
   }
 
 
-
+/**
+ * Function for returning the item with the most amount
+ * @param arr array
+ * @returns the item with the most amount in the array
+ */
   indexOfMax(arr: any) {
     let maxIndex = 0;
     for (let i = 1; i < arr.length; i++) {
@@ -114,7 +122,9 @@ export class UserLocationDiagrammComponent {
   }
 
 
-
+/**
+ * Data for the graph 
+ */
   public graph = {
     data: [
     /*x=citys*/{
@@ -130,7 +140,5 @@ export class UserLocationDiagrammComponent {
       },
     },
     config: { responsive: true },
-
   };
-
 }

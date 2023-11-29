@@ -1,13 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set } from 'firebase/database';
-import { doc, getFirestore, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { User } from '../models/user.class';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { addDoc } from "firebase/firestore";
 
 
 @Component({
@@ -39,6 +35,9 @@ export class UserDetailEditDialogComponent {
   }
 
 
+  /**
+   * Update the user database
+   */
   async updateUser() {
     const db = getDatabase();
     this.loading = true;
@@ -49,6 +48,9 @@ export class UserDetailEditDialogComponent {
   }
 
 
+  /**
+   * Close the user adding dialog
+   */
   closeDialog() {
     this.dialogRef.close()
   }

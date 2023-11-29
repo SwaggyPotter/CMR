@@ -3,11 +3,14 @@ import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
+
 @Component({
   selector: 'app-income-diagramm',
   templateUrl: './income-diagramm.component.html',
   styleUrls: ['./income-diagramm.component.scss']
 })
+
+
 export class IncomeDiagrammComponent {
   userId: any;
   firestore: Firestore = inject(Firestore);
@@ -26,6 +29,7 @@ export class IncomeDiagrammComponent {
   openDocDataIncome: any;
   sumTotal: number = 0;
 
+
   constructor() {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
@@ -41,7 +45,10 @@ export class IncomeDiagrammComponent {
     this.getUser()
   }
 
-
+/**
+ * Get the user income and calc the meridian of the user income.
+ * Push the data to the graph config.
+ */
   async getUser() {
     let i: number = 0;
     const querySnapshot = await getDocs(collection(this.db, "users"));
@@ -65,6 +72,10 @@ export class IncomeDiagrammComponent {
   }
 
 
+  /**
+   * 
+   * @param sumArr give back the meridian of all incomes
+   */
   calcMeridian(sumArr: any) {
     this.sumTotal = 0;
     for (let i = 0; i < sumArr.length; i++) {
@@ -75,11 +86,12 @@ export class IncomeDiagrammComponent {
   }
 
   
+  /**
+   * The graph data for the income diagramm
+   */
   public graph = {
-
     data: [
       { x: [], y: [], type: 'bar', mode: 'lines+points', marker: { color: 'blue' } },
-
     ],
     layout: {
       height: 250, title: 'User income', paper_bgcolor: '#303030', plot_bgcolor: '#303030',
