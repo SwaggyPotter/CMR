@@ -65,18 +65,22 @@ export class UserLocationDiagrammComponent {
     const that = this
     let arrayRounds: number = 0;
     this.userArray = this.userArray.sort()
-    console.log(this.userArray)
     this.userArray.forEach(function (city: any) {
       arrayRounds++
+      console.log('Last city war', that.lastCity)
       console.log(city)
       if (that.userArray.length === arrayRounds) {
+        if (that.lastCity != city) {
+          that.graphArrayX.push(that.lastCity);
+          that.graphArrayY.push(that.cityCount);
+        }
         if (that.lastCity == null || that.lastCity == city) {
           that.graphArrayX.push(city);
           that.graphArrayY.push(that.cityCount);
           that.graph.data[0]['x'] = that.graphArrayX;
           that.graph.data[0]['y'] = that.graphArrayY;
         }
-        else{
+        else {
           that.graphArrayX.push(city);
           that.graphArrayY.push(1);
           that.graph.data[0]['x'] = that.graphArrayX;
