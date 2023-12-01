@@ -4,37 +4,53 @@
     bottom: 65px;
 }
 
-.userTable {
-    border-collapse: collapse;
-    margin-top: 70px;
 
-    tr {
-        border-bottom: solid rgba(255, 255, 255, 0.2) 1px;
-    }
 
-    .border-right {
-        border-right: solid rgba(255, 255, 255, 0.2) 1px;
-    }
+.userContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
 
-    .border-left {
-        border-left: solid rgba(255, 255, 255, 0.2) 1px;
-    }
+    .userTable {
+        border-collapse: collapse;
+        margin-top: 70px;
+        max-width: 1440px;
+        width: 100%;
 
-    .userList {
-        td {
-            text-align: center;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            border-radius: 0;
+        tr {
+            border-bottom: solid rgba(255, 255, 255, 0.2) 1px;
         }
 
-        &:hover {
-            background-color: hsla(0, 0%, 100%, 0.050);
-            cursor: pointer;
+        .border-right {
+            border-right: solid rgba(255, 255, 255, 0.2) 1px;
         }
 
-        .mg-tp {
-            margin-top: 10px;
+        .border-left {
+            border-left: solid rgba(255, 255, 255, 0.2) 1px;
         }
+
+        .userList {
+            td {
+                text-align: center;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-radius: 0;
+            }
+
+            &:hover {
+                background-color: hsla(0, 0%, 100%, 0.050);
+                cursor: pointer;
+            }
+
+            .mg-tp {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mobile{
+        display: none;
     }
 }

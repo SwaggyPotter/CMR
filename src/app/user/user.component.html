@@ -1,18 +1,19 @@
-<mat-card>
+<mat-card class="userContainer">
     <table id="listOfUser" class="userTable">
         <tr>
             <th class="border-right">Name</th>
-            <th class="border-right">Email</th>
-            <th class="border-right">Street</th>
-            <th class="border-right">City</th>
-            <th class="border-left">Zip Code</th>
+            <th class="border-right mobile">Email</th>
+            <th class="border-right mobile">Street</th>
+            <th class="border-right mobile">City</th>
+            <th class="border-left mobile">Zip Code</th>
         </tr>
-        <tr class="userList" *ngFor="let user of allUsers; index as i" [routerLink]="['/main-site/user/', allUsers[i]['id']]">
+        <tr class="userList" *ngFor="let user of allUsers; index as i"
+            [routerLink]="['/main-site/user/', allUsers[i]['id']]">
             <td class="border-right">{{allUsers[i]['firstName']}}, {{allUsers[i]['lastName']}}</td>
-            <td class="border-right">{{allUsers[i]['email']}}</td>
-            <td class="border-right">{{allUsers[i]['street']}}</td>
-            <td class="border-right">{{allUsers[i]['city']}}</td>
-            <td class="border-left">{{allUsers[i]['zipCode']}}</td>
+            <td class="border-right mobile">{{allUsers[i]['email']}}</td>
+            <td class="border-right mobile">{{allUsers[i]['street']}}</td>
+            <td class="border-right mobile">{{allUsers[i]['city']}}</td>
+            <td class="border-left mobile">{{allUsers[i]['zipCode']}}</td>
         </tr>
     </table>
 </mat-card>
