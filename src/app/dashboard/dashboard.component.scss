@@ -1,22 +1,47 @@
+@media screen and (min-width: 1440px) {
+    .diagrammContainer {
+        justify-content: center !important;
+
+        .maxWidthContainer {
+            width: 720px !important;
+        }
+
+        .container1440 {
+            width: 1440px !important;
+        }
+    }
+}
+
 h1 {
     width: 100%;
     text-align: center;
 }
 
-.dashContainer{
+
+.dashContainer {
     padding: 10px;
     margin-top: 70px;
 }
 
-.maxWidthContainer {
-    width: 50%;
-}
 
 .diagrammContainer {
     display: flex;
     width: 100%;
+
+    .maxWidthContainer {
+        width: 50%;
+    }
 }
 
-.ageDiagramm{
-    width: 50%;
+
+@media screen and (max-width: 850px) {
+    .diagrammContainer {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .maxWidthContainer {
+            width: 100%;
+        }
+    }
 }
