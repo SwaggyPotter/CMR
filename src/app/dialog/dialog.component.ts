@@ -24,6 +24,7 @@ export class DialogComponent {
   id = null;
   freshData: any
 
+  
   constructor(public dialogRef: MatDialogRef<DialogComponent>) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",

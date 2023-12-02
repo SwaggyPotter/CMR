@@ -21,7 +21,6 @@ export class NoteComponentComponent {
   user: any = {};
   db: any;
   users: any;
-  allUsers: any;
   title: string = '';
   note: string = '';
   itemNumber: number = 0;

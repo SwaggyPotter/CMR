@@ -1,14 +1,20 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
+        
         <div class="clickable">
             <img [routerLink]="['C/dashboard']" class="logo" src="/assets/img/logo.png" alt="">
         </div>
+
         <div>
             <p (click)="drawer.toggle()" class="clickable side-nav-box" [routerLink]="['/main-site/dashboard']"
                 routerLinkActive="router-link-active">
                 Dashboard</p>
             <p (click)="drawer.toggle()" class="clickable side-nav-box" [routerLink]="['/main-site/user']"
                 routerLinkActive="router-link-active">User</p>
+
+            <p [routerLink]="['']" class="clickable side-nav-box">
+                Logout
+            </p>
         </div>
     </mat-drawer>
 
@@ -28,7 +34,6 @@
                 Welcome {{this.currentUser}}
             </p>
 
-            <span [routerLink]="['']" class="clickable logoutBtn">Logout</span>
         </mat-toolbar>
         <router-outlet></router-outlet>
     </div>

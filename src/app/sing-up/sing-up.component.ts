@@ -16,22 +16,11 @@ export class SingUpComponent {
   email: string = '';
   password: string = '';
   name: string = '';
-  userId: any;
   firestore: Firestore = inject(Firestore);
   user: any = {};
   db: any;
   users: any;
-  allUsers: any;
-  title: string = '';
-  note: string = '';
-  itemNumber: number = 0;
-  loading: boolean = false;
-  userAmount: number = 0;
-  userArray: any = [];
   isDataReady: boolean = false;
-  incomeArray: any = [];
-  openDocDataIncome: any;
-  sumTotal: number = 0;
   hide: boolean = true;
   pufferArray = [];
   emailsAndPasswords: any = { "emailsAndPasswords": "" }

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { getDatabase, ref, set } from 'firebase/database';
+import { getDatabase } from 'firebase/database';
 import { doc, setDoc } from 'firebase/firestore';
 import { User } from '../models/user.class';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -19,7 +19,6 @@ export class UserDetailEditDialogComponent {
   db: any
   firestore: Firestore = inject(Firestore)
   users: any
-  allUsers: any
 
 
   constructor(public dialogRef: MatDialogRef<UserDetailEditDialogComponent>) {

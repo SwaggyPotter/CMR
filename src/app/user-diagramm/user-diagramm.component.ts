@@ -1,6 +1,5 @@
-
 import { Component, inject } from '@angular/core';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection } from '@angular/fire/firestore';
 import { doc, getDocs, getFirestore, onSnapshot } from 'firebase/firestore';
 import { initializeApp } from '@angular/fire/app';
 
@@ -19,11 +18,6 @@ export class UserDiagrammComponent {
   db: any;
   users: any;
   allUsers: any;
-  title: string = '';
-  note: string = '';
-  itemNumber: number = 0;
-  loading: boolean = false;
-  userAmount: number = 0;
   userArray: any = [];
   isDataReady: boolean = false;
   userJoinData: any;

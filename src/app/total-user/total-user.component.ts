@@ -1,8 +1,7 @@
-import { query } from '@angular/animations';
 import { Component, inject } from '@angular/core';
 import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, doc, getDocs, getFirestore, onSnapshot, where } from 'firebase/firestore';
+import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
 
 @Component({
@@ -18,11 +17,6 @@ export class TotalUserComponent {
   user: any = {};
   db: any;
   users: any;
-  allUsers: any;
-  title: string = '';
-  note: string = '';
-  itemNumber: number = 0;
-  loading: boolean = false;
   userAmount: number = 0;
   userArray: any = [];
 

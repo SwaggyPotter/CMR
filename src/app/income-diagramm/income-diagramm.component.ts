@@ -17,16 +17,10 @@ export class IncomeDiagrammComponent {
   user: any = {};
   db: any;
   users: any;
-  allUsers: any;
   title: string = '';
-  note: string = '';
-  itemNumber: number = 0;
-  loading: boolean = false;
-  userAmount: number = 0;
   userArray: any = [];
   isDataReady: boolean = false;
   incomeArray: any = [];
-  openDocDataIncome: any;
   sumTotal: number = 0;
 
 
@@ -44,6 +38,7 @@ export class IncomeDiagrammComponent {
     this.db = getFirestore(app);
     this.getUser()
   }
+
 
 /**
  * Get the user income and calc the meridian of the user income.

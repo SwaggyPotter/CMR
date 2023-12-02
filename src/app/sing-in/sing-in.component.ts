@@ -18,22 +18,10 @@ export class SingInComponent {
   user: any = {};
   db: any;
   users: any;
-  allUsers: any;
-  title: string = '';
-  note: string = '';
-  itemNumber: number = 0;
-  loading: boolean = false;
-  userAmount: number = 0;
-  userArray: any = [];
-  isDataReady: boolean = false;
-  incomeArray: any = [];
-  openDocDataIncome: any;
-  sumTotal: number = 0;
   email: string = ''
   password: string = ''
   hide: boolean = true;
   passwordEmailWrong: boolean = false;
-  disapear: boolean = true;
   pufferArray = [];
   showName: string = ''
   singInData = {
@@ -55,7 +43,6 @@ export class SingInComponent {
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
   }
-
 
 
   myFunction() {

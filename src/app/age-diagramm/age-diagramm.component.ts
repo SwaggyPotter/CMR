@@ -12,20 +12,12 @@ import { collection, getDocs, getFirestore } from 'firebase/firestore';
 
 
 export class AgeDiagrammComponent {
-  userId: any;
   firestore: Firestore = inject(Firestore);
   user: any = {};
   db: any;
   users: any;
   allUsers: any;
-  title: string = '';
-  note: string = '';
-  itemNumber: number = 0;
-  loading: boolean = false;
-  userAmount: number = 0;
-  userArray: any = [];
   isDataReady: boolean = false;
-  sumTotal: number = 0;
   age: any = 0;
   youngestAge: number = 0;
   oldestAge: number = 10;
@@ -97,8 +89,10 @@ export class AgeDiagrammComponent {
         type: 'pie',
         textposition: "inside",
         marker: { color: 'blue' },
-        insidetextorientation: "radial"
-
+        insidetextorientation: "radial",
+        hoverinfo: 'label+percent+name',
+        textinfo: "label+percent",
+        showlegend: false,
       },
     ],
     layout: {

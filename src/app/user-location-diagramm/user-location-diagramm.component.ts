@@ -17,16 +17,8 @@ export class UserLocationDiagrammComponent {
   user: any = {};
   db: any;
   users: any;
-  allUsers: any;
-  title: string = '';
-  note: string = '';
-  itemNumber: number = 0;
-  loading: boolean = false;
-  userAmount: number = 0;
   userArray: any = [];
   isDataReady: boolean = false;
-  userJoinData: any;
-  userLeaveData: any;
   lastCity: any = null;
   cityCount: any = 0;
   graphArrayX: any = []

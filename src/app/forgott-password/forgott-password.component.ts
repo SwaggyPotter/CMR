@@ -18,36 +18,23 @@ export class ForgottPasswordComponent {
   firestore: Firestore = inject(Firestore);
   user: any = {};
   db: any;
-  users: any;
-  allUsers: any;
-  title: string = '';
-  note: string = '';
   itemNumber: number = 0;
-  loading: boolean = false;
-  userAmount: number = 0;
-  userArray: any = [];
-  isDataReady: boolean = false;
-  incomeArray: any = [];
-  openDocDataIncome: any;
-  sumTotal: number = 0;
   email: string = '';
   password: string = '';
-  hide: boolean = true;
-  passwordEmailWrong: boolean = false;
   emailEnter: boolean = true;
   codeEnter: boolean = false;
   enterNEwPw: boolean = false;
   codeInput: any = 0;
-  emailPassWArray: any
+  newPassword: any
+  emailPasswords: any
   newUserPW: any = {
     "Email": "",
     "name": "",
     "password": ""
   }
-  newPassword: any
-  emailPasswords: any
-  emailAndPasswordPuffer: string[] = []
-  matchingItemNumber: number = 0;
+  searchEmail: any = {
+    Email: '',
+  }
   form = ({
     from_name: ['Password Bot'],
     from_email: ['Password@reset-service.de'],
@@ -99,14 +86,6 @@ export class ForgottPasswordComponent {
 
 
   /**
-   * store the searched email
-   */
-  searchEmail: any = {
-    Email: '',
-  }
-
-
-  /**
    * array for any function to store the user etc.
    */
   pufferArray = [];
@@ -129,9 +108,9 @@ export class ForgottPasswordComponent {
   }
 
 
-/**
- * Update the user password and store it to the backend 
- */
+  /**
+   * Update the user password and store it to the backend 
+   */
   async setNewPassword() {
     const querySnapshot = await getDocs(collection(this.db, "logins"));
     querySnapshot.forEach((doc) => {

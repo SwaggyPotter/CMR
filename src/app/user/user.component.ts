@@ -1,8 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { User } from '../models/user.class';
-import { collection} from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import { Firestore, collectionData } from '@angular/fire/firestore';
 
 
@@ -19,7 +19,6 @@ export class UserComponent {
   users: any;
   db: any
   allUsers = [];
-  puffer: any
 
 
   constructor(public dialog: MatDialog) {

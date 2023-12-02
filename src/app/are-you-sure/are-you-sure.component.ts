@@ -20,10 +20,6 @@ export class AreYouSureComponent {
   user: any = {};
   db: any;
   users: any;
-  allUsers: any;
-  title: string = '';
-  note: string = '';
-  numberOf: number = 0;
   freshData: any
 
 

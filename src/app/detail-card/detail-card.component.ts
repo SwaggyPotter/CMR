@@ -25,7 +25,6 @@ export class DetailCardComponent {
   user: any = {};
   db: any;
   users: any;
-  allUsers: any;
   title: string = '';
   note: string = '';
   numberOf: number = 0;
@@ -115,7 +114,6 @@ export class DetailCardComponent {
       let year = this.getYear()['year'];
       let month = this.getJoinMonth()['month'];
       data[year][month]++;
-      console.log(data)
       this.freshData = data
     });
   }
