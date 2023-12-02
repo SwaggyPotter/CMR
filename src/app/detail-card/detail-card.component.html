@@ -1,59 +1,61 @@
-<div class="detailCard-container">
+<div class="centerContainer">
+    <div class="detailCard-container">
 
-    <mat-card class="detailCard-header">
-        <button [routerLink]="['/main-site/user']" class="backBTN" mat-fab color="primary"
-            aria-label="Example icon button with a delete icon">
-            <mat-icon>arrow_back</mat-icon>
-        </button>
-        <button [matMenuTriggerFor]="menuContact" class="menu-btn" mat-icon-button
-            aria-label="Example icon button with a vertical three dot icon">
-            <mat-icon>more_vert</mat-icon>
-            <mat-menu #menuContact="matMenu">
-                <button mat-button (click)="openDialogUserEdit()">Edit Contact</button>
-                <button mat-button (click)="openDialogAreUSure()" color="warn">Delete Contact</button>
-            </mat-menu>
-        </button>
+        <mat-card class="detailCard-header">
+            <button [routerLink]="['/main-site/user']" class="backBTN" mat-fab color="primary"
+                aria-label="Example icon button with a delete icon">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <button [matMenuTriggerFor]="menuContact" class="menu-btn" mat-icon-button
+                aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon>more_vert</mat-icon>
+                <mat-menu #menuContact="matMenu">
+                    <button mat-button (click)="openDialogUserEdit()">Edit Contact</button>
+                    <button mat-button (click)="openDialogAreUSure()" color="warn">Delete Contact</button>
+                </mat-menu>
+            </button>
 
-        <mat-card-content class="card-infos">
+            <mat-card-content class="card-infos">
 
-            <img src="/assets/img/user-profile-pic.png" alt="user profile pic">
-            <div class="user-info">
-                <p>Telephone:
-                    <a href="{{'tel:'+this.user.tel}}">{{this.user.tel}}</a>
-                </p>
-                <p>Birthday: {{this.user.birthDate | date:'dd/MM/yyyy'}}, (Age: {{this.age}})</p>
-                <p>Email: {{this.user.email}}</p>
-                <p>Name: {{this.user.firstName}} {{this.user.lastName}}</p>
-            </div>
-        </mat-card-content>
-    </mat-card>
+                <img src="/assets/img/user-profile-pic.png" alt="user profile pic">
+                <div class="user-info">
+                    <p>Telephone:
+                        <a href="{{'tel:'+this.user.tel}}">{{this.user.tel}}</a>
+                    </p>
+                    <p>Birthday: {{this.user.birthDate | date:'dd/MM/yyyy'}}, (Age: {{this.age}})</p>
+                    <p>Email: {{this.user.email}}</p>
+                    <p>Name: {{this.user.firstName}} {{this.user.lastName}}</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
 
-    <mat-card class="mt-32 adress-container">
+        <mat-card class="mt-32 adress-container">
 
-        <button [matMenuTriggerFor]="menu" class="menu-btn" mat-icon-button
-            aria-label="Example icon button with a vertical three dot icon">
-            <mat-icon>more_vert</mat-icon>
-            <mat-menu #menu="matMenu">
-                <button (click)="openDialogAddress()" mat-menu-item>Edit Address</button>
-            </mat-menu>
-        </button>
+            <button [matMenuTriggerFor]="menu" class="menu-btn" mat-icon-button
+                aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon>more_vert</mat-icon>
+                <mat-menu #menu="matMenu">
+                    <button (click)="openDialogAddress()" mat-menu-item>Edit Address</button>
+                </mat-menu>
+            </button>
 
-        <h1>Address</h1>
-        <p>Street: {{this.user.street}}</p>
-        <p>Zip Code: {{this.user.zipCode}}</p>
-        <p>City: {{this.user.city}}</p>
-    </mat-card>
+            <h1>Address</h1>
+            <p>Street: {{this.user.street}}</p>
+            <p>Zip Code: {{this.user.zipCode}}</p>
+            <p>City: {{this.user.city}}</p>
+        </mat-card>
 
-    <mat-card class="mt-32 note-Container">
-        <h1>Notes</h1>
-        <ul>
-            <li *ngFor="let item of this.user['title']; index as i">
-                <p (click)="openNote(i)">{{this.user['title'][i]}}</p>
-            </li>
-        </ul>
-        <button (click)="addNote()" class="add-note-btn" mat-fab color="primary"
-            aria-label="Example icon button with a delete icon">
-            <mat-icon>add_notes</mat-icon>
-        </button>
-    </mat-card>
+        <mat-card class="mt-32 note-Container">
+            <h1>Notes</h1>
+            <ul>
+                <li *ngFor="let item of this.user['title']; index as i">
+                    <p (click)="openNote(i)">{{this.user['title'][i]}}</p>
+                </li>
+            </ul>
+            <button (click)="addNote()" class="add-note-btn" mat-fab color="primary"
+                aria-label="Example icon button with a delete icon">
+                <mat-icon>add_notes</mat-icon>
+            </button>
+        </mat-card>
+    </div>
 </div>
