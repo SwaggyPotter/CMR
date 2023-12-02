@@ -17,6 +17,7 @@ export class SingInComponent {
   firestore: Firestore = inject(Firestore);
   user: any = {};
   db: any;
+  isDataReady: boolean = false;
   users: any;
   email: string = ''
   password: string = ''
@@ -50,9 +51,9 @@ export class SingInComponent {
   }
 
 
-/**
- * Get the input from the email and password field
- */
+  /**
+   * Get the input from the email and password field
+   */
   getInput() {
     this.singInData.Email = this.email
     this.singInData.password = this.password
@@ -60,9 +61,9 @@ export class SingInComponent {
   }
 
 
- /**
-  * Load the login data of all user
-  */
+  /**
+   * Load the login data of all user
+   */
   async loadLoginData() {
     const querySnapshot = await getDocs(collection(this.db, "logins"));
     querySnapshot.forEach((doc) => {
@@ -79,10 +80,10 @@ export class SingInComponent {
     localStorage.setItem('currentUser', this.showName);
   }
 
-  
-/**
- * Perform the login
- */
+
+  /**
+   * Perform the login
+   */
   login() {
     for (let i = 0; i < this.pufferArray.length; i++) {
       const element = this.pufferArray[i];
