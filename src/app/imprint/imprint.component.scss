@@ -1,0 +1,17 @@
+.centerContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+
+    .impressContainer {
+        width: 100%;
+        max-width: 1440px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+}
