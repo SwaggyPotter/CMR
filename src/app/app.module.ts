@@ -16,7 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
@@ -26,16 +26,17 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { DetailCardComponent } from './detail-card/detail-card.component';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { UserDetailEditDialogComponent } from './user-detail-edit-dialog/user-detail-edit-dialog.component';
 import { EditUserAdressDialogComponent } from './edit-user-adress-dialog/edit-user-adress-dialog.component';
 import { NoteComponentComponent } from './note-component/note-component.component';
 import { AddNoteDialogComponent } from './add-note-dialog/add-note-dialog.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TotalUserComponent } from './total-user/total-user.component';
 import { UserDiagrammComponent } from './user-diagramm/user-diagramm.component';
 import { HttpClientModule } from '@angular/common/http'
 import { AgGridModule } from 'ag-grid-angular';
+
 
 import { CommonModule } from '@angular/common';
 import * as PlotlyJS from 'plotly.js-dist-min';

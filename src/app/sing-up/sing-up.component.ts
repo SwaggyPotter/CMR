@@ -3,6 +3,8 @@ import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, doc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -52,14 +54,16 @@ export class SingUpComponent {
    * 
    */
   async createAccount() {
-    const querySnapshot = await getDocs(collection(this.db, "logins"));
-    querySnapshot.forEach((doc) => {
-      this.pufferArray = doc.data()['emailsAndPasswords'];
-    });
-    this.singInData.Email = this.email
-    this.singInData.password = this.password
-    this.singInData.name = this.name
-    this.checkAccountInformation();
+    if (this.name && this.email && this.password) {
+      const querySnapshot = await getDocs(collection(this.db, "logins"));
+      querySnapshot.forEach((doc) => {
+        this.pufferArray = doc.data()['emailsAndPasswords'];
+      });
+      this.singInData.Email = this.email
+      this.singInData.password = this.password
+      this.singInData.name = this.name
+      this.checkAccountInformation();
+    }
   }
 
 
@@ -73,8 +77,8 @@ export class SingUpComponent {
       const value = Object.keys(data).map(key => data[key]);
       if (value[1] != this.singInData.Email) {
         if (i == this.pufferArray.length - 1) {
-         this.sendToBackend();
-         this._router.navigateByUrl('/sing-in')
+          this.sendToBackend();
+          this._router.navigateByUrl('/sing-in')
         }
       }
     }
