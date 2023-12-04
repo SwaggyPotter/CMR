@@ -71,9 +71,10 @@ export class SingUpComponent {
       const element = this.pufferArray[i];
       let data = JSON.parse(this.pufferArray[i])
       const value = Object.keys(data).map(key => data[key]);
-      if (value[0] != this.singInData.Email) {
+      if (value[1] != this.singInData.Email) {
         if (i == this.pufferArray.length - 1) {
-          this.sendToBackend();
+         this.sendToBackend();
+         this._router.navigateByUrl('/sing-up')
         }
       }
     }

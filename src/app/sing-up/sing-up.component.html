@@ -1,33 +1,32 @@
 <div id="login-field">
-    <div class="sing-In-Or-Up-Field">
-        
+    <form class="sing-In-Or-Up-Field" (submit)="createAccount()" action="">
         <mat-progress-bar *ngIf="isDataReady" mode="indeterminate"></mat-progress-bar>
-
         <h1>Welcome to my simple CRM</h1>
 
         <mat-form-field class="example-full-width">
             <mat-label>Your Name</mat-label>
-            <input [(ngModel)]="name" matInput placeholder="type in your name">
+            <input required ngModel minlength="1" [ngModelOptions]="{standalone: true}" [(ngModel)]="name" matInput
+                placeholder="type in your name">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
-            <input [(ngModel)]="email" matInput placeholder="Email">
+            <input required ngModel [ngModelOptions]="{standalone: true}" type="email" name="email" ngModel [email]="true"
+                [(ngModel)]="email" matInput placeholder="Email">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Passwort</mat-label>
-            <input [(ngModel)]="password" matInput placeholder="Enter your password"
-                [type]="hide ? 'password' : 'text'">
+
+            <input required ngModel minlength="6" [ngModelOptions]="{standalone: true}" [(ngModel)]="password" matInput
+                placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+
         </mat-form-field>
 
-
-        <button class="createBtn" (click)="createAccount()" mat-raised-button color="primary">
-            Create new account</button>
-
-
-        <button [routerLink]="['/sing-in']" routerLinkActive="router-link-active" mat-raised-button color="primary">I
-            already have an account</button>
-
-    </div>
+        <button class="createBtn" mat-raised-button color="primary">
+            Create new account
+        </button>
+    </form>
+    <button [routerLink]="['/sing-in']" routerLinkActive="router-link-active" mat-raised-button color="primary">I
+        already have an account</button>
 </div>
