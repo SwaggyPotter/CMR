@@ -27,9 +27,18 @@ mat-toolbar {
         justify-content: space-between;
         align-items: center;
 
+        .userGreeting{
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .center {
             display: flex;
             align-items: center;
+            z-index: 2;
         }
     }
 
