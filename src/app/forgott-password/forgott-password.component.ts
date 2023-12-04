@@ -40,6 +40,7 @@ export class ForgottPasswordComponent {
     from_email: ['Password@reset-service.de'],
     message: ['Here is your reset code: ']
   });
+  hide: boolean = false
 
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
@@ -112,20 +113,22 @@ export class ForgottPasswordComponent {
    * Update the user password and store it to the backend 
    */
   async setNewPassword() {
-    const querySnapshot = await getDocs(collection(this.db, "logins"));
-    querySnapshot.forEach((doc) => {
-      this.emailPasswords = doc.data()['emailsAndPasswords']
-    });
-    for (let i = 0; i < this.emailPasswords.length; i++) {
-      const element = this.emailPasswords[i];
-      let data: any = JSON.parse(this.emailPasswords[i])
-      const value = Object.keys(data).map(key => data[key]);
-      if (value[1] == this.searchEmail.Email) {
-        this.newUserPW = JSON.parse(this.emailPasswords[i])
-        this.newUserPW.password = this.newPassword
-        this.emailPasswords[i] = JSON.stringify(this.newUserPW)
-        await setDoc(doc(this.db, "logins", "emailsAndPassword"), { "emailsAndPasswords": this.emailPasswords });
-        this._router.navigate(['/sing-in']);
+    if (this.newPassword.length > 5) {
+      const querySnapshot = await getDocs(collection(this.db, "logins"));
+      querySnapshot.forEach((doc) => {
+        this.emailPasswords = doc.data()['emailsAndPasswords']
+      });
+      for (let i = 0; i < this.emailPasswords.length; i++) {
+        const element = this.emailPasswords[i];
+        let data: any = JSON.parse(this.emailPasswords[i])
+        const value = Object.keys(data).map(key => data[key]);
+        if (value[1] == this.searchEmail.Email) {
+          this.newUserPW = JSON.parse(this.emailPasswords[i])
+          this.newUserPW.password = this.newPassword
+          this.emailPasswords[i] = JSON.stringify(this.newUserPW)
+          await setDoc(doc(this.db, "logins", "emailsAndPassword"), { "emailsAndPasswords": this.emailPasswords });
+          this._router.navigate(['/sing-in']);
+        }
       }
     }
   }
