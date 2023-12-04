@@ -121,6 +121,6 @@ PlotlyModule.plotlyjs = PlotlyJS;
     provideFirestore(() => getFirestore())
   ],
   providers: [],
-  bootstrap: [AppComponent, UserDiagrammComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
