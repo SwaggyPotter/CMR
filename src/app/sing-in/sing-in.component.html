@@ -1,20 +1,20 @@
 <div id="login-field">
-    <div class="sing-In-Or-Up-Field">
+    <form class="sing-In-Or-Up-Field" (ngSubmit)="getInput()">
         <mat-progress-bar *ngIf="isDataReady" mode="indeterminate"></mat-progress-bar>
         <h1>Welcome to my simple CRM</h1>
         <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
-            <input [(ngModel)]="email" matInput placeholder="Email">
+            <input ngModel [ngModelOptions]="{standalone: true}" type="email" name="email" ngModel [email]="true"
+                [(ngModel)]="email" matInput placeholder="Email" required email>
         </mat-form-field>
         <mat-form-field class="example-full-width">
             <mat-label>Passwort</mat-label>
-            <input [(ngModel)]="password" matInput placeholder="Enter your password"
-                [type]="hide ? 'password' : 'text'">
+            <input ngModel minlength="6" [ngModelOptions]="{standalone: true}" [(ngModel)]="password" matInput
+                placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
         </mat-form-field>
 
 
-        <button (click)="getInput()" routerLinkActive="router-link-active" mat-raised-button
-            color="accent">Login</button>
+        <button type="submit" routerLinkActive="router-link-active" mat-raised-button color="accent">Login</button>
         <div class="buttonContainer">
             <button [routerLink]="['/sing-up']" routerLinkActive="router-link-active" mat-raised-button
                 color="accent">Create new account</button>
@@ -26,7 +26,7 @@
             <button [routerLink]="['/main-site']" routerLinkActive="router-link-active" mat-raised-button
                 color="accent">Guest Login</button>
         </div>
-    </div>
+    </form>
 </div>
 
 
