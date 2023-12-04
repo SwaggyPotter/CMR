@@ -74,7 +74,7 @@ export class SingUpComponent {
       if (value[1] != this.singInData.Email) {
         if (i == this.pufferArray.length - 1) {
          this.sendToBackend();
-         this._router.navigateByUrl('/sing-up')
+         this._router.navigateByUrl('/sing-in')
         }
       }
     }

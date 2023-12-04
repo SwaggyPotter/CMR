@@ -1,29 +1,29 @@
 <div id="login-field">
-    <form class="sing-In-Or-Up-Field" (submit)="createAccount()" action="">
+    <form class="sing-In-Or-Up-Field" (ngSubmit)="createAccount()" action="">
         <mat-progress-bar *ngIf="isDataReady" mode="indeterminate"></mat-progress-bar>
         <h1>Welcome to my simple CRM</h1>
 
         <mat-form-field class="example-full-width">
             <mat-label>Your Name</mat-label>
-            <input required ngModel minlength="1" [ngModelOptions]="{standalone: true}" [(ngModel)]="name" matInput
-                placeholder="type in your name">
+            <input  ngModel minlength="1" [ngModelOptions]="{standalone: true}" [(ngModel)]="name" matInput
+                placeholder="type in your name" required >
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
-            <input required ngModel [ngModelOptions]="{standalone: true}" type="email" name="email" ngModel [email]="true"
-                [(ngModel)]="email" matInput placeholder="Email">
+            <input  ngModel [ngModelOptions]="{standalone: true}" type="email" name="email" ngModel [email]="true"
+                [(ngModel)]="email" matInput placeholder="Email" required email>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Passwort</mat-label>
 
-            <input required ngModel minlength="6" [ngModelOptions]="{standalone: true}" [(ngModel)]="password" matInput
-                placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+            <input  ngModel minlength="6" [ngModelOptions]="{standalone: true}" [(ngModel)]="password" matInput
+                placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
 
         </mat-form-field>
 
-        <button class="createBtn" mat-raised-button color="primary">
+        <button type="submit" class="createBtn" mat-raised-button color="primary">
             Create new account
         </button>
     </form>
