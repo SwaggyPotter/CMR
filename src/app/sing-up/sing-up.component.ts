@@ -3,8 +3,6 @@ import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, doc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 
 @Component({

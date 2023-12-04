@@ -6,17 +6,24 @@
     height: 100%;
     background-color: rgba(128, 128, 128, 0.658);
 
-    .sing-In-Or-Up-Field {
+    .centerContainer {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        background-color: gray;
-        padding: 20px;
-        border-radius: 20px;
 
-        .createBtn{
-            margin-bottom: 10px;
+        .sing-In-Or-Up-Field {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: gray;
+            padding: 20px;
+            border-radius: 20px;
+
+            .createBtn {
+                margin-bottom: 10px;
+            }
         }
     }
 }
