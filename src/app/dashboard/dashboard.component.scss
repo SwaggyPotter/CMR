@@ -29,10 +29,11 @@ h1 {
     width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;
+
     .maxWidthContainer {
         width: 50%;
 
-        app-age-diagramm{
+        app-age-diagramm {
             display: flex;
             justify-content: center;
         }

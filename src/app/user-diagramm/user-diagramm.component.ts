@@ -52,8 +52,9 @@ export class UserDiagrammComponent {
   }
 
 
-  /*
-  *Update the user joinded database
+  
+ /**
+  * Update the user joinded database
   */
   async userJoinedList() {
     const unsub = onSnapshot(doc(this.db, "userJoinedLeaved", "userJoined"), (doc) => {
