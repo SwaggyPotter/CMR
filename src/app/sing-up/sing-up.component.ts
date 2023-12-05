@@ -25,13 +25,14 @@ export class SingUpComponent {
   pufferArray = [];
   emailsAndPasswords: any = { "emailsAndPasswords": "" }
   emailPassWArray: any = []
+  createtShow: boolean = false;
+  inUseShow: boolean = false;
   singInData = {
     name: '',
     Email: '',
     password: '',
   }
-  createtShow: boolean = false;
-  inUseShow: boolean = false;
+
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
     const firebaseConfig = {
@@ -76,21 +77,37 @@ export class SingUpComponent {
       const value = Object.keys(data).map(key => data[key]);
       if (value[1] != this.singInData.Email) {
         if (i == this.pufferArray.length - 1) {
-          this.sendToBackend();
-          this.createtShow = true;
-          setTimeout(() => {
-            this.createtShow = false;
-            this._router.navigateByUrl('/sing-in')
-          }, 3000)
+          this.sendDataToBackend();
         }
       }
       else if (value[1] == this.singInData.Email) {
-        this.inUseShow = true;
-        setTimeout(() => {
-          this.inUseShow = false;
-        }, 3000)
+        this.showIsInUseMessage();
       }
     }
+  }
+
+
+  /**
+   * Send the data to the backend and send the user to the login after 3 seconds
+   */
+  sendDataToBackend() {
+    this.sendToBackend();
+    this.createtShow = true;
+    setTimeout(() => {
+      this.createtShow = false;
+      this._router.navigateByUrl('/sing-in')
+    }, 3000)
+  }
+
+
+  /**
+   * Show a message when the email is in use for 3 seconds
+   */
+  showIsInUseMessage() {
+    this.inUseShow = true;
+    setTimeout(() => {
+      this.inUseShow = false;
+    }, 3000)
   }
 
 

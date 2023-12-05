@@ -43,9 +43,9 @@ export class UserLocationDiagrammComponent {
   }
 
 
-/**
- * Get the user data
- */
+  /**
+   * Get the user data
+   */
   async getUser() {
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
@@ -53,56 +53,74 @@ export class UserLocationDiagrammComponent {
     });
     this.isDataReady = true;
     this.fillTheCords();
+    this.userArray = this.userArray.sort();
   }
 
 
-/**
- * Fill the diagramm cordinates with the amount and name of the user cities
- */
+  /**
+   * Fill the diagramm cordinates with the amount and name of the user cities
+   */
   fillTheCords() {
-    const that = this
+    const that = this;
     let arrayRounds: number = 0;
-    this.userArray = this.userArray.sort()
     this.userArray.forEach(function (city: any) {
       arrayRounds++
       if (that.userArray.length === arrayRounds) {
-        if (that.lastCity != city) {
-          that.graphArrayX.push(that.lastCity);
-          that.graphArrayY.push(that.cityCount);
-        }
-        if (that.lastCity == null || that.lastCity == city) {
-          that.graphArrayX.push(city);
-          that.graphArrayY.push(that.cityCount);
-          that.graph.data[0]['x'] = that.graphArrayX;
-          that.graph.data[0]['y'] = that.graphArrayY;
-        }
-        else {
-          that.graphArrayX.push(city);
-          that.graphArrayY.push(1);
-          that.graph.data[0]['x'] = that.graphArrayX;
-          that.graph.data[0]['y'] = that.graphArrayY;
-        }
+        that.fillCordsLastRound(city);
       }
       else if (that.lastCity == null || that.lastCity == city) {
         that.cityCount++;
         that.lastCity = city;
       }
       else {
-        that.graphArrayX.push(that.lastCity);
-        that.graphArrayY.push(that.cityCount);
-        that.lastCity = city;
-        that.cityCount = 1;
+        that.fillTheCordsNormal(city)
       }
     });
     this.topCity = this.graphArrayX[this.indexOfMax(that.graphArrayY)];
   }
 
 
-/**
- * Function for returning the item with the most amount
- * @param arr array
- * @returns the item with the most amount in the array
- */
+  /**
+   * If a city only exist once, the city and the number 1 send to the array
+   * @param city a city
+   */
+  fillTheCordsNormal(city: any) {
+    this.graphArrayX.push(this.lastCity);
+    this.graphArrayY.push(this.cityCount);
+    this.lastCity = city;
+    this.cityCount = 1;
+  }
+
+
+  /**
+   * Perform the last round of filling the user city array and cords
+   * @param city a city
+   */
+  fillCordsLastRound(city: any) {
+    if (this.lastCity != city) {
+      this.graphArrayX.push(this.lastCity);
+      this.graphArrayY.push(this.cityCount);
+    }
+    if (this.lastCity == null || this.lastCity == city) {
+      this.graphArrayX.push(city);
+      this.graphArrayY.push(this.cityCount);
+      this.graph.data[0]['x'] = this.graphArrayX;
+      this.graph.data[0]['y'] = this.graphArrayY;
+    }
+    else {
+      this.graphArrayX.push(city);
+      this.graphArrayY.push(1);
+      this.graph.data[0]['x'] = this.graphArrayX;
+      this.graph.data[0]['y'] = this.graphArrayY;
+    }
+  }
+
+
+  /**
+   * Function for returning the item with the most amount
+   * @param arr array
+   * @returns the item with the most amount in the array
+   */
   indexOfMax(arr: any) {
     let maxIndex = 0;
     for (let i = 1; i < arr.length; i++) {
@@ -114,9 +132,9 @@ export class UserLocationDiagrammComponent {
   }
 
 
-/**
- * Data for the graph 
- */
+  /**
+   * Data for the graph 
+   */
   public graph = {
     data: [
     /*x=citys*/{

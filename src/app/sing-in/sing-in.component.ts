@@ -95,11 +95,22 @@ export class SingInComponent {
         this._router.navigateByUrl('/main-site/dashboard')
       }
       else {
-        this.passwordEmailWrong = true;
-        setTimeout(() => {
-          this.passwordEmailWrong = false;
-        }, 5000)
+        this.showLoginFailed()
       }
     }
   }
+
+
+  /**
+   * Show the login failed message
+   */
+  showLoginFailed() {
+    this.passwordEmailWrong = true;
+    setTimeout(() => {
+      this.passwordEmailWrong = false;
+    }, 5000)
+  }
 }
+
+
+

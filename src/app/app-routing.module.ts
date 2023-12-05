@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
@@ -10,6 +10,7 @@ import { ForgottPasswordComponent } from './forgott-password/forgott-password.co
 import { MainSiteComponent } from './main-site/main-site.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { ImprintComponent } from './imprint/imprint.component';
+
 
 const routes: Routes = [
   { path: '', component: LoginWindowComponent },
@@ -27,12 +28,13 @@ const routes: Routes = [
   { path: 'forgott-password', component: ForgottPasswordComponent },
   { path: 'sing-up', component: SingUpComponent },
   { path: 'sing-in', component: SingInComponent },
-
-
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
+
 export class AppRoutingModule { }
