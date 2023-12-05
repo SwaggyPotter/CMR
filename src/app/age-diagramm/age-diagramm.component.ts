@@ -69,12 +69,20 @@ export class AgeDiagrammComponent {
       }
     }
     this.dataArray.push(Counter)
-    this.youngestAge += 10
-    this.oldestAge += 10
-    this.rounds++
+    this.heigherAgeNextRound()
     if (this.rounds <= 9) {
       this.fillTheGraphData()
     }
+  }
+
+
+  /**
+   * Heigher the amount of the youngest and oldest age with the amount of 10;
+   */
+  heigherAgeNextRound() {
+    this.youngestAge += 10;
+    this.oldestAge += 10;
+    this.rounds++;
   }
 
 
