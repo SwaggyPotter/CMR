@@ -22,6 +22,8 @@ export class IncomeDiagrammComponent {
   isDataReady: boolean = false;
   incomeArray: any = [];
   sumTotal: number = 0;
+  data: any = [];
+  counterArr: any = [];
 
 
   constructor() {
@@ -40,38 +42,45 @@ export class IncomeDiagrammComponent {
   }
 
 
-/**
- * Get the user income and calc the meridian of the user income.
- * Push the data to the graph config.
- */
+  /**
+   * Get the user income and calc the meridian of the user income.
+   * Push the data to the graph config.
+   */
   async getUser() {
     let i: number = 0;
+    let that = this
     const querySnapshot = await getDocs(collection(this.db, "users"));
     querySnapshot.forEach((doc) => {
       this.userArray.push(doc.id)
       this.incomeArray.push(doc.data()['income'])
     });
-    let data: any = [];
-    let counterArr: any = [];
     this.incomeArray.forEach(function (value: any) {
       if (value != 0) {
         i++
-        counterArr.push(i)
-        data.push(value)
+        that.counterArr.push(i)
+        that.data.push(value)
       }
     });
-    this.graph.data[0]['x'] = counterArr
-    this.graph.data[0]['y'] = data;
-    this.calcMeridian(data)
+    this.uppdateTheGraph();
+  }
+
+
+  /**
+   * Update the graph and the average user income
+   */
+  uppdateTheGraph() {
+    this.graph.data[0]['x'] = this.counterArr
+    this.graph.data[0]['y'] = this.data;
+    this.averageIncome(this.data)
     this.isDataReady = true;
   }
 
 
   /**
    * 
-   * @param sumArr give back the meridian of all incomes
+   * @param sumArr give back the average income
    */
-  calcMeridian(sumArr: any) {
+  averageIncome(sumArr: any) {
     this.sumTotal = 0;
     for (let i = 0; i < sumArr.length; i++) {
       let element = sumArr[i];
@@ -80,7 +89,7 @@ export class IncomeDiagrammComponent {
     this.sumTotal = (this.sumTotal / sumArr.length)
   }
 
-  
+
   /**
    * The graph data for the income diagramm
    */

@@ -27,6 +27,8 @@ export class ForgottPasswordComponent {
   codeInput: any = 0;
   newPassword: any
   emailPasswords: any
+  hide: boolean = false
+  pufferArray = [];
   newUserPW: any = {
     "Email": "",
     "name": "",
@@ -40,7 +42,7 @@ export class ForgottPasswordComponent {
     from_email: ['Password@reset-service.de'],
     message: ['Here is your reset code: ']
   });
-  hide: boolean = false
+
 
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
@@ -87,12 +89,6 @@ export class ForgottPasswordComponent {
 
 
   /**
-   * array for any function to store the user etc.
-   */
-  pufferArray = [];
-
-
-  /**
    * searching for the email from the input
    */
   searchForEmail() {
@@ -123,14 +119,23 @@ export class ForgottPasswordComponent {
         let data: any = JSON.parse(this.emailPasswords[i])
         const value = Object.keys(data).map(key => data[key]);
         if (value[1] == this.searchEmail.Email) {
-          this.newUserPW = JSON.parse(this.emailPasswords[i])
-          this.newUserPW.password = this.newPassword
-          this.emailPasswords[i] = JSON.stringify(this.newUserPW)
-          await setDoc(doc(this.db, "logins", "emailsAndPassword"), { "emailsAndPasswords": this.emailPasswords });
-          this._router.navigate(['/sing-in']);
+          this.sendNewPasswordToBackend(i)
         }
       }
     }
+  }
+
+
+  /**
+   * Send the new password to the backend and navigate to the sing in
+   * @param i number
+   */
+  async sendNewPasswordToBackend(i: number) {
+    this.newUserPW = JSON.parse(this.emailPasswords[i])
+    this.newUserPW.password = this.newPassword
+    this.emailPasswords[i] = JSON.stringify(this.newUserPW)
+    await setDoc(doc(this.db, "logins", "emailsAndPassword"), { "emailsAndPasswords": this.emailPasswords });
+    this._router.navigate(['/sing-in']);
   }
 
 

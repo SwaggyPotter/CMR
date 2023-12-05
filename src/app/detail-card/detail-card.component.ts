@@ -81,7 +81,6 @@ export class DetailCardComponent {
 
 
   /**
-   * 
    * @returns returns the month
    */
   getJoinMonth() {
@@ -94,7 +93,6 @@ export class DetailCardComponent {
 
 
   /**
-   * 
    * @returns returns the year
    */
   getYear() {

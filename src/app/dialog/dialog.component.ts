@@ -72,7 +72,6 @@ export class DialogComponent {
 
 
   /**
-   * 
    * @returns returns the month
    */
   getJoinMonth() {
@@ -85,7 +84,6 @@ export class DialogComponent {
 
 
   /**
-   * 
    * @returns returns the year
    */
   getYear() {
