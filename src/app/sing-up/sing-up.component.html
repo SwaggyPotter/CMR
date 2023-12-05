@@ -32,6 +32,18 @@
                 color="primary">I
                 already have an account</button>
         </form>
-
     </div>
+</div>
+
+<div *ngIf="createtShow" class="overlayContainer">
+    <h1>
+        Account createt
+    </h1>
+</div>
+
+
+<div *ngIf="inUseShow" class="overlayContainer">
+    <h1>
+        Email in use
+    </h1>
 </div>

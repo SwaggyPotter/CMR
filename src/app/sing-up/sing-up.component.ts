@@ -30,7 +30,8 @@ export class SingUpComponent {
     Email: '',
     password: '',
   }
-
+  createtShow: boolean = false;
+  inUseShow: boolean = false;
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
     const firebaseConfig = {
@@ -76,8 +77,18 @@ export class SingUpComponent {
       if (value[1] != this.singInData.Email) {
         if (i == this.pufferArray.length - 1) {
           this.sendToBackend();
-          this._router.navigateByUrl('/sing-in')
+          this.createtShow = true;
+          setTimeout(() => {
+            this.createtShow = false;
+            this._router.navigateByUrl('/sing-in')
+          }, 3000)
         }
+      }
+      else if (value[1] == this.singInData.Email) {
+        this.inUseShow = true;
+        setTimeout(() => {
+          this.inUseShow = false;
+        }, 3000)
       }
     }
   }
