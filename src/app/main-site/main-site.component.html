@@ -1,21 +1,30 @@
-<mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-        
+<mat-drawer-container class="example-container " autosize>
+
+    <mat-drawer #drawer class="example-sidenav sideNav" mode="side">
+
         <div class="clickable">
-            <img [routerLink]="['C/dashboard']" class="logo" src="/assets/img/logo.png" alt="">
+            <img [routerLink]="['dashboard']" class="logo" src="/assets/img/logo.png" alt="">
         </div>
 
-        <div>
+        <div class="sideTapBTNContainer">
             <p (click)="drawer.toggle()" class="clickable side-nav-box" [routerLink]="['/main-site/dashboard']"
                 routerLinkActive="router-link-active">
                 Dashboard</p>
             <p (click)="drawer.toggle()" class="clickable side-nav-box" [routerLink]="['/main-site/user']"
                 routerLinkActive="router-link-active">User</p>
 
-            <p [routerLink]="['']" class="clickable side-nav-box">
-                Logout
-            </p>
+
+            <div class="bckBTNContainer">
+                <button (click)="drawer.toggle()" class="backArrow" mat-fab color="primary" matTooltip="Back to dashboard">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+            </div>
+
         </div>
+
+        <p [routerLink]="['']" class="clickable side-nav-box logout">
+            Logout
+        </p>
     </mat-drawer>
 
     <div class="example-sidenav-content">

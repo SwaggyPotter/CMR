@@ -14,9 +14,23 @@
     height: 100vh;
 }
 
+.sideTapBTNContainer {
+    .bckBTNContainer {
+        width: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        padding-top: 20px;
+    }
+}
+
 mat-toolbar {
     position: fixed;
     z-index: 2;
+}
+
+.logout {
+    background-color: #a52e2e;
 }
 
 .example-sidenav-content {
@@ -27,7 +41,7 @@ mat-toolbar {
         justify-content: space-between;
         align-items: center;
 
-        .userGreeting{
+        .userGreeting {
             position: absolute;
             width: 100%;
             display: flex;
@@ -75,4 +89,22 @@ mat-toolbar {
 
 .logo {
     width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+    .sideNav {
+        width: 100vw !important;
+    }
+
+    .sideTapBTNContainer {
+        position: relative;
+        .bckBTNContainer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+    }
 }
