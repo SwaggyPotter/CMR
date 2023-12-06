@@ -53,7 +53,7 @@ export class UserLocationDiagrammComponent {
     });
     this.isDataReady = true;
     this.fillTheCords();
-    this.userArray = this.userArray.sort();
+
   }
 
 
@@ -61,12 +61,13 @@ export class UserLocationDiagrammComponent {
    * Fill the diagramm cordinates with the amount and name of the user cities
    */
   fillTheCords() {
-    const that = this;
+    const that = this
     let arrayRounds: number = 0;
+    this.userArray = this.userArray.sort()
     this.userArray.forEach(function (city: any) {
       arrayRounds++
       if (that.userArray.length === arrayRounds) {
-        that.fillCordsLastRound(city);
+        that.fillCordsLastRound(city)
       }
       else if (that.lastCity == null || that.lastCity == city) {
         that.cityCount++;
