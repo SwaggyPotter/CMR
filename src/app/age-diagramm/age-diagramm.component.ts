@@ -23,6 +23,7 @@ export class AgeDiagrammComponent {
   oldestAge: number = 10;
   rounds: number = 0
   dataArray: number[] = [];
+  mostAge: number = 0;
 
 
   constructor() {
@@ -38,6 +39,23 @@ export class AgeDiagrammComponent {
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
     this.getUser()
+  }
+
+
+  getTheAverageAge() {
+    //this.mostAge = this.graph.data[this.indexOfMax(this.dataArray)]
+    console.log(this.graph.data[0]['labels'][this.indexOfMax(this.dataArray)])
+  }
+
+
+  indexOfMax(arr: any) {
+    let maxIndex = 0;
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] > arr[maxIndex]) {
+        maxIndex = i;
+      }
+    }
+    return maxIndex;
   }
 
 
@@ -73,6 +91,7 @@ export class AgeDiagrammComponent {
     if (this.rounds <= 9) {
       this.fillTheGraphData()
     }
+    this.getTheAverageAge()
   }
 
 

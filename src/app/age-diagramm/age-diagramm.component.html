@@ -1,1 +1,9 @@
-<plotly-plot *ngIf="this.isDataReady" [data]="graph.data" [layout]="graph.layout" [config]="graph.config"></plotly-plot>
+<div class="ageContainer">
+    <plotly-plot *ngIf="this.isDataReady" [data]="graph.data" [layout]="graph.layout"
+        [config]="graph.config"></plotly-plot>
+    <mat-card>
+        <mat-card-content>
+            The most people are between {{this.mostAge}} years old.
+        </mat-card-content>
+    </mat-card>
+</div>
