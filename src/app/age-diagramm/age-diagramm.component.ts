@@ -23,7 +23,8 @@ export class AgeDiagrammComponent {
   oldestAge: number = 10;
   rounds: number = 0
   dataArray: number[] = [];
-  mostAge: number = 0;
+  mostAge: string = ''
+  ages =  ["0 - 10", "10 - 20", "20 - 30", "30 - 40", "40 - 50", "50 - 60", "60 - 70", "70 - 80", "80 - 90", "90 - 100"];
 
 
   constructor() {
@@ -43,8 +44,7 @@ export class AgeDiagrammComponent {
 
 
   getTheAverageAge() {
-    //this.mostAge = this.graph.data[this.indexOfMax(this.dataArray)]
-    console.log(this.graph.data[0]['labels'][this.indexOfMax(this.dataArray)])
+    this.mostAge = this.ages[this.indexOfMax(this.dataArray)]
   }
 
 
@@ -126,7 +126,7 @@ export class AgeDiagrammComponent {
       height: 400,
       width: 400, title: 'User Age', paper_bgcolor: '#303030', plot_bgcolor: '#303030',
       font: {
-        size: 12,
+        size: 14,
         color: 'white'       // Schriftfarbe
       },
     },
