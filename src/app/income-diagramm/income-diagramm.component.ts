@@ -86,7 +86,7 @@ export class IncomeDiagrammComponent {
       let element = sumArr[i];
       this.sumTotal += parseInt(element)
     }
-    this.sumTotal = (this.sumTotal / sumArr.length)
+    this.sumTotal = Math.round(this.sumTotal / sumArr.length)
   }
 
 
