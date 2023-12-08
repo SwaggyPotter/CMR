@@ -90,7 +90,7 @@ export class UserDiagrammComponent {
       },
       {
         x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], y: [0], type: 'bar', marker: { color: 'red' }
-        , name: 'user leaved'
+        , name: 'user left'
       },
     ],
     layout: {

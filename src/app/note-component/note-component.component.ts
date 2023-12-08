@@ -1,7 +1,7 @@
 import { Component, inject, Inject } from '@angular/core';
 import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { getDatabase } from 'firebase/database';
 import { doc, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
@@ -27,7 +27,7 @@ export class NoteComponentComponent {
   loading: boolean = false;
 
 
-  constructor(private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public data: DetailCardComponent) {
+  constructor(private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public data: DetailCardComponent, public dialogRef: MatDialogRef<NoteComponentComponent>) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
       authDomain: "simple-crm-system-9f5e8.firebaseapp.com",
@@ -57,6 +57,7 @@ export class NoteComponentComponent {
     let userAsJson = this.user;
     await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
     this.loading = false;
+    this.dialogRef.close();
   }
 
   /**

@@ -25,8 +25,8 @@ export class ForgottPasswordComponent {
   codeEnter: boolean = false;
   enterNEwPw: boolean = false;
   codeInput: any = 0;
-  newPassword: any
-  emailPasswords: any
+  newPassword: any;
+  emailPasswords: any;
   hide: boolean = false
   pufferArray = [];
   newUserPW: any = {
