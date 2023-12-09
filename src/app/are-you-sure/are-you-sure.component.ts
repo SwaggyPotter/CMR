@@ -40,10 +40,10 @@ export class AreYouSureComponent {
     this.getRoute()
   }
 
-  
-/**
- * get the user by the id
- */
+
+  /**
+   * get the user by the id
+   */
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
       this.user = doc.data()
@@ -51,14 +51,14 @@ export class AreYouSureComponent {
   }
 
 
-/**
- * delete the by the id choosen contact and navigatte to the user list
- */
+  /**
+   * delete the by the id choosen contact and navigatte to the user list
+   */
   async deleteContact() {
+    await this.router.navigate(['/main-site/user']);
+    this.dialogRef.close();
     await deleteDoc(doc(this.db, "users", this.userId));
     await setDoc(doc(this.firestore, "userJoinedLeaved", 'userLeaved'), this.freshData)
-    this.router.navigate(['/main-site/user']);
-    this.dialogRef.close();
   }
 
 

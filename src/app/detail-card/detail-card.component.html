@@ -1,4 +1,4 @@
-<div class="centerContainer">
+<div *ngIf="deleting" class="centerContainer">
     <div class="detailCard-container">
 
         <mat-card class="detailCard-header">
@@ -17,14 +17,14 @@
 
             <mat-card-content class="card-infos">
 
-                <img src="/assets/img/user-profile-pic.png" alt="user profile pic">
+                <img src="assets/img/user-profile-pic.png" alt="user profile pic">
                 <div class="user-info">
                     <p>Telephone:
-                        <a href="{{'tel:'+this.user.tel}}">{{this.user.tel}}</a>
+                        <a *ngIf="this.user.tel" href="{{'tel:'+this.user.tel}}">{{this.user.tel}}</a>
                     </p>
-                    <p>Birthday: {{this.user.birthDate | date:'dd/MM/yyyy'}}, (Age: {{this.age}})</p>
-                    <p>Email: {{this.user.email}}</p>
-                    <p>Name: {{this.user.firstName}} {{this.user.lastName}}</p>
+                    <p *ngIf="deleting">Birthday: {{this.user.birthDate | date:'dd/MM/yyyy'}}, (Age: {{this.age}})</p>
+                    <p *ngIf="deleting">Email: {{this.user.email}}</p>
+                    <p *ngIf="deleting">Name: {{this.user.firstName}} {{this.user.lastName}}</p>
                 </div>
             </mat-card-content>
         </mat-card>
@@ -40,12 +40,12 @@
             </button>
 
             <h1>Address</h1>
-            <p>Street: {{this.user.street}}</p>
-            <p>Zip Code: {{this.user.zipCode}}</p>
-            <p>City: {{this.user.city}}</p>
+            <p *ngIf="deleting">Street: {{this.user.street}}</p>
+            <p *ngIf="deleting">Zip Code: {{this.user.zipCode}}</p>
+            <p *ngIf="deleting">City: {{this.user.city}}</p>
         </mat-card>
 
-        <mat-card class="mt-32 note-Container">
+        <mat-card *ngIf="deleting" class="mt-32 note-Container">
             <h1>Notes</h1>
             <ul>
                 <li *ngFor="let item of this.user['title']; index as i">

@@ -10,6 +10,7 @@ import { User } from '../models/user.class';
 import { AddNoteDialogComponent } from '../add-note-dialog/add-note-dialog.component';
 import { NoteComponentComponent } from '../note-component/note-component.component';
 import { AreYouSureComponent } from '../are-you-sure/are-you-sure.component';
+import { timeout } from 'rxjs';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class DetailCardComponent {
   freshData: any
   age: any;
   birtday: any;
+  deleting: boolean = true;
 
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog, public router: Router) {
@@ -45,9 +47,9 @@ export class DetailCardComponent {
     };
     const app = initializeApp(firebaseConfig);
     this.db = getFirestore(app);
-    this.userId = this.route.snapshot.paramMap.get('id')
-    this.getUser()
-    this.getRoute()
+    this.userId = this.route.snapshot.paramMap.get('id');
+    this.getUser();
+    this.getRoute();
   }
 
 
@@ -56,9 +58,23 @@ export class DetailCardComponent {
    */
   async getUser() {
     const docRef = onSnapshot(doc(this.db, "users", this.userId), (doc) => {
-      this.user = doc.data()
-      this.calcBirthday()
+      this.user = doc.data();
+      if (this.user) {
+        this.calcBirthday();
+      }
     });
+  }
+
+
+  /**
+   * delete the contact in the backend and navigate to the user list
+   */
+  async deleteContact() {
+    this.router.navigate(['/main-site/user']);
+    this.deleting = false;
+    await deleteDoc(doc(this.db, "users", this.userId));
+    await setDoc(doc(this.firestore, "userJoinedLeaved", 'userLeaved'), this.freshData);
+    this.user = null;
   }
 
 
@@ -68,16 +84,6 @@ export class DetailCardComponent {
   calcBirthday() {
     this.birtday = new Date(this.user.birthDate);
     this.age = new Number((new Date().getTime() - this.birtday.getTime()) / 31536000000).toFixed(0);
-  }
-
-
-  /**
-   * delete the contact in the backend and navigate to the user list
-   */
-  async deleteContact() {
-    await deleteDoc(doc(this.db, "users", this.userId));
-    await setDoc(doc(this.firestore, "userJoinedLeaved", 'userLeaved'), this.freshData)
-    this.router.navigate(['/main-site/user']);
   }
 
 
