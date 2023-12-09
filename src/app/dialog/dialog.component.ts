@@ -106,7 +106,10 @@ export class DialogComponent {
    * save the users birthdate as timestamp
    */
   saveUser() {
-    this.user.birthDate = this.birthdate.getTime();
+    if (this.user.birthDate) {
+      this.user.birthDate = this.birthdate.getTime();
+    }
+
     this.addUser();
   }
 
