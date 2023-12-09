@@ -38,7 +38,7 @@ export class UserDetailEditDialogComponent {
    * Update the user database
    */
   async updateUser() {
-    const db = getDatabase();
+   const db = getDatabase();
     this.loading = true;
     let userAsJson = this.user.toJSON()
     await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);

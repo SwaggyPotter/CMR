@@ -3,7 +3,7 @@ import { initializeApp } from '@angular/fire/app';
 import { Firestore } from '@angular/fire/firestore';
 import { doc, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
 import { Inject, } from '@angular/core';
-import {  MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../models/user.class';
 import { DetailCardComponent } from '../detail-card/detail-card.component';
@@ -27,9 +27,9 @@ export class AddNoteDialogComponent {
   title: string = '';
   note: string = '';
   loading: boolean = false;
-  
 
-  constructor(private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public data: DetailCardComponent) {
+
+  constructor(private route: ActivatedRoute, @Inject(MAT_DIALOG_DATA) public data: DetailCardComponent, public dialogRef: MatDialogRef<AddNoteDialogComponent>) {
     const firebaseConfig = {
       apiKey: "AIzaSyDxJcs5hA7ww_7W2MWnRmGbs13n5sn1_fA",
       authDomain: "simple-crm-system-9f5e8.firebaseapp.com",
@@ -45,7 +45,7 @@ export class AddNoteDialogComponent {
     this.getUser();
   }
 
-  
+
   /**
    * 
    * @param title The input from the title input of the html document
@@ -59,6 +59,7 @@ export class AddNoteDialogComponent {
     let userAsJson = this.user;
     await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
     this.loading = false;
+    this.dialogRef.close();
   }
 
 
