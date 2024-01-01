@@ -61,7 +61,7 @@ export class UserDiagrammComponent {
       this.userJoinData = doc.data()
       let pufferArray = []
       for (let i = 1; i < 13; i++) {
-        pufferArray.push(this.userJoinData[2023][i])
+        pufferArray.push(this.userJoinData[2024][i])
       }
       this.graph.data[0]['y'] = pufferArray
     });
@@ -74,7 +74,7 @@ export class UserDiagrammComponent {
       this.userLeaveData = doc.data()
       let pufferArray = []
       for (let i = 1; i < 13; i++) {
-        pufferArray.push(this.userLeaveData[2023][i] - (this.userLeaveData[2023][i] * 2))
+        pufferArray.push(this.userLeaveData[2024][i] - (this.userLeaveData[2024][i] * 2))
       }
       this.graph.data[1]['y'] = pufferArray
     });
