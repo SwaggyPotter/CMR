@@ -64,7 +64,6 @@ export class DialogComponent {
     this.user.joinMonth = this.getJoinMonth()['month']
     this.user.joinYear = this.getYear()['year']
     let userAsJson = this.user.toJSON()
-    console.log(userAsJson)
     await setDoc(doc(this.firestore, "users", this.user.id), userAsJson);
     await setDoc(doc(this.firestore, "userJoinedLeaved", 'userJoined'), this.freshData)
     this.loading = false;
