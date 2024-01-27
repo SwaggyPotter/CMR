@@ -94,7 +94,7 @@ export class UserDiagrammComponent {
       },
     ],
     layout: {
-      title: 'Total user over 12 month', height: 250, paper_bgcolor: '#303030', plot_bgcolor: '#303030',
+      title: 'Total user over 12 month', height: 250, paper_bgcolor: '#ffffff00', plot_bgcolor: '#ffffff00',
       font: {
         size: 12,
         color: 'white'

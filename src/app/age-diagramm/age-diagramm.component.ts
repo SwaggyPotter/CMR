@@ -124,7 +124,7 @@ export class AgeDiagrammComponent {
     ],
     layout: {
       height: 400,
-      width: 400, title: 'User Age', paper_bgcolor: '#303030', plot_bgcolor: '#303030',
+      width: 400, title: 'User Age', paper_bgcolor: '#ffffff00', plot_bgcolor: '#ffffff00',
       font: {
         size: 14,
         color: 'white'       // Schriftfarbe

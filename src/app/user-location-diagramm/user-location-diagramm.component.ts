@@ -144,7 +144,7 @@ export class UserLocationDiagrammComponent {
       },],
 
     layout: {
-      title: 'Top user Citys', height: 250, paper_bgcolor: '#303030', plot_bgcolor: '#303030',
+      title: 'Top user Citys', height: 250, paper_bgcolor: '#ffffff00', plot_bgcolor: '#ffffff00',
       font: {
         size: 12,
         color: 'white'       // Schriftfarbe

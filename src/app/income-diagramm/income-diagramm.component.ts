@@ -98,7 +98,7 @@ export class IncomeDiagrammComponent {
       { x: [], y: [], type: 'bar', mode: 'lines+points', marker: { color: 'blue' } },
     ],
     layout: {
-      height: 250, title: 'User income', paper_bgcolor: '#303030', plot_bgcolor: '#303030',
+      height: 250, title: 'User income', paper_bgcolor: '#ffffff00', plot_bgcolor: '#ffffff00',
       font: {
         size: 12,
         color: 'white'       // Schriftfarbe
