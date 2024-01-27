@@ -55,7 +55,7 @@ import { AgeDiagrammComponent } from './age-diagramm/age-diagramm.component';
 import { FooterComponent } from './footer/footer.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { ImprintComponent } from './imprint/imprint.component';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 PlotlyModule.plotlyjs = PlotlyJS;
@@ -115,13 +115,14 @@ PlotlyModule.plotlyjs = PlotlyJS;
     BrowserModule,
     HttpClientModule,
     AgGridModule,
+    MatButtonToggleModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore())
   ],
   providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
