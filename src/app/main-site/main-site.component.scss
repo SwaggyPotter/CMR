@@ -2,6 +2,11 @@
     position: absolute;
 }
 
+#containerBackground {
+    background: linear-gradient(90deg, rgba(32, 32, 32, 1) 0%, rgba(61, 61, 61, 1) 50%, rgba(32, 32, 32, 1) 100%);
+    ;
+}
+
 .toolbar-container {
     display: flex;
 }
@@ -27,7 +32,7 @@
 mat-toolbar {
     position: fixed;
     z-index: 2;
-    background: linear-gradient(90deg, rgba(32,32,32,1) 0%, rgba(61,61,61,1) 50%, rgba(32,32,32,1) 100%);
+    background: linear-gradient(90deg, rgba(32, 32, 32, 1) 0%, rgba(61, 61, 61, 1) 50%, rgba(32, 32, 32, 1) 100%);
 }
 
 .logout {
@@ -37,7 +42,7 @@ mat-toolbar {
 
 .example-sidenav-content {
     overflow-x: hidden;
-    background: linear-gradient(90deg, rgba(32,32,32,1) 0%, rgba(61,61,61,1) 50%, rgba(32,32,32,1) 100%);
+    background: linear-gradient(90deg, rgba(32, 32, 32, 1) 0%, rgba(61, 61, 61, 1) 50%, rgba(32, 32, 32, 1) 100%);
 
     .relativContainer {
         display: flex;
@@ -101,6 +106,7 @@ mat-toolbar {
 
     .sideTapBTNContainer {
         position: relative;
+
         .bckBTNContainer {
             width: 100%;
             display: flex;
